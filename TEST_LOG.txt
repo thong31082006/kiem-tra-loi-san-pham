@@ -1,0 +1,7 @@
+TEST DEMO DỰ KIẾN
+- Cuốc sắt lỗi: KHÔNG ĐẠT - mẻ/biến dạng + gỉ + nứt/trầy
+- Cuốc sắt đạt: ĐẠT
+- Chai nhựa lỗi: KHÔNG ĐẠT - thiếu/sai nắp + méo thân + bất thường bề mặt
+- Chai nhựa đạt: ĐẠT
+- Gạch men lỗi: KHÔNG ĐẠT - nứt + bất thường màu bề mặt
+- Gạch men đạt: ĐẠT
