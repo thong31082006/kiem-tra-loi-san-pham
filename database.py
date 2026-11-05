@@ -1,26 +1,19 @@
 import json
 import sqlite3
+from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
 
 DB_PATH = Path(__file__).parent / "data" / "inspection.db"
 
 PRODUCTS = [
-    (1, "HOE", "Cuốc sắt", "Kiểm tra gỉ sét, mẻ/biến dạng, nứt/trầy"),
     (2, "BOTTLE", "Chai nhựa", "Kiểm tra thiếu nắp, méo thân, bất thường bề mặt"),
-    (3, "TILE", "Gạch men", "Kiểm tra nứt, mẻ cạnh, vết bẩn/bất thường màu"),
 ]
 
 DEFECTS = [
-    (1, 1, "HOE_SHAPE", "Mẻ / biến dạng lưỡi cuốc"),
-    (2, 1, "HOE_RUST", "Gỉ sét bề mặt"),
-    (3, 1, "HOE_CRACK", "Nứt / trầy bất thường"),
     (4, 2, "BOTTLE_CAP", "Thiếu / sai nắp chai"),
     (5, 2, "BOTTLE_SHAPE", "Thân chai méo / sai hình dạng"),
     (6, 2, "BOTTLE_SURFACE", "Bề mặt chai bất thường"),
-    (7, 3, "TILE_EDGE", "Mẻ cạnh / sai hình dạng viên gạch"),
-    (8, 3, "TILE_CRACK", "Nứt bề mặt"),
-    (9, 3, "TILE_SURFACE", "Vết bẩn / bất thường màu bề mặt"),
 ]
 
 
@@ -32,8 +25,18 @@ def connect():
     return con
 
 
+@contextmanager
+def _connection():
+    con = connect()
+    try:
+        with con:
+            yield con
+    finally:
+        con.close()
+
+
 def init_db():
-    with connect() as con:
+    with _connection() as con:
         con.executescript("""
         CREATE TABLE IF NOT EXISTS product_types(
             product_id INTEGER PRIMARY KEY,
@@ -85,7 +88,10 @@ def init_db():
 
 
 def _product_id(con, product_name):
-    row = con.execute("SELECT product_id FROM product_types WHERE name=?", (product_name,)).fetchone()
+    row = con.execute(
+        "SELECT product_id FROM product_types WHERE name=? AND code='BOTTLE'",
+        (product_name,),
+    ).fetchone()
     if not row:
         raise ValueError(f"Loại sản phẩm chưa được khai báo: {product_name}")
     return row[0]
@@ -96,7 +102,7 @@ def ensure_reference(product_name, image_path):
         return None
     image_path = str(image_path)
     image_name = Path(image_path).name
-    with connect() as con:
+    with _connection() as con:
         pid = _product_id(con, product_name)
         row = con.execute("SELECT reference_id FROM reference_images WHERE product_id=? AND image_path=?", (pid, image_path)).fetchone()
         if row:
@@ -109,7 +115,7 @@ def ensure_reference(product_name, image_path):
 
 
 def save_inspection(product_name, reference_path, image_name, image_path, status, metrics, defects, defect_scores, result_path):
-    with connect() as con:
+    with _connection() as con:
         pid = _product_id(con, product_name)
         ref_id = None
         if reference_path:
@@ -141,7 +147,7 @@ def save_inspection(product_name, reference_path, image_name, image_path, status
 
 
 def get_history(limit=300):
-    with connect() as con:
+    with _connection() as con:
         return con.execute("""
         SELECT i.inspection_id AS id, p.name AS product_name, i.image_name, i.status,
                i.metrics_json, i.checked_at, i.result_path,
@@ -150,6 +156,7 @@ def get_history(limit=300):
         JOIN product_types p ON p.product_id=i.product_id
         LEFT JOIN inspection_defects x ON x.inspection_id=i.inspection_id
         LEFT JOIN defect_types d ON d.defect_id=x.defect_id
+        WHERE p.code='BOTTLE'
         GROUP BY i.inspection_id
         ORDER BY i.inspection_id DESC
         LIMIT ?
@@ -157,12 +164,25 @@ def get_history(limit=300):
 
 
 def delete_inspection(row_id):
-    with connect() as con:
-        con.execute("DELETE FROM inspections WHERE inspection_id=?", (row_id,))
+    with _connection() as con:
+        con.execute("""
+            DELETE FROM inspections WHERE inspection_id=?
+            AND product_id IN (SELECT product_id FROM product_types WHERE code='BOTTLE')
+        """, (row_id,))
 
 
 def delete_all_inspections():
-    """Delete history and child defects, preserving all configuration tables."""
-    with connect() as con:
-        con.execute("DELETE FROM inspection_defects")
-        con.execute("DELETE FROM inspections")
+    """Clear bottle history while preserving configuration and older product records."""
+    with _connection() as con:
+        con.execute("""
+            DELETE FROM inspection_defects WHERE inspection_id IN (
+                SELECT inspection_id FROM inspections WHERE product_id IN (
+                    SELECT product_id FROM product_types WHERE code='BOTTLE'
+                )
+            )
+        """)
+        con.execute("""
+            DELETE FROM inspections WHERE product_id IN (
+                SELECT product_id FROM product_types WHERE code='BOTTLE'
+            )
+        """)

@@ -1,62 +1,59 @@
-# PHÂN CÔNG NHÓM 8 - BẢN 3 SẢN PHẨM
+﻿# Phân công Nhóm 8 — Web kiểm tra chai nhựa
 
-## Nguyên tắc
-- Không giao ERD cho thành viên nào vì ERD được thiết kế riêng cho toàn hệ thống.
-- Mỗi thành viên có một đầu việc chính rõ ràng và có phần kiểm thử riêng.
-- Tất cả module phải thống nhất đầu vào là ảnh BGR của OpenCV và đầu ra là `InspectionResult`.
+Cả nhóm thực hiện phân loại một ảnh chai nhựa bằng ba mô hình: HOG + SVM, HOG + Random Forest và MobileNetV3 Small. Dùng chung manifest và cách tách Train/Validation/Test khi so sánh kết quả.
 
-## 1. Nguyễn Anh Đức - Giao diện + tích hợp hệ thống
-- Phụ trách `main.py`.
-- Xây dựng giao diện Tkinter.
-- Dropdown chọn 3 sản phẩm: Cuốc sắt, Chai nhựa, Gạch men.
-- Nút chọn ảnh chuẩn, chọn ảnh kiểm tra, camera, kiểm tra, lưu kết quả, lịch sử.
-- Tích hợp 3 detector và kiểm tra toàn bộ luồng chương trình.
-- Quản lý nhánh main/release và ghép code cuối.
+## 1. Nguyễn Anh Đức — Giao diện và tích hợp
 
-**Sản phẩm bàn giao:** `main.py`, bản chạy tích hợp, checklist kiểm thử toàn hệ thống.
+- Phụ trách `web/`, `main.py` và cấu hình chạy F5.
+- Xây dựng chọn ảnh, kéo thả, camera và hiển thị kết quả.
+- Tích hợp API thư viện, mô hình, huấn luyện và lịch sử.
+- Kiểm tra trạng thái chưa huấn luyện, đang xử lý và lỗi kết nối.
 
-## 2. Võ Văn Thông - Thu nhận ảnh + tiền xử lý + SQLite/history
-- Phụ trách `image_input.py`, `image_processing.py`, `database.py`.
-- Đọc ảnh Unicode trên Windows.
-- Chụp ảnh từ camera.
-- Resize, grayscale, Gaussian Blur, Canny, tách vật thể khỏi nền.
-- Tạo và quản lý SQLite.
-- Hiển thị/lấy lịch sử kiểm tra, xóa bản ghi.
+**Bàn giao:** giao diện web chạy trên Chrome và hướng dẫn sử dụng.
 
-**Sản phẩm bàn giao:** module đầu vào/tiền xử lý, database, test camera và test lưu lịch sử.
+## 2. Võ Văn Thông — Dữ liệu và tiền xử lý
 
-## 3. Nguyễn Ngọc Đương - Module kiểm tra Cuốc sắt
-- Phụ trách `products/hoe_detector.py`.
-- Kiểm tra mẻ/biến dạng lưỡi cuốc bằng so sánh silhouette.
-- Kiểm tra gỉ sét bằng vùng màu HSV.
-- Kiểm tra nứt/trầy bằng Black-hat/biên.
-- Đánh dấu vùng nghi ngờ trên ảnh kết quả.
-- Chuẩn bị ảnh test đạt/lỗi cho cuốc sắt.
+- Phụ trách script tải dữ liệu, chuẩn bị manifest và `ml/features.py`.
+- Ghi nguồn, phiên bản, giấy phép và SHA256 bộ Kaggle.
+- Đọc annotation, ánh xạ nhãn bình thường/có lỗi và phân nhóm ảnh.
+- Tách nhóm giữa Train/Validation/Test, kiểm tra ảnh lỗi hoặc trùng.
+- Dùng cùng cách đọc ảnh và biến đổi đặc trưng cho huấn luyện/dự đoán.
 
-**Sản phẩm bàn giao:** detector cuốc sắt + bộ ảnh test + kết quả test.
+**Bàn giao:** dữ liệu đã kiểm tra, manifest và module đặc trưng.
 
-## 4. Giang Gia Mẫn - Module kiểm tra Chai nhựa
-- Phụ trách `products/bottle_detector.py`.
-- Kiểm tra thiếu/sai nắp.
-- Kiểm tra méo thân/sai hình dạng bằng silhouette.
-- Kiểm tra bất thường bề mặt bằng sai khác ảnh chuẩn hóa.
-- Chuẩn bị ảnh test đạt/lỗi cho chai nhựa.
+## 3. Nguyễn Ngọc Đương — SVM và Random Forest
 
-**Sản phẩm bàn giao:** detector chai nhựa + bộ ảnh test + kết quả test.
+- Phụ trách hai mô hình cổ điển trong `ml/train.py`.
+- Chuẩn hóa HOG/HSV cho SVM và cấu hình Random Forest.
+- Cân bằng lớp, chọn ngưỡng bằng Validation.
+- Lưu artifact, báo cáo Precision/Recall/F1 và ma trận nhầm lẫn trên Test.
 
-## 5. Nguyễn Thị Hồng Minh - Module kiểm tra Gạch men + kết quả xuất file
-- Phụ trách `products/tile_detector.py` và phối hợp `result.py`.
-- Kiểm tra nứt bề mặt.
-- Kiểm tra mẻ cạnh/sai hình dạng.
-- Kiểm tra vết bẩn/bất thường màu.
-- Lưu ảnh kết quả và xác nhận dữ liệu được ghi vào SQLite.
-- Chuẩn bị ảnh test đạt/lỗi cho gạch men.
+**Bàn giao:** hai mô hình đã huấn luyện và cấu hình chạy lại.
 
-**Sản phẩm bàn giao:** detector gạch men + test + kiểm tra lưu kết quả.
+## 4. Giang Gia Mẫn — MobileNetV3
 
-## Cách ghép code
-1. Mỗi thành viên làm file/module của mình.
-2. Test riêng trước khi merge.
-3. Đức tích hợp vào `main.py`.
-4. Chạy đủ 6 ca demo: 3 ảnh đạt + 3 ảnh lỗi.
-5. Kiểm tra camera và SQLite/history.
+- Phụ trách nhánh CNN trong `ml/train.py` và nạp mô hình trong `ml/inference.py`.
+- Chuyển giao từ ImageNet, tăng cường dữ liệu chỉ cho Train.
+- Theo dõi loss và F1 Validation, chọn epoch tốt nhất.
+- Kiểm tra suy luận từ pixel ảnh và cách xử lý kết quả chưa đủ tin cậy.
+
+**Bàn giao:** checkpoint CNN, đường học và kết quả đánh giá.
+
+## 5. Nguyễn Thị Hồng Minh — API, lịch sử và kiểm thử
+
+- Phụ trách `web_api.py`, `web_history.py` và `test_web_app.py`.
+- Kiểm tra ảnh đầu vào, gọi mô hình và lưu lịch sử dự đoán.
+- Lưu ảnh an toàn theo UUID, xem và xóa từng bản ghi.
+- Kiểm tra API bằng dữ liệu tạm; tổng hợp bảng so sánh mô hình thực tế.
+- Cập nhật cấu trúc lưu trữ và nhật ký kiểm tra.
+
+**Bàn giao:** API, SQLite lịch sử và kết quả kiểm thử.
+
+## Ghép mã và đánh giá
+
+1. Chốt manifest và giữ nguyên Test khi lựa chọn mô hình/ngưỡng.
+2. Huấn luyện cả ba mô hình với cùng split; ghi cấu hình và seed.
+3. Đánh giá trên Test sau khi chọn xong bằng Validation.
+4. Kiểm tra luồng chọn một ảnh, camera, dự đoán và lịch sử trên web.
+5. Chạy kiểm tra API tách biệt lịch sử thật; ghi kết quả vào `TEST_LOG.txt`.
+6. Báo cáo đúng phạm vi mẫu chai và góc chụp đã có trong dữ liệu.

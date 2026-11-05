@@ -1,99 +1,50 @@
-# ERD - CHƯƠNG TRÌNH KIỂM TRA LỖI 3 SẢN PHẨM
+﻿# Lưu trữ — Web kiểm tra chai nhựa
 
-## Các thực thể
+Lịch sử dự đoán của ứng dụng web dùng SQLite tại `data/web/history.db`. Mỗi lần kiểm tra lưu một bản ghi trong bảng `predictions` và một ảnh JPEG trong `data/web/images/`.
 
-### PRODUCT_TYPES
-- `product_id` - PK
-- `code` - mã loại sản phẩm: HOE/BOTTLE/TILE
-- `name` - Cuốc sắt/Chai nhựa/Gạch men
-- `description`
+## Bảng predictions
 
-### REFERENCE_IMAGES
-- `reference_id` - PK
-- `product_id` - FK -> PRODUCT_TYPES.product_id
-- `image_name`
-- `image_path`
-- `is_active`
-- `created_at`
+| Cột | Kiểu | Nội dung |
+| --- | --- | --- |
+| `id` | TEXT, PRIMARY KEY | UUID của lần kiểm tra |
+| `created_at` | TEXT, NOT NULL | Thời điểm ISO 8601 UTC |
+| `filename` | TEXT, NOT NULL | Tên ảnh tải lên, đã bỏ thành phần đường dẫn |
+| `payload` | TEXT, NOT NULL | JSON chứa kết quả và thông tin mô hình |
 
-### INSPECTIONS
-- `inspection_id` - PK
-- `product_id` - FK -> PRODUCT_TYPES.product_id
-- `reference_id` - FK -> REFERENCE_IMAGES.reference_id
-- `image_name`
-- `image_path`
-- `result_path`
-- `status` - ĐẠT/KHÔNG ĐẠT
-- `metrics_json` - các chỉ số xử lý ảnh của từng sản phẩm
-- `checked_at`
-
-### DEFECT_TYPES
-- `defect_id` - PK
-- `product_id` - FK -> PRODUCT_TYPES.product_id
-- `code`
-- `name`
-- `description`
-
-### INSPECTION_DEFECTS
-- `inspection_id` - PK, FK -> INSPECTIONS.inspection_id
-- `defect_id` - PK, FK -> DEFECT_TYPES.defect_id
-- `defect_score`
-
-## Quan hệ
-- PRODUCT_TYPES 1 --- N REFERENCE_IMAGES
-- PRODUCT_TYPES 1 --- N INSPECTIONS
-- PRODUCT_TYPES 1 --- N DEFECT_TYPES
-- REFERENCE_IMAGES 1 --- N INSPECTIONS
-- INSPECTIONS N --- N DEFECT_TYPES thông qua INSPECTION_DEFECTS
-
-## Mermaid ERD
 ```mermaid
 erDiagram
-    PRODUCT_TYPES ||--o{ REFERENCE_IMAGES : has
-    PRODUCT_TYPES ||--o{ INSPECTIONS : classifies
-    PRODUCT_TYPES ||--o{ DEFECT_TYPES : defines
-    REFERENCE_IMAGES ||--o{ INSPECTIONS : used_for
-    INSPECTIONS ||--o{ INSPECTION_DEFECTS : contains
-    DEFECT_TYPES ||--o{ INSPECTION_DEFECTS : identifies
-
-    PRODUCT_TYPES {
-        int product_id PK
-        string code
-        string name
-        string description
-    }
-    REFERENCE_IMAGES {
-        int reference_id PK
-        int product_id FK
-        string image_name
-        string image_path
-        int is_active
-        string created_at
-    }
-    INSPECTIONS {
-        int inspection_id PK
-        int product_id FK
-        int reference_id FK
-        string image_name
-        string image_path
-        string result_path
-        string status
-        string metrics_json
-        string checked_at
-    }
-    DEFECT_TYPES {
-        int defect_id PK
-        int product_id FK
-        string code
-        string name
-        string description
-    }
-    INSPECTION_DEFECTS {
-        int inspection_id PK,FK
-        int defect_id PK,FK
-        float defect_score
+    PREDICTIONS {
+        text id PK
+        text created_at
+        text filename
+        text payload
     }
 ```
 
-## Giải thích thiết kế
-Thiết kế này dùng chung một database cho cả 3 sản phẩm. Mỗi lần kiểm tra biết rõ thuộc loại sản phẩm nào, dùng ảnh chuẩn nào, kết quả ra sao và phát hiện những lỗi nào. Bảng trung gian INSPECTION_DEFECTS cho phép một lần kiểm tra có nhiều lỗi cùng lúc.
+`payload` lưu `label`, `raw_label`, `confidence`, `probabilities`, `model`, `model_name`, `run_id`, `latency_ms`, ngưỡng phân loại, ngưỡng tin cậy và URL ảnh. Nhãn hiển thị nhận giá trị `normal`, `defect` hoặc `uncertain`; hai phần tử của `probabilities` theo thứ tự ý nghĩa bình thường/có lỗi.
+
+Ảnh được đặt tên bằng `id`, theo dạng `data/web/images/<id>.jpg`. API chỉ trả ảnh khi bản ghi tương ứng còn tồn tại. Xóa một bản ghi sẽ xóa cả ảnh của lần kiểm tra đó.
+
+## Mô hình và dữ liệu
+
+Mô hình được lưu trên hệ thống tệp, không có bảng SQL riêng:
+
+```text
+models/trained/
+  latest.json                  run_id đang được sử dụng
+  training_progress.json       trạng thái huấn luyện
+  <run_id>/
+    svm.joblib
+    random_forest.joblib
+    mobilenet.pt
+    report.json                cấu hình, chỉ số validation/test và đường học
+    end_to_end.json            dự đoán từ ảnh đầy đủ, gồm yêu cầu chụp lại
+```
+
+`run_id` trong lịch sử cho biết lần huấn luyện đã tạo kết quả đó. Đây là liên kết thông tin với thư mục mô hình, không phải khóa ngoại SQLite. `latest.json` chỉ được cập nhật khi cả ba mô hình và báo cáo đã lưu thành công.
+
+`data/training/manifest.json` mô tả ảnh gốc, `training_path` tới vùng chai tự tìm, nhãn, nhóm và Train/Validation/Test. Tên tệp và nhãn nguồn chỉ dùng quản lý dữ liệu; phần dự đoán nhận nội dung ảnh. Bộ nhớ đệm vùng chai và thông tin định vị nằm trong `data/training/crops/` và `crop_index.json`.
+
+## Dữ liệu phiên bản trước
+
+`data/inspection.db` và ảnh kết quả của giao diện Tkinter được giữ nguyên. Ứng dụng web không đọc hoặc xóa lịch sử so sánh ảnh cũ; lịch sử web được lưu riêng trong `data/web/`.
