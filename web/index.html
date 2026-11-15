@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f7">
+  <title>Kiểm tra chai nhựa</title>
+  <link rel="stylesheet" href="/static/app.css?v=batch1">
+  <script src="/static/workflow.js?v=batch1" defer></script>
+  <script src="/static/app.js?v=batch1" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Đến nội dung chính</a>
+  <div class="app-shell">
+    <header class="page-header">
+      <div>
+        <p class="project-name">Nhóm 8 · Kiểm tra ngoại quan</p>
+        <h1>Kiểm tra chai nhựa</h1>
+      </div>
+      <div class="header-actions"><button type="button" id="presentation-toggle" aria-pressed="false">Trình chiếu</button><p class="connection-state" id="connection-state" role="status">Đang kết nối...</p></div>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="Các chức năng">
+      <button class="tab" type="button" role="tab" aria-selected="true" aria-controls="panel-inspect" id="tab-inspect" data-tab="inspect">Kiểm tra</button>
+      <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-batch" id="tab-batch" tabindex="-1" data-tab="batch">Kiểm tra lô</button>
+      <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-models" id="tab-models" tabindex="-1" data-tab="models">Mô hình</button>
+      <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-samples" id="tab-samples" tabindex="-1" data-tab="samples">Thư viện ảnh</button>
+      <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-history" id="tab-history" tabindex="-1" data-tab="history">Lịch sử</button>
+    </nav>
+
+    <main id="main-content">
+      <div id="presentation-bar" class="presentation-bar" hidden>
+        <div><strong>Trình chiếu kết quả</strong><span>Ảnh, dự đoán AI và nhãn tham chiếu được hiển thị riêng.</span></div>
+        <div class="heading-actions"><button type="button" id="presentation-fullscreen">Toàn màn hình</button><button type="button" id="presentation-exit">Thoát trình chiếu · Esc</button></div>
+        <p id="presentation-feedback" class="feedback" role="status"></p>
+      </div>
+      <section id="panel-inspect" class="tab-panel" role="tabpanel" aria-labelledby="tab-inspect">
+        <div class="section-heading">
+          <div>
+            <h2>Ảnh cần kiểm tra</h2>
+            <p>Chọn ảnh hoặc chụp trực tiếp một chai nhựa.</p>
+          </div>
+          <button type="button" class="text-button" id="browse-samples">Chọn từ thư viện</button>
+        </div>
+
+        <div class="inspect-layout">
+          <div class="image-workspace">
+            <input type="file" id="image-file" accept="image/jpeg,image/png,image/webp,image/bmp" class="visually-hidden">
+            <label for="image-file" class="drop-zone" id="drop-zone" tabindex="0" role="button" aria-label="Chọn hoặc thả ảnh chai nhựa">
+              <span class="drop-placeholder" id="drop-placeholder">
+                <svg width="42" height="42" viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="6.5" y="8.5" width="35" height="31" rx="3" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="19" r="3" stroke="currentColor" stroke-width="1.5"/><path d="m8 35 10-10 8 7 6-6 8 9" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                <strong>Thả ảnh vào đây hoặc bấm để chọn</strong>
+                <span>JPG, PNG, WebP hoặc BMP</span>
+              </span>
+              <img id="image-preview" class="image-preview" alt="Ảnh chai nhựa đã chọn" hidden>
+            </label>
+            <div class="image-toolbar">
+              <button type="button" id="choose-file">Chọn ảnh...</button>
+              <button type="button" id="open-camera">Chụp từ camera</button>
+              <button type="button" id="clear-image" class="text-button" disabled>Bỏ ảnh</button>
+            </div>
+            <p class="file-caption" id="file-caption">Chưa chọn ảnh.</p>
+            <p class="image-guidance">Chụp rõ toàn bộ chai, gồm nắp và đáy. Nếu phần cần kiểm tra bị che, hãy đổi góc và chụp lại.</p>
+            <aside class="type-scope-panel" aria-label="Phạm vi nhận diện loại lỗi">
+              <strong>AI nhận diện loại lỗi chính</strong>
+              <p id="type-capabilities">Đang đọc trạng thái bộ phân tích loại lỗi...</p>
+              <p class="field-hint">Chưa hỗ trợ móp chai và nước đục. Nhãn hỏng/lệch/thiếu được gộp cùng một nhóm. Chưa xác nhận độ kín của nắp hoặc nhiều lỗi đồng thời.</p>
+            </aside>
+            <aside id="reference-panel" class="reference-panel" hidden aria-labelledby="reference-heading">
+              <p class="eyebrow">Thông tin từ bộ dữ liệu</p>
+              <h3 id="reference-heading">Nhãn tham chiếu của ảnh thư viện</h3>
+              <p id="reference-label"></p>
+              <p id="reference-split" class="field-hint"></p>
+              <p class="field-hint">Nhãn do bộ dữ liệu cung cấp, được hiển thị riêng để đối chiếu. Mô hình chỉ nhận nội dung ảnh khi dự đoán.</p>
+            </aside>
+          </div>
+
+          <div class="inspection-details">
+            <div class="model-control">
+              <label for="model-select">Mô hình sử dụng</label>
+              <select id="model-select">
+                <option value="svm">HOG + SVM</option>
+                <option value="random_forest">HOG + Random Forest</option>
+                <option value="mobilenet">MobileNetV3</option>
+              </select>
+              <p class="field-hint" id="model-hint">Đang đọc trạng thái mô hình...</p>
+            </div>
+            <button type="button" class="primary-button predict-button" id="predict-button" disabled>Kiểm tra ảnh</button>
+            <button type="button" class="compare-button" id="compare-button" disabled>So sánh cả 3 mô hình</button>
+            <p id="action-feedback" class="feedback" role="status" aria-live="polite"></p>
+
+            <section class="result-area" aria-labelledby="result-heading">
+              <h3 id="result-heading">Kết quả</h3>
+              <p class="result-placeholder" id="result-placeholder">Kết quả sẽ xuất hiện sau khi kiểm tra ảnh.</p>
+              <div id="result-content" hidden>
+                <p id="result-label" class="result-label" role="status" aria-live="polite"></p>
+                <p id="result-note" class="result-note"></p>
+                <section id="type-analysis-panel" class="type-analysis-panel" hidden aria-labelledby="type-analysis-heading">
+                  <p class="eyebrow">Bộ AI phân tích riêng từ ảnh</p>
+                  <h4 id="type-analysis-heading">Loại lỗi AI dự đoán</h4>
+                  <p id="type-analysis-name" class="type-analysis-name"></p>
+                  <p id="type-analysis-note" class="field-hint"></p>
+                  <p id="type-analysis-model" class="field-hint"></p>
+                </section>
+                <p id="reference-match" class="reference-match" hidden></p>
+                <dl class="result-facts">
+                  <div><dt>Điểm mô hình</dt><dd id="result-confidence"></dd></div>
+                  <div><dt>Mô hình</dt><dd id="result-model"></dd></div>
+                  <div><dt>Thời gian xử lý</dt><dd id="result-latency"></dd></div>
+                </dl>
+                <div class="score-distribution" id="score-distribution" hidden>
+                  <div class="score-row"><span>Bình thường</span><span id="score-normal-text"></span><div class="score-track"><span id="score-normal"></span></div></div>
+                  <div class="score-row"><span>Có lỗi</span><span id="score-defect-text"></span><div class="score-track"><span id="score-defect"></span></div></div>
+                </div>
+                <p class="saved-note" id="saved-note"></p>
+                <div class="review-inline"><button type="button" id="review-result">Đánh giá kết quả</button><span id="result-review-summary" class="field-hint">Chưa có đánh giá.</span></div>
+                <p class="field-hint">Điểm mô hình chưa được hiệu chuẩn thành xác suất đúng thực tế. Phân tích loại lỗi là một bộ AI riêng; chưa đo lượng nước thiếu hoặc khoanh vị trí lỗi.</p>
+              </div>
+            </section>
+          </div>
+        </div>
+        <section id="comparison-section" class="feature-section" hidden aria-labelledby="comparison-heading">
+          <div class="section-heading"><div><p class="eyebrow">Cùng một ảnh · Ba cách phân loại</p><h2 id="comparison-heading">So sánh kết quả</h2></div><button type="button" id="export-comparison">Tải bảng CSV</button></div>
+          <div id="comparison-cards" class="comparison-grid"></div>
+          <p id="comparison-summary" class="comparison-summary" role="status"></p>
+          <p class="field-hint">Mỗi mô hình chạy độc lập trên cùng ảnh. Thời gian gồm tìm chai và phân loại; lần đầu có thể chậm hơn do nạp mô hình. Điểm giữa các mô hình chưa được hiệu chuẩn để xếp hạng độ chính xác của ảnh này.</p>
+        </section>
+        <section id="analysis-section" class="feature-section" hidden aria-labelledby="analysis-heading">
+          <div class="section-heading"><div><p class="eyebrow">Từ ảnh đầu vào đến đặc trưng</p><h2 id="analysis-heading">Mô hình đã phân tích gì?</h2></div></div>
+          <div class="analysis-grid">
+            <figure class="analysis-card"><div class="analysis-image"><canvas id="bottle-overlay" aria-label="Ảnh đầu vào với khung vùng chai được cắt để phân tích"></canvas></div><figcaption><strong>01 · Vùng chai tự tìm</strong><span>Khung xanh là vùng cắt đưa vào bộ phân loại, gồm lề quanh chai.</span></figcaption></figure>
+            <figure class="analysis-card"><div class="analysis-image"><img id="crop-preview" alt="Vùng chai tự động cắt từ chính ảnh đầu vào"></div><figcaption><strong>02 · Ảnh vùng chai</strong><span>SVM và Random Forest lấy HOG + HSV. MobileNet nhận ảnh RGB 224 × 224.</span></figcaption></figure>
+            <figure class="analysis-card"><div class="analysis-image hog-surface"><img id="hog-preview" alt="Biểu diễn các hướng gradient từ đặc trưng HOG OpenCV"></div><figcaption><strong>03 · Đặc trưng HOG</strong><span>3.780 giá trị đường nét và 48 giá trị màu HSV cho hai mô hình cổ điển.</span></figcaption></figure>
+          </div>
+          <p class="analysis-note">HOG minh họa hướng và độ mạnh của gradient trên vùng chai 64 × 128. Hình này và khung vùng chai không chỉ ra vị trí lỗi, cũng chưa giải thích nguyên nhân của một dự đoán cụ thể.</p>
+        </section>
+        <p class="scope-note" id="inspection-scope">Phạm vi đánh giá sẽ được hiển thị khi kết nối với chương trình.</p>
+      </section>
+
+      <section id="panel-batch" class="tab-panel" role="tabpanel" aria-labelledby="tab-batch" hidden>
+        <div class="section-heading"><div><p class="eyebrow">Một mô hình · Nhiều ảnh</p><h2>Kiểm tra theo lô</h2><p>Chọn tối đa 50 ảnh, tổng dung lượng không quá 150 MB. Mỗi ảnh được lưu riêng trong Lịch sử.</p></div></div>
+        <div class="batch-toolbar">
+          <input type="file" id="batch-files" multiple accept="image/jpeg,image/png,image/webp,image/bmp" class="visually-hidden">
+          <button type="button" id="choose-batch">Chọn lô ảnh mới...</button>
+          <label for="batch-model">Mô hình</label><select id="batch-model"><option value="svm">HOG + SVM</option></select>
+          <button type="button" id="start-batch" class="primary-button" disabled>Bắt đầu kiểm tra</button>
+          <button type="button" id="pause-batch" disabled>Tạm dừng</button>
+          <button type="button" id="retry-batch" disabled>Thử lại ảnh lỗi</button>
+          <button type="button" id="export-batch" disabled>Tải kết quả CSV</button>
+        </div>
+        <p class="field-hint">Ảnh được xử lý lần lượt. Tạm dừng sẽ đợi ảnh đang chạy hoàn tất. Khi đổi lô hoặc tải lại trang, kết quả đã xử lý vẫn nằm trong Lịch sử; ảnh đang chờ cần được chọn lại.</p>
+        <div class="batch-progress-area"><progress id="batch-progress" max="1" value="0" aria-label="Tiến độ kiểm tra lô"></progress><p id="batch-progress-text" role="status" aria-live="polite">Chưa chọn lô ảnh.</p></div>
+        <div id="batch-summary" class="batch-summary" aria-label="Thống kê ảnh trong lô"></div>
+        <p id="batch-feedback" class="feedback" role="status" aria-live="polite"></p>
+        <div class="table-scroll"><table class="batch-table">
+          <caption class="visually-hidden">Tiến độ và kết quả từng ảnh trong lô</caption>
+          <thead><tr><th scope="col">Ảnh</th><th scope="col">Tên tệp</th><th scope="col">Trạng thái / Kết quả</th><th scope="col">Loại lỗi AI bổ sung</th><th scope="col">Điểm mô hình</th><th scope="col">Thời gian</th><th scope="col">Thao tác</th></tr></thead>
+          <tbody id="batch-body"><tr><td colspan="7" class="empty-cell">Chọn ảnh để tạo lô kiểm tra.</td></tr></tbody>
+        </table></div>
+        <p class="scope-note">Phạm vi: mẫu chai Ron 88 trong điều kiện dữ liệu đã học. Chưa hỗ trợ móp chai, nước đục; số liệu ở đây đếm từng ảnh, chưa phải số chai vật lý.</p>
+      </section>
+
+      <section id="panel-models" class="tab-panel" role="tabpanel" aria-labelledby="tab-models" hidden>
+        <div class="section-heading">
+          <div><h2>Mô hình và đánh giá</h2><p>So sánh ba mô hình trên cùng tập kiểm tra.</p></div>
+          <div class="heading-actions"><button type="button" id="refresh-models">Cập nhật</button><button type="button" id="train-models" class="primary-button" disabled>Huấn luyện lại</button></div>
+        </div>
+        <div class="training-state" id="training-state" role="status" aria-live="polite">
+          <strong id="training-title">Trạng thái huấn luyện</strong>
+          <p id="training-message">Đang đọc thông tin...</p>
+          <progress id="training-progress" max="100" hidden aria-label="Tiến độ huấn luyện"></progress>
+        </div>
+        <p class="feedback" id="models-feedback" role="status"></p>
+        <h3>Bộ phân loại trên vùng chai tự xác định</h3>
+        <div class="table-scroll">
+          <table class="metrics-table">
+            <caption class="visually-hidden">Kết quả đánh giá các mô hình</caption>
+            <thead><tr><th scope="col">Mô hình</th><th scope="col">Trạng thái</th><th scope="col" title="Tỷ lệ phân loại đúng trên tất cả ảnh Test">Accuracy</th><th scope="col" title="Trong các ảnh báo lỗi, tỷ lệ thực sự có lỗi">Precision</th><th scope="col" title="Trong tất cả ảnh thực sự lỗi, tỷ lệ được tìm ra">Recall</th><th scope="col" title="Trung bình điều hòa giữa Precision và Recall">F1</th></tr></thead>
+            <tbody id="models-body"><tr><td colspan="6" class="empty-cell">Đang đọc thông tin mô hình...</td></tr></tbody>
+          </table>
+        </div>
+        <p class="field-hint" id="metrics-note">Chỉ hiển thị chỉ số đã được tính từ lần huấn luyện thực tế.</p>
+        <section id="type-model-section" class="feature-section" hidden aria-labelledby="type-model-heading">
+          <h3 id="type-model-heading">Bộ AI nhận diện loại lỗi</h3>
+          <p id="type-model-description" class="field-hint"></p>
+          <div class="table-scroll"><table class="type-metrics-table">
+            <thead><tr><th scope="col">Loại lỗi</th><th scope="col">Nhận diện</th><th scope="col">Ảnh Train</th><th scope="col">Ảnh Test</th><th scope="col">Precision</th><th scope="col">Recall</th><th scope="col">F1</th></tr></thead>
+            <tbody id="type-metrics-body"></tbody>
+          </table></div>
+          <p class="field-hint">Chỉ số theo loại trên toàn tập Test, tính cả trường hợp chưa xác định được loại là chưa phát hiện đúng. Ngưỡng gọi tên lỗi chọn bằng Validation. Bộ dữ liệu chủ yếu có một loại lỗi trong mỗi ảnh; chưa kiểm tra nhiều lỗi đồng thời.</p>
+        </section>
+        <details class="metric-help"><summary>Cách đọc các chỉ số</summary><p><strong>Accuracy:</strong> đúng trên tổng ảnh. <strong>Precision:</strong> báo lỗi có đúng không? <strong>Recall:</strong> tìm ra được bao nhiêu ảnh thực sự lỗi? <strong>F1:</strong> trung bình điều hòa của Precision và Recall.</p><p>“Có lỗi” là lớp dương. Bảng và biểu đồ bên dưới dùng dự đoán hai lớp trước bước từ chối khi điểm dưới 65%. Kết quả toàn bộ luồng web được trình bày riêng ở cuối.</p></details>
+        <section id="evaluation-visuals" class="feature-section" hidden aria-labelledby="evaluation-heading">
+          <h3 id="evaluation-heading">F1 và những trường hợp phân loại nhầm</h3>
+          <p class="field-hint">Tập Test của lần huấn luyện đã lưu · Trước bước từ chối thiếu tin cậy.</p>
+          <div id="f1-chart" class="f1-chart" aria-label="So sánh F1 lỗi của ba mô hình"></div>
+          <div id="confusion-grid" class="comparison-grid"></div>
+        </section>
+        <section id="pipeline-results" hidden>
+          <h3>Kiểm tra từ ảnh đầy đủ</h3>
+          <p class="field-hint">Bao gồm tự tìm chai và yêu cầu chụp lại khi chưa đủ tin cậy. Ảnh chưa kết luận được không được tính là dự đoán đúng.</p>
+          <div class="table-scroll">
+            <table class="metrics-table">
+              <thead><tr><th scope="col">Mô hình</th><th scope="col">Đúng / tổng ảnh</th><th scope="col">Tỷ lệ có kết luận</th><th scope="col">Recall lỗi</th><th scope="col">F1 lỗi</th><th scope="col">Chưa kết luận</th></tr></thead>
+              <tbody id="pipeline-body"></tbody>
+            </table>
+          </div>
+          <p class="field-hint" id="pipeline-note"></p>
+        </section>
+        <p><a href="/api/report.json" download>Tải báo cáo huấn luyện</a></p>
+        <section class="dataset-summary" aria-labelledby="dataset-heading">
+          <h3 id="dataset-heading">Dữ liệu sử dụng</h3>
+          <dl id="dataset-facts" class="dataset-facts"></dl>
+          <p id="dataset-scope" class="field-hint"></p>
+        </section>
+      </section>
+
+      <section id="panel-samples" class="tab-panel" role="tabpanel" aria-labelledby="tab-samples" hidden>
+        <div class="section-heading"><div><h2>Thư viện ảnh</h2><p>Chọn ảnh trong bộ dữ liệu để kiểm tra bằng mô hình.</p></div></div>
+        <div class="library-toolbar">
+          <label for="sample-split">Tập dữ liệu</label>
+          <select id="sample-split"><option value="test">Test</option><option value="val">Validation</option><option value="train">Train</option></select>
+          <label for="sample-label">Nhãn nguồn</label>
+          <select id="sample-label"><option value="all">Tất cả</option><option value="normal">Bình thường</option><option value="defect">Có lỗi</option></select>
+          <span id="samples-count" class="field-hint"></span>
+        </div>
+        <p class="library-note">Nhãn dưới mỗi ảnh là nhãn của bộ dữ liệu. Kết quả dự đoán được tính riêng sau khi bạn chọn ảnh và chạy kiểm tra.</p>
+        <p id="samples-feedback" class="feedback" role="status" aria-live="polite"></p>
+        <div class="sample-grid" id="sample-grid"></div>
+        <button type="button" id="load-more-samples" class="load-more" hidden>Xem thêm ảnh</button>
+      </section>
+
+      <section id="panel-history" class="tab-panel" role="tabpanel" aria-labelledby="tab-history" hidden>
+        <div class="section-heading"><div><h2>Lịch sử kiểm tra</h2><p>Kết quả được lưu tự động trên máy sau mỗi lần kiểm tra.</p></div><div class="heading-actions"><a class="button-link" href="/api/history.csv" download>Tải lịch sử CSV</a><button type="button" id="refresh-history">Làm mới</button></div></div>
+        <p class="field-hint">CSV chứa tối đa 500 lần kiểm tra gần nhất. Một lần so sánh lưu riêng kết quả của từng mô hình thành công.</p>
+        <div class="history-filters"><label for="history-review-filter">Đánh giá người dùng</label><select id="history-review-filter"><option value="all">Tất cả</option><option value="unreviewed">Chưa đánh giá</option><option value="incorrect">Có đánh giá Sai</option><option value="correct">Có đánh giá Đúng</option><option value="unsure">Có đánh giá Chưa rõ</option></select></div>
+        <p id="history-feedback" class="feedback" role="status" aria-live="polite"></p>
+        <div class="table-scroll">
+          <table class="history-table">
+            <caption class="visually-hidden">Các ảnh chai nhựa đã kiểm tra</caption>
+            <thead><tr><th scope="col">Ảnh</th><th scope="col">Thời điểm</th><th scope="col">Mô hình</th><th scope="col">Kết quả</th><th scope="col">Điểm mô hình</th><th scope="col"><span class="visually-hidden">Thao tác</span></th></tr></thead>
+            <tbody id="history-body"><tr><td colspan="6" class="empty-cell">Chưa có dữ liệu lịch sử.</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer class="page-footer"><span>Kiểm tra ngoại quan chai nhựa</span><span>Ảnh đầu vào được xử lý tại máy chạy chương trình.</span></footer>
+  </div>
+
+  <dialog id="camera-dialog" aria-labelledby="camera-heading">
+    <div class="dialog-heading"><h2 id="camera-heading">Chụp ảnh chai</h2><button type="button" id="close-camera" aria-label="Đóng camera">Đóng</button></div>
+    <video id="camera-video" autoplay playsinline muted></video>
+    <p class="feedback" id="camera-feedback" role="status" aria-live="polite"></p>
+    <div class="dialog-actions"><p>Đặt chai trong khung, giữ máy ổn định.</p><button type="button" id="capture-image" class="primary-button" disabled>Chụp ảnh</button></div>
+  </dialog>
+  <dialog id="review-dialog" class="review-dialog" aria-labelledby="review-heading">
+    <form id="review-form">
+      <div class="dialog-heading"><h2 id="review-heading">Đánh giá kết quả AI</h2><button type="button" id="close-review">Đóng</button></div>
+      <div class="review-context"><img id="review-image" alt="Ảnh của lần kiểm tra đang được đánh giá"><div><strong id="review-filename"></strong><p id="review-context-text"></p></div></div>
+      <label for="review-target">Nội dung đánh giá</label>
+      <select id="review-target"><option value="quality">Kết luận chất lượng</option><option value="defect_type">Loại lỗi AI bổ sung</option></select>
+      <p id="review-current-prediction" class="review-current-prediction"></p>
+      <fieldset class="review-verdicts"><legend>Bạn nhận xét kết quả này thế nào?</legend>
+        <label><input type="radio" name="review-verdict" value="correct" required> Đúng</label>
+        <label><input type="radio" name="review-verdict" value="incorrect"> Sai</label>
+        <label><input type="radio" name="review-verdict" value="unsure"> Chưa rõ</label>
+      </fieldset>
+      <div id="review-correction" hidden><label id="review-correction-label" for="review-corrected">Kết quả đúng theo bạn (nếu biết)</label><select id="review-corrected"></select></div>
+      <label for="review-note">Ghi chú (không bắt buộc)</label><textarea id="review-note" rows="3" maxlength="1000" placeholder="Ví dụ: chai có nắp, nhưng kết quả AI báo thiếu nắp."></textarea>
+      <p class="field-hint">Đây là phản hồi người dùng, chưa phải nhãn đã duyệt. Phản hồi không tự đưa vào huấn luyện và không thay đổi dự đoán gốc.</p>
+      <p id="review-feedback" class="feedback" role="status" aria-live="polite"></p>
+      <div class="dialog-actions"><span id="review-saved-at" class="field-hint"></span><button type="submit" id="save-review" class="primary-button">Lưu đánh giá</button></div>
+    </form>
+  </dialog>
+</body>
+</html>
