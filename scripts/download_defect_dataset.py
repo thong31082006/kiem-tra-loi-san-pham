@@ -8,9 +8,11 @@ import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-from download_dataset import extract_dataset
-
 APP_DIR = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(APP_DIR))
+
+from scripts.download_dataset import extract_dataset
+
 DATASET_ID = "jihadakbr/water-bottle-defect-level-detection-dataset"
 VERSION = 1
 SOURCE_URL = f"https://www.kaggle.com/datasets/{DATASET_ID}"

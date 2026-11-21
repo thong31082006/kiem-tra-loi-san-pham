@@ -12,7 +12,8 @@ import numpy as np
 from fastapi.testclient import TestClient
 
 from ml.features import APP_DIR
-from ml.inference import MODEL_NAMES, ModelService
+from ml.defect_types import TYPE_CODES
+from ml.hog_svm import MODEL_NAMES, HogSvmService as ModelService
 from web_history import HistoryStore
 
 
@@ -30,7 +31,7 @@ class StubModelService:
             "models": [{"id": key, "name": name, "ready": self.ready, "metrics": {}} for key, name in MODEL_NAMES.items()],
         }
 
-    def predict(self, image, model="mobilenet"):
+    def predict(self, image, model="svm"):
         if not self.ready:
             raise FileNotFoundError("Chưa có mô hình đã huấn luyện.")
         self.calls.append({"shape": image.shape, "image": image.copy(), "model": model})
@@ -85,15 +86,16 @@ class WebAppTests(unittest.TestCase):
         self.manifest_path.write_text(json.dumps(self.manifest, ensure_ascii=False), encoding="utf-8")
 
     def upload(self, **data):
-        return self.client.post("/api/predict", files={"file": ("anh_chai.jpg", self.image_bytes, "image/jpeg")}, data={"model": "mobilenet", **data})
+        return self.client.post("/api/predict", files={"file": ("anh_chai.jpg", self.image_bytes, "image/jpeg")}, data={"model": "svm", **data})
 
     def test_home_static_and_single_image_contract(self):
         home = self.client.get("/")
         self.assertEqual(home.status_code, 200)
         self.assertIn("Kiểm tra chai nhựa", home.text)
-        self.assertEqual(self.client.get("/static/app.js").status_code, 200)
-        self.assertEqual(self.client.get("/static/app.css").status_code, 200)
-        self.assertEqual(self.client.get("/static/workflow.js").status_code, 200)
+        self.assertEqual(self.client.get("/static/svm.js").status_code, 200)
+        self.assertEqual(self.client.get("/static/svm.css").status_code, 200)
+        self.assertIn("HOG + SVM", home.text)
+        self.assertNotIn("So sánh cả 3 mô hình", home.text)
         schema = self.client.get("/openapi.json").json()
         reference = schema["paths"]["/api/predict"]["post"]["requestBody"]["content"]["multipart/form-data"]["schema"]["$ref"]
         body = schema["components"]["schemas"][reference.rsplit("/", 1)[-1]]
@@ -105,7 +107,7 @@ class WebAppTests(unittest.TestCase):
         with TestClient(self.api.create_app(service, self.history, self.manifest_path)) as client:
             status = client.get("/api/status").json()
             self.assertFalse(status["ready"])
-            self.assertEqual(len(status["models"]), 3)
+            self.assertEqual(len(status["models"]), 1)
             self.assertTrue(all(not model["ready"] and model["metrics"] == {} for model in status["models"]))
             response = client.get("/api/models").json()
             self.assertEqual(response["report"], {})
@@ -119,7 +121,7 @@ class WebAppTests(unittest.TestCase):
         self.assertEqual(item["label"], "normal")
         self.assertEqual(self.service.calls[0]["model"], "svm")
         self.assertEqual(self.service.calls[0]["shape"], (96, 64, 3))
-        self.assertEqual(self.history.get(item["id"]), {key: value for key, value in item.items() if key != "analysis"})
+        self.assertEqual(self.history.get(item["id"]), item)
         history = self.client.get("/api/history").json()["items"]
         self.assertEqual([row["id"] for row in history], [item["id"]])
         image = self.client.get(item["image_url"])
@@ -170,68 +172,27 @@ class WebAppTests(unittest.TestCase):
 
     def test_uncertain_label_preserved_and_filename_sanitized(self):
         self.service.label, self.service.confidence = "uncertain", 0.55
-        response = self.client.post("/api/predict", files={"file": ("../../unsafe.jpg", self.image_bytes, "image/jpeg")}, data={"model": "random_forest"})
+        response = self.client.post("/api/predict", files={"file": ("../../unsafe.jpg", self.image_bytes, "image/jpeg")}, data={"model": "svm"})
         self.assertEqual(response.status_code, 200)
         item = response.json()
         self.assertEqual(item["filename"], "unsafe.jpg")
         self.assertEqual(item["label"], "uncertain")
         self.assertEqual(self.history.get(item["id"])["label"], "uncertain")
-        self.assertEqual(self.service.calls[0]["model"], "random_forest")
+        self.assertEqual(self.service.calls[0]["model"], "svm")
         self.assertTrue(self.history.image_path(item["id"]).is_file())
 
-    def test_compare_runs_all_models_on_identical_pixels_and_saves_each(self):
-        response = self.client.post("/api/compare", files={"file": ("normal-or-defect.jpg", self.image_bytes, "image/jpeg")})
-        self.assertEqual(response.status_code, 200)
-        payload = response.json()
-        self.assertEqual([item["model"] for item in payload["results"]], list(MODEL_NAMES))
-        self.assertEqual(len(self.history.list()), 3)
-        self.assertIsNone(payload["analysis"])
-        for call in self.service.calls:
-            np.testing.assert_array_equal(call["image"], self.service.calls[0]["image"])
-        self.assertNotIn("reference", payload)
 
-    def test_compare_preserves_successful_results_if_one_model_fails(self):
-        original = self.service.predict
 
-        def predict(image, model):
-            if model == "random_forest":
-                raise RuntimeError("isolated model failure")
-            return original(image, model=model)
 
-        with patch.object(self.service, "predict", side_effect=predict):
-            response = self.client.post("/api/compare", files={"file": ("image.jpg", self.image_bytes, "image/jpeg")})
-        self.assertEqual(response.status_code, 200)
-        rows = response.json()["results"]
-        self.assertEqual(rows[1]["error"], "isolated model failure")
-        self.assertEqual(len(self.history.list()), 2)
-        self.assertEqual({row["model"] for row in self.history.list()}, {"svm", "mobilenet"})
 
-    def test_compare_invalid_upload_or_all_failures_do_not_save(self):
-        response = self.client.post("/api/compare", files={"file": ("image.jpg", b"broken", "image/jpeg")})
-        self.assertEqual(response.status_code, 422)
+    def test_only_svm_is_available_and_comparison_route_is_removed(self):
+        self.assertEqual([model["id"] for model in self.client.get("/api/models").json()["models"]], ["svm"])
+        self.assertEqual(self.client.post("/api/compare").status_code, 404)
+        for model in ("random_forest", "mobilenet"):
+            with self.subTest(model=model):
+                self.assertEqual(self.upload(model=model).status_code, 422)
         self.assertEqual(self.service.calls, [])
-        self.service.ready = False
-        response = self.client.post("/api/compare", files={"file": ("image.jpg", self.image_bytes, "image/jpeg")})
-        self.assertEqual(response.status_code, 422)
         self.assertEqual(self.history.list(), [])
-
-    def test_visuals_use_exact_model_crop_and_are_not_persisted_in_history(self):
-        original = self.service.predict
-
-        def predict(image, model):
-            return {**original(image, model), "localization": {"crop_bbox": [8, 12, 52, 90]}}
-
-        with patch.object(self.service, "predict", side_effect=predict):
-            response = self.upload(model="svm")
-        self.assertEqual(response.status_code, 200)
-        item = response.json()
-        import base64
-        analysis = item["analysis"]
-        crop = cv2.imdecode(np.frombuffer(base64.b64decode(analysis["crop"].split(",")[1]), np.uint8), cv2.IMREAD_COLOR)
-        np.testing.assert_array_equal(crop, self.service.calls[0]["image"][12:90, 8:52])
-        self.assertEqual(analysis["image_size"], [64, 96])
-        self.assertTrue(analysis["hog"].startswith("data:image/png;base64,"))
-        self.assertNotIn("analysis", self.history.get(item["id"]))
 
     def test_history_csv_is_utf8_and_filename_is_not_an_excel_formula(self):
         response = self.client.post("/api/predict", files={"file": ("=1+1.jpg", self.image_bytes, "image/jpeg")}, data={"model": "svm"})
@@ -265,18 +226,62 @@ class WebAppTests(unittest.TestCase):
         self.assertEqual(self.client.get("/api/samples/outside-dataset/image").status_code, 404)
         self.assertEqual(self.client.get("/api/samples/file-removed/image").status_code, 404)
 
+    def test_library_groups_show_all_five_source_defects_and_normal_without_predicting(self):
+        for code in TYPE_CODES[1:]:
+            record_id = f"reference-{code}"
+            path = self.root / f"{record_id}.jpg"
+            path.write_bytes(self.image_bytes)
+            self.manifest["records"].append({"id": record_id, "path": path.relative_to(APP_DIR).as_posix(),
+                                             "split": "test", "label": "defect", "group": record_id, "defect_types": [code]})
+        self.write_manifest()
+        payload = self.client.get("/api/samples?split=test&limit=1").json()
+        self.assertEqual([item["code"] for item in payload["categories"]], list(TYPE_CODES))
+        for category in payload["categories"]:
+            self.assertEqual(category["count"], 1)
+            self.assertEqual(self.client.get(category["preview_url"]).status_code, 200)
+            group = self.client.get(f"/api/samples?split=test&label={category['code']}").json()
+            self.assertEqual(group["total"], 1)
+            self.assertEqual(group["categories"], payload["categories"])
+            record = group["samples"][0]
+            if category["code"] == "normal":
+                self.assertEqual(record["label"], "normal")
+            else:
+                self.assertIn(category["code"], record["defect_types"])
+        self.assertEqual(self.service.calls, [])
+        self.assertEqual(self.history.list(), [])
+
+    def test_library_type_counts_follow_split_and_stay_constant_across_pages(self):
+        for split, suffix in (("test", "a"), ("test", "b"), ("val", "c")):
+            record_id = f"no-cap-{suffix}"
+            self.manifest["records"].append({"id": record_id, "path": self.manifest["records"][0]["path"],
+                                             "split": split, "label": "defect", "group": record_id,
+                                             "defect_types": ["defect_no_cap"]})
+        self.write_manifest()
+        first = self.client.get("/api/samples?split=test&label=defect_no_cap&limit=1").json()
+        second = self.client.get("/api/samples?split=test&label=defect_no_cap&limit=1&offset=1").json()
+        self.assertEqual(first["total"], 2)
+        self.assertEqual(first["categories"], second["categories"])
+        self.assertNotEqual(first["samples"][0]["id"], second["samples"][0]["id"])
+        validation = self.client.get("/api/samples?split=val&label=defect_no_cap").json()
+        self.assertEqual(validation["total"], 1)
+        empty = self.client.get("/api/samples?split=val&label=defect_label_damage").json()
+        self.assertEqual(empty["samples"], [])
+        category = next(item for item in empty["categories"] if item["code"] == "defect_label_damage")
+        self.assertEqual(category["count"], 0)
+        self.assertIsNone(category["preview_url"])
+        self.assertEqual(self.client.get("/api/samples?label=defect_dent").status_code, 422)
+
     def test_train_options_validated_without_spawning_training(self):
         with patch.object(self.app.state.training, "start", return_value={"state": "running", "message": "isolated test"}) as start:
-            for options in ({"epochs": 0}, {"epochs": 31}, {"batch_size": 0}, {"batch_size": 17}):
+            for options in ({"seed": -1}, {"seed": 2**32}, {"epochs": 8}, {"batch_size": 8}):
                 with self.subTest(options=options):
                     self.assertEqual(self.client.post("/api/train", json=options).status_code, 422)
             start.assert_not_called()
-            response = self.client.post("/api/train", json={"epochs": 8, "batch_size": 8})
+            response = self.client.post("/api/train", json={"seed": 42})
             self.assertEqual(response.status_code, 202)
             self.assertEqual(response.json()["state"], "running")
             start.assert_called_once()
-            self.assertEqual(start.call_args.args[0].epochs, 8)
-            self.assertEqual(start.call_args.args[0].batch_size, 8)
+            self.assertEqual(start.call_args.args[0].seed, 42)
 
     def test_batch_retry_is_idempotent_and_rejects_different_content_or_model(self):
         data = {"batch_id": "a" * 32, "position": "0", "model": "svm"}
@@ -292,7 +297,7 @@ class WebAppTests(unittest.TestCase):
         self.assertEqual(len(self.history.list()), 1)
         _, changed = cv2.imencode(".jpg", np.zeros_like(self.pixels))
         self.assertEqual(send(changed.tobytes()).status_code, 409)
-        self.assertEqual(send(model="random_forest").status_code, 409)
+        self.assertEqual(send(model="random_forest").status_code, 422)
         self.assertEqual(len(self.service.calls), 1)
 
     def test_batch_bad_image_does_not_prevent_other_positions_or_create_history(self):
@@ -325,7 +330,7 @@ class WebAppTests(unittest.TestCase):
                 try:
                     self.assertTrue(entered.wait(3))
                     self.assertEqual(self.upload(model="svm").status_code, 409)
-                    self.assertEqual(self.client.post("/api/train", json={"epochs": 8}).status_code, 409)
+                    self.assertEqual(self.client.post("/api/train", json={"seed": 42}).status_code, 409)
                     start.assert_not_called()
                 finally:
                     release.set()
@@ -400,19 +405,21 @@ class WebAppTests(unittest.TestCase):
         self.assertEqual(upgraded.list(review="unreviewed"), [item])
 
     def test_web_training_requires_matched_crops_and_uses_owned_artifact_paths(self):
-        response = self.client.post("/api/train", json={"epochs": 8, "batch_size": 8})
+        response = self.client.post("/api/train", json={"seed": 42})
         self.assertEqual(response.status_code, 409)
         self.manifest["input_mode"] = "auto_bottle_roi"
         self.write_manifest()
-        with patch.object(self.api.subprocess, "Popen") as popen:
+        with patch("web_training.subprocess.Popen") as popen:
             popen.return_value.poll.return_value = None
-            response = self.client.post("/api/train", json={"epochs": 8, "batch_size": 8})
+            response = self.client.post("/api/train", json={"seed": 42})
             self.assertEqual(response.status_code, 202)
             command = popen.call_args.args[0]
-            self.assertTrue(command[2].endswith("train_and_evaluate.py"))
+            self.assertTrue(command[2].endswith("train_hog_svm.py"))
+            self.assertNotIn("--epochs", command)
+            self.assertEqual(command[command.index("--seed") + 1], "42")
             self.assertEqual(command[command.index("--manifest") + 1], str(self.manifest_path))
             self.assertEqual(command[command.index("--artifact-root") + 1], str(self.service.artifact_root))
-            self.assertEqual(self.client.post("/api/train", json={"epochs": 8}).status_code, 409)
+            self.assertEqual(self.client.post("/api/train", json={"seed": 42}).status_code, 409)
             popen.assert_called_once()
             popen.return_value.poll.return_value = 1
             status = self.client.get("/api/status").json()

@@ -3,8 +3,8 @@ opencv-python==4.11.0.86
 scikit-learn==1.6.1
 joblib==1.4.2
 pillow==11.2.1
+# Used only by the pretrained bottle locator (SSDLite), before HOG extraction.
 torch==2.7.1
 torchvision==0.22.1
-# setup_windows.bat installs CPU wheels; NVIDIA hardware is optional.
-# Optional CUDA 11.8 wheels (install separately for a compatible NVIDIA GPU):
+# CUDA wheels used on this machine (Python 3.13; install separately):
 # pip install torch==2.7.1 torchvision==0.22.1 --index-url https://download.pytorch.org/whl/cu118

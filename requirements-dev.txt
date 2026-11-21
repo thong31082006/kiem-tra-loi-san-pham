@@ -1,0 +1,3 @@
+-r requirements.txt
+# HTTP client required by FastAPI TestClient and the regression suite.
+httpx==0.28.1

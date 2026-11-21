@@ -11,7 +11,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from ml.features import APP_DIR, read_bgr
-from ml.inference import DEFAULT_ARTIFACT_ROOT, MODEL_NAMES, ModelService
+from ml.hog_svm import ARTIFACT_ROOT as DEFAULT_ARTIFACT_ROOT, MODEL_NAMES, HogSvmService
 
 
 LOCALIZATION_REJECTIONS = (
@@ -46,7 +46,7 @@ def summarize(rows):
     }
 
 
-def evaluate(manifest_path, artifact_root, max_samples=None, output=None):
+def evaluate(manifest_path, artifact_root, max_samples=None, output=None, service=None):
     manifest = json.loads(Path(manifest_path).read_text(encoding="utf-8-sig"))
     records = [row for row in manifest.get("records", []) if row["split"] == "test"]
     if not records:
@@ -59,23 +59,24 @@ def evaluate(manifest_path, artifact_root, max_samples=None, output=None):
             raise ValueError("max-samples phải lớn hơn 0.")
         records = records[:max_samples]
     artifact_root = Path(artifact_root).resolve()
-    service = ModelService(artifact_root, enable_defect_types=False)
+    service = service or HogSvmService(artifact_root)
+    model_names = MODEL_NAMES
     status = service.status()
     if not status.get("ready"):
-        raise RuntimeError(f"Cần cả ba mô hình đã sẵn sàng: {status.get('error', 'missing artifacts')}")
+        raise RuntimeError(f"Mô hình chưa sẵn sàng: {status.get('error', 'missing artifacts')}")
     run_id = status["run_id"]
     run_dir = (artifact_root / run_id).resolve()
     run_dir.relative_to(artifact_root)
     training_report = json.loads((run_dir / "report.json").read_text(encoding="utf-8"))
     if training_report.get("input_mode") not in ("bottle_roi", "auto_bottle_roi"):
         raise ValueError("Lần chạy này chưa có bước định vị/cắt vùng chai.")
-    print(f"Evaluating {len(records)} full Test images x {len(MODEL_NAMES)} models; run {run_id}", flush=True)
+    print(f"Evaluating {len(records)} full Test images x {len(model_names)} models; run {run_id}", flush=True)
     started = time.perf_counter()
     results = []
     for position, record in enumerate(records):
         # Ground truth remains outside ModelService. It receives only pixels and model ID.
         image = read_bgr(record["path"])
-        for model_id in MODEL_NAMES:
+        for model_id in model_names:
             row = {
                 "id": record["id"], "path": record["path"], "truth": record["label"],
                 "model": model_id, "localization_rejected": False,
@@ -118,7 +119,7 @@ def evaluate(manifest_path, artifact_root, max_samples=None, output=None):
         "partial": len(records) < available, "prediction_count": len(results),
         "unexpected_error_count": 0, "elapsed_seconds": round(time.perf_counter() - started, 4),
         "scope": manifest.get("scope", ""), "note": note,
-        "models": {key: {"name": name, **summarize([row for row in results if row["model"] == key])} for key, name in MODEL_NAMES.items()},
+        "models": {key: {"name": name, **summarize([row for row in results if row["model"] == key])} for key, name in model_names.items()},
         "records": results,
     }
     destination = Path(output) if output else run_dir / ("end_to_end.json" if not report["partial"] else f"end_to_end_sample_{len(records)}.json")

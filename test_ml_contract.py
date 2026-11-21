@@ -7,8 +7,8 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-from ml.features import APP_DIR, CLASS_NAMES, as_rgb_pil, extract_features, read_bgr, read_model_image, validate_image
-from ml.inference import ModelService
+from ml.features import APP_DIR, CLASS_NAMES, as_rgb_pil, read_bgr, read_model_image, validate_image
+from ml.hog_svm import HogSvmService as ModelService, extract_hog as extract_features
 from ml.localization import BottleLocator
 from ml.train import load_manifest
 
@@ -78,7 +78,7 @@ class MLContractTests(unittest.TestCase):
         np.testing.assert_array_equal(decoded, self.pixels)
         original = extract_features(self.pixels)
         np.testing.assert_array_equal(original, extract_features(decoded))
-        self.assertEqual(original.shape, (3828,))
+        self.assertEqual(original.shape, (3780,))
         self.assertEqual(original.dtype, np.float32)
         self.assertTrue(np.isfinite(original).all())
         np.testing.assert_array_equal(np.asarray(as_rgb_pil(decoded)), cv2.cvtColor(self.pixels, cv2.COLOR_BGR2RGB))
@@ -122,7 +122,7 @@ class MLContractTests(unittest.TestCase):
         service = ModelService(self.root / "untrained")
         status = service.status()
         self.assertFalse(status["ready"])
-        self.assertEqual(len(status["models"]), 3)
+        self.assertEqual(len(status["models"]), 1)
         self.assertTrue(all(not model["ready"] and model["metrics"] == {} for model in status["models"]))
         with self.assertRaises(FileNotFoundError):
             service.predict(self.pixels)

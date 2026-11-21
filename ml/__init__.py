@@ -1,1 +1,1 @@
-"""Learned bottle classifiers; importing this package does not load model weights."""
+"""HOG + SVM bottle classification; importing does not load model weights."""

@@ -1,0 +1,408 @@
+{
+  "status": "complete",
+  "run_id": "20261120_142847_033489",
+  "seed": 42,
+  "input_mode": "auto_bottle_roi",
+  "class_names": [
+    "normal",
+    "defect_low_fill",
+    "defect_no_cap",
+    "defect_loose_cap",
+    "defect_debris",
+    "defect_label_damage"
+  ],
+  "feature_version": "auto-bottle-roi-hog64x128-3780-v1",
+  "feature_count": 3780,
+  "policies": {
+    "normal": {
+      "enabled": true,
+      "threshold": 0.65
+    },
+    "defect_low_fill": {
+      "enabled": true,
+      "threshold": 0.5,
+      "validation_precision": 1.0,
+      "validation_recall": 1.0,
+      "validation_f1": 1.0,
+      "validation_tp": 34,
+      "validation_fp": 0
+    },
+    "defect_no_cap": {
+      "enabled": true,
+      "threshold": 0.5,
+      "validation_precision": 1.0,
+      "validation_recall": 1.0,
+      "validation_f1": 1.0,
+      "validation_tp": 34,
+      "validation_fp": 0
+    },
+    "defect_loose_cap": {
+      "enabled": true,
+      "threshold": 0.5,
+      "validation_precision": 1.0,
+      "validation_recall": 0.9259259259259259,
+      "validation_f1": 0.9615384615384615,
+      "validation_tp": 25,
+      "validation_fp": 0
+    },
+    "defect_debris": {
+      "enabled": true,
+      "threshold": 0.5,
+      "validation_precision": 1.0,
+      "validation_recall": 0.9705882352941176,
+      "validation_f1": 0.9850746268656716,
+      "validation_tp": 33,
+      "validation_fp": 0
+    },
+    "defect_label_damage": {
+      "enabled": false,
+      "threshold": 1.01,
+      "reason": "Chưa đạt Precision 85% và Recall 20% trên Validation."
+    }
+  },
+  "evaluation_note": "Chỉ fit Train; chọn C, gamma và ngưỡng bằng Validation rồi khóa trước Test. Test là đánh giá phát triển cùng nguồn, đã được tham khảo trong dự án; chưa phải kiểm chứng mù. Mỗi ảnh một chai đứng và một lỗi chính. Điểm chưa được hiệu chuẩn.",
+  "dataset": {
+    "image_count": 1190,
+    "train": 729,
+    "val": 230,
+    "test": 231,
+    "counts": {
+      "train": {
+        "normal": 374,
+        "defect": 355
+      },
+      "val": {
+        "normal": 67,
+        "defect": 163
+      },
+      "test": {
+        "normal": 68,
+        "defect": 163
+      }
+    }
+  },
+  "manifest_sha256": "825c4e5158fcffcb58cb417a0cb5aee4172bbcc48a288685cc491ae7d409c63a",
+  "models": {
+    "svm": {
+      "name": "HOG + SVM",
+      "artifact": "svm.joblib",
+      "hyperparameters": {
+        "C": 2.0,
+        "gamma": "scale",
+        "kernel": "rbf",
+        "class_weight": "balanced"
+      },
+      "decision_threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "validation": {
+        "accuracy": 0.8695652173913043,
+        "balanced_accuracy": 0.8859994505997619,
+        "precision": 0.965034965034965,
+        "recall": 0.8466257668711656,
+        "f1": 0.9019607843137255,
+        "confusion_matrix": [
+          [
+            62,
+            5
+          ],
+          [
+            25,
+            138
+          ]
+        ],
+        "class_order": [
+          "normal",
+          "defect"
+        ],
+        "positive_class": "defect",
+        "sample_count": 230
+      },
+      "test": {
+        "accuracy": 0.9653679653679653,
+        "balanced_accuracy": 0.9626037531577047,
+        "precision": 0.9813664596273292,
+        "recall": 0.9693251533742331,
+        "f1": 0.9753086419753086,
+        "confusion_matrix": [
+          [
+            65,
+            3
+          ],
+          [
+            5,
+            158
+          ]
+        ],
+        "class_order": [
+          "normal",
+          "defect"
+        ],
+        "positive_class": "defect",
+        "sample_count": 231
+      }
+    }
+  },
+  "defect_types": {
+    "counts": {
+      "train": {
+        "normal": 374,
+        "defect_low_fill": 142,
+        "defect_no_cap": 60,
+        "defect_loose_cap": 68,
+        "defect_debris": 68,
+        "defect_label_damage": 17
+      },
+      "val": {
+        "normal": 67,
+        "defect_low_fill": 34,
+        "defect_no_cap": 34,
+        "defect_loose_cap": 27,
+        "defect_debris": 34,
+        "defect_label_damage": 34
+      },
+      "test": {
+        "normal": 68,
+        "defect_low_fill": 34,
+        "defect_no_cap": 34,
+        "defect_loose_cap": 34,
+        "defect_debris": 27,
+        "defect_label_damage": 34
+      }
+    },
+    "test": {
+      "raw": {
+        "accuracy": 0.9004329004329005,
+        "macro_f1": 0.893286343844169,
+        "confusion_matrix": [
+          [
+            67,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            34,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            34,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            33,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            27,
+            0
+          ],
+          [
+            19,
+            2,
+            0,
+            0,
+            0,
+            13
+          ]
+        ],
+        "per_class": {
+          "normal": {
+            "precision": 0.7701149425287356,
+            "recall": 0.9852941176470589,
+            "f1-score": 0.864516129032258,
+            "support": 68.0
+          },
+          "defect_low_fill": {
+            "precision": 0.9444444444444444,
+            "recall": 1.0,
+            "f1-score": 0.9714285714285714,
+            "support": 34.0
+          },
+          "defect_no_cap": {
+            "precision": 0.9714285714285714,
+            "recall": 1.0,
+            "f1-score": 0.9855072463768116,
+            "support": 34.0
+          },
+          "defect_loose_cap": {
+            "precision": 1.0,
+            "recall": 0.9705882352941176,
+            "f1-score": 0.9850746268656716,
+            "support": 34.0
+          },
+          "defect_debris": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 27.0
+          },
+          "defect_label_damage": {
+            "precision": 1.0,
+            "recall": 0.38235294117647056,
+            "f1-score": 0.5531914893617021,
+            "support": 34.0
+          },
+          "accuracy": 0.9004329004329005,
+          "macro avg": {
+            "precision": 0.9476646597336252,
+            "recall": 0.8897058823529411,
+            "f1-score": 0.893286343844169,
+            "support": 231.0
+          },
+          "weighted avg": {
+            "precision": 0.9199458815222362,
+            "recall": 0.9004329004329005,
+            "f1-score": 0.8858180196160489,
+            "support": 231.0
+          }
+        }
+      },
+      "accepted": {
+        "accuracy": 0.8398268398268398,
+        "coverage": 0.8961038961038961,
+        "uncertain_count": 24,
+        "per_class": {
+          "normal": {
+            "precision": 0.8375,
+            "recall": 0.9852941176470589,
+            "f1": 0.9054054054054055,
+            "support": 68,
+            "tp": 67,
+            "fp": 13,
+            "fn_or_uncertain": 1
+          },
+          "defect_low_fill": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 34,
+            "tp": 34,
+            "fp": 0,
+            "fn_or_uncertain": 0
+          },
+          "defect_no_cap": {
+            "precision": 1.0,
+            "recall": 0.9705882352941176,
+            "f1": 0.9850746268656716,
+            "support": 34,
+            "tp": 33,
+            "fp": 0,
+            "fn_or_uncertain": 1
+          },
+          "defect_loose_cap": {
+            "precision": 1.0,
+            "recall": 0.9705882352941176,
+            "f1": 0.9850746268656716,
+            "support": 34,
+            "tp": 33,
+            "fp": 0,
+            "fn_or_uncertain": 1
+          },
+          "defect_debris": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 27,
+            "tp": 27,
+            "fp": 0,
+            "fn_or_uncertain": 0
+          },
+          "defect_label_damage": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 34,
+            "tp": 0,
+            "fp": 0,
+            "fn_or_uncertain": 34
+          }
+        },
+        "confusion_matrix": [
+          [
+            67,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            33,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            33,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            27,
+            0,
+            0
+          ],
+          [
+            13,
+            0,
+            0,
+            0,
+            0,
+            0,
+            21
+          ]
+        ],
+        "column_labels": [
+          "normal",
+          "defect_low_fill",
+          "defect_no_cap",
+          "defect_loose_cap",
+          "defect_debris",
+          "defect_label_damage",
+          "uncertain"
+        ]
+      }
+    }
+  },
+  "total_seconds": 43.45,
+  "completed_at": "2026-11-20T14:29:30.487234+00:00"
+}

@@ -1,20 +1,12 @@
 """Contracts for naming faults from scores, independent of filenames/reference labels."""
-import json
-import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import Mock
 
 import numpy as np
 
-from ml.defect_types import DefectTypeService, TYPE_CODES, classify_type_scores
-from ml.inference import ModelService
-
-
-class BinaryFixture:
-    classes_ = np.array([0, 1])
-    def __init__(self, defect_score): self.defect_score = defect_score
-    def predict_proba(self, features): return np.array([[1 - self.defect_score, self.defect_score]])
+from ml.defect_types import TYPE_CODES, classify_type_scores
+from ml.hog_svm import HogSvmService
 
 
 class DefectTypeTests(unittest.TestCase):
@@ -51,31 +43,37 @@ class DefectTypeTests(unittest.TestCase):
             with self.subTest(scores=scores):
                 with self.assertRaises(ValueError): classify_type_scores(scores, self.policies())
 
-    def test_missing_or_escaping_type_artifact_never_claims_ready(self):
-        with tempfile.TemporaryDirectory() as folder:
-            service = DefectTypeService(folder)
-            self.assertFalse(service.status()["ready"])
-            self.assertEqual(service.predict(np.zeros((64, 64, 3), np.uint8))["status"], "unavailable")
-            (Path(folder) / "latest.json").write_text(json.dumps({"run_id": "../outside"}), encoding="utf-8")
-            self.assertFalse(service.status()["ready"])
-
-    def test_type_analysis_preserves_binary_result_and_only_receives_pixels(self):
+    def test_quality_and_type_use_one_svm_prediction_on_pixel_features(self):
         pixels = np.full((128, 64, 3), 170, np.uint8)
-        service = ModelService(enable_defect_types=False)
+        service = HogSvmService()
         service._refresh = Mock(return_value=Path("."))
-        service._report = {"models": {"svm": {"decision_threshold": 0.5, "uncertainty_threshold": 0.65}}}
-        service._load = Mock(return_value=BinaryFixture(0.05))
-        baseline = service.predict(pixels, "svm")
-        service._type_service = Mock()
-        service._type_service.predict.return_value = {"status": "typed", "code": "defect_no_cap", "name": "Thiếu nắp", "score": 0.9}
-        with_types = service.predict(pixels, "svm")
-        self.assertEqual(with_types["label"], baseline["label"])
-        self.assertEqual(with_types["probabilities"], baseline["probabilities"])
-        self.assertEqual(with_types["defect_analysis"]["agreement"], "review")
-        args, kwargs = service._type_service.predict.call_args
-        self.assertEqual(kwargs, {})
-        self.assertEqual(len(args), 1)
-        np.testing.assert_array_equal(args[0], pixels)
+        service._report = {"models": {"svm": {"decision_threshold": 0.5, "uncertainty_threshold": 0.65}},
+                           "policies": self.policies()}
+        service._loaded = Mock()
+        service._loaded.predict_proba.return_value = np.array([[0.02, 0.02, 0.9, 0.02, 0.02, 0.02]])
+        service._locator = Mock()
+        service._locator.locate.return_value = (pixels, {})
+        result = service.predict(pixels)
+        self.assertEqual(result["label"], "defect")
+        self.assertEqual(result["defect_analysis"]["code"], "defect_no_cap")
+        self.assertEqual(result["defect_analysis"]["agreement"], "agree")
+        service._loaded.predict_proba.assert_called_once()
+        self.assertEqual(service._loaded.predict_proba.call_args.args[0].shape, (1, 3780))
+
+    def test_disabled_type_does_not_hide_quality_defect(self):
+        policies = self.policies()
+        policies["defect_label_damage"]["enabled"] = False
+        service = HogSvmService()
+        service._refresh = Mock(return_value=Path("."))
+        service._report = {"models": {"svm": {"decision_threshold": 0.5, "uncertainty_threshold": 0.65}},
+                           "policies": policies}
+        service._loaded = Mock()
+        service._loaded.predict_proba.return_value = np.array([[0.02, 0.02, 0.02, 0.02, 0.02, 0.9]])
+        service._locator = Mock()
+        service._locator.locate.return_value = (np.zeros((128, 64, 3), np.uint8), {})
+        result = service.predict(np.zeros((128, 64, 3), np.uint8))
+        self.assertEqual(result["label"], "defect")
+        self.assertEqual(result["defect_analysis"]["status"], "uncertain")
 
 
 if __name__ == "__main__":

@@ -1,13 +1,6 @@
-"""Independent, pixel-only six-class analysis; reference annotations never enter inference."""
-import json
-import os
-import threading
-import time
-from pathlib import Path
-
+"""Labels, validation policies and metrics for the single six-class SVM."""
 import numpy as np
-
-from .features import APP_DIR, as_rgb_pil, cnn_transform, extract_features, validate_image
+from sklearn.metrics import classification_report, confusion_matrix, f1_score
 
 TYPE_CODES = ("normal", "defect_low_fill", "defect_no_cap", "defect_loose_cap", "defect_debris", "defect_label_damage")
 TYPE_NAMES = {
@@ -19,7 +12,6 @@ TYPE_NAMES = {
     "defect_label_damage": "Nhãn hỏng / lệch / thiếu",
 }
 UNSUPPORTED_TYPES = ["Móp / biến dạng chai", "Nước đục / đổi màu"]
-TYPE_ROOT = APP_DIR / "models" / "defect_types"
 TYPE_SCOPE = (
     "Nhận diện loại lỗi chính trên mẫu chai Ron 88. Nhãn hỏng, lệch và thiếu được nguồn gộp chung. "
     "Chưa kiểm chứng nhiều lỗi đồng thời, hãng chai khác hoặc lỗi bị khuất. "
@@ -44,83 +36,51 @@ def classify_type_scores(scores, policies):
     }
 
 
-class DefectTypeService:
-    def __init__(self, artifact_root=None):
-        self.root = Path(artifact_root or TYPE_ROOT).resolve()
-        self.lock = threading.RLock()
-        self.run_id = None
-        self.report = None
-        self.loaded = None
+def raw_metrics(y, scores):
+    predicted = np.asarray(scores).argmax(axis=1)
+    return {"accuracy": float((predicted == y).mean()),
+            "macro_f1": float(f1_score(y, predicted, average="macro", labels=list(range(6)), zero_division=0)),
+            "confusion_matrix": confusion_matrix(y, predicted, labels=list(range(6))).tolist(),
+            "per_class": classification_report(y, predicted, labels=list(range(6)), target_names=list(TYPE_CODES), output_dict=True, zero_division=0)}
 
-    def _inside(self, path):
-        path = (self.root / path).resolve()
-        path.relative_to(self.root)
-        return path
 
-    def _refresh(self):
-        pointer = self.root / "latest.json"
-        if not pointer.is_file():
-            return None
-        run_id = json.loads(pointer.read_text(encoding="utf-8"))["run_id"]
-        if not run_id or self._inside(run_id) == self.root:
-            raise ValueError("Đường dẫn bộ phân tích loại lỗi không hợp lệ.")
-        if run_id != self.run_id:
-            report = json.loads((self._inside(run_id) / "report.json").read_text(encoding="utf-8"))
-            if report.get("status") != "complete" or report.get("class_names") != list(TYPE_CODES):
-                raise ValueError("Bộ phân tích loại lỗi chưa hoàn tất hoặc sai thứ tự lớp.")
-            if not self._inside(Path(run_id) / report["artifact"]).is_file():
-                raise FileNotFoundError("Thiếu trọng số bộ phân tích loại lỗi.")
-            self.report, self.run_id, self.loaded = report, run_id, None
-        return self._inside(run_id)
+def calibrate(y, scores):
+    predicted = scores.argmax(axis=1)
+    policies = {"normal": {"enabled": True, "threshold": 0.65}}
+    for index, code in enumerate(TYPE_CODES[1:], 1):
+        best = None
+        for threshold in np.linspace(0.5, 0.95, 19):
+            positive = (predicted == index) & (scores[:, index] >= threshold)
+            tp = int(((y == index) & positive).sum())
+            fp = int(((y != index) & positive).sum())
+            precision = tp / max(1, tp + fp)
+            recall = tp / max(1, int((y == index).sum()))
+            if precision < 0.85 or recall < 0.2 or tp < 3:
+                continue
+            f1 = 2 * precision * recall / max(1e-12, precision + recall)
+            candidate = {"enabled": True, "threshold": float(threshold), "validation_precision": precision,
+                         "validation_recall": recall, "validation_f1": f1, "validation_tp": tp, "validation_fp": fp}
+            rank = (f1, recall, precision, -float(threshold))
+            if best is None or rank > best[0]:
+                best = (rank, candidate)
+        policies[code] = best[1] if best else {"enabled": False, "threshold": 1.01, "reason": "Chưa đạt Precision 85% và Recall 20% trên Validation."}
+    return policies
 
-    def status(self):
-        with self.lock:
-            try:
-                run_dir = self._refresh()
-                progress_path = self.root / "training_progress.json"
-                progress = json.loads(progress_path.read_text(encoding="utf-8")) if progress_path.is_file() else {}
-                return {
-                    "ready": bool(run_dir), "run_id": self.run_id,
-                    "model_name": (self.report or {}).get("model_name"),
-                    "scope": TYPE_SCOPE, "unsupported": UNSUPPORTED_TYPES,
-                    "classes": [{"code": code, "name": TYPE_NAMES[code],
-                                 **(self.report or {}).get("policies", {}).get(code, {})} for code in TYPE_CODES[1:]],
-                    "test": (self.report or {}).get("test", {}),
-                    "counts": (self.report or {}).get("counts", {}),
-                    "training": progress,
-                }
-            except (OSError, ValueError, KeyError) as error:
-                return {"ready": False, "error": str(error), "scope": TYPE_SCOPE, "unsupported": UNSUPPORTED_TYPES}
 
-    def predict(self, image):
-        validate_image(image)
-        started = time.perf_counter()
-        with self.lock:
-            run_dir = self._refresh()
-            if not run_dir:
-                return {"status": "unavailable", "name": "Chưa có bộ phân tích loại lỗi", "scope": TYPE_SCOPE}
-            if self.loaded is None:
-                path = self._inside(Path(self.run_id) / self.report["artifact"])
-                if self.report["model_id"] == "mobilenet":
-                    import torch
-                    from torchvision.models import mobilenet_v3_small
-                    torch.set_num_threads(min(4, os.cpu_count() or 1))
-                    network = mobilenet_v3_small(weights=None)
-                    network.classifier[-1] = torch.nn.Linear(network.classifier[-1].in_features, len(TYPE_CODES))
-                    network.load_state_dict(torch.load(path, map_location="cpu", weights_only=True)["state_dict"])
-                    self.loaded = (network.eval(), cnn_transform())
-                else:
-                    import joblib
-                    self.loaded = joblib.load(path)
-                    if list(self.loaded.classes_) != list(range(len(TYPE_CODES))):
-                        raise ValueError("Mô hình phân tích loại lỗi thiếu lớp hoặc sai thứ tự lớp.")
-            if self.report["model_id"] == "mobilenet":
-                import torch
-                network, transform = self.loaded
-                with torch.inference_mode():
-                    scores = network(transform(as_rgb_pil(image)).unsqueeze(0)).softmax(dim=1)[0].tolist()
-            else:
-                scores = self.loaded.predict_proba(extract_features(image).reshape(1, -1))[0]
-            result = classify_type_scores(scores, self.report["policies"])
-            return {**result, "model_name": self.report["model_name"], "run_id": self.run_id,
-                    "latency_ms": round((time.perf_counter() - started) * 1000, 2)}
+def accepted_metrics(y, scores, policies):
+    outcomes = [classify_type_scores(row, policies) for row in scores]
+    predicted = np.array([TYPE_CODES.index(row["code"]) if row["code"] else 6 for row in outcomes])
+    per_class = {}
+    for index, code in enumerate(TYPE_CODES):
+        tp = int(((y == index) & (predicted == index)).sum())
+        fp = int(((y != index) & (predicted == index)).sum())
+        total = int((y == index).sum())
+        precision = tp / max(1, tp + fp)
+        recall = tp / max(1, total)
+        per_class[code] = {"precision": precision, "recall": recall,
+                           "f1": 2 * precision * recall / max(1e-12, precision + recall),
+                           "support": total, "tp": tp, "fp": fp, "fn_or_uncertain": total - tp}
+    return {"accuracy": float((predicted == y).mean()), "coverage": float((predicted != 6).mean()),
+            "uncertain_count": int((predicted == 6).sum()), "per_class": per_class,
+            "confusion_matrix": confusion_matrix(y, predicted, labels=list(range(7))).tolist()[:6],
+            "column_labels": list(TYPE_CODES) + ["uncertain"]}

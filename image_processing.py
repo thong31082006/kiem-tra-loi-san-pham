@@ -83,18 +83,6 @@ def mask_iou(ref_mask, ref_bbox, test_mask, test_bbox):
     return float(inter / max(union, 1) * 100.0), r, t, cv2.absdiff(r, t)
 
 
-def contour_boxes(mask, min_area=50, max_boxes=8):
-    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    boxes = []
-    for c in sorted(contours, key=cv2.contourArea, reverse=True):
-        if cv2.contourArea(c) < min_area:
-            continue
-        boxes.append(cv2.boundingRect(c))
-        if len(boxes) >= max_boxes:
-            break
-    return boxes
-
-
 def make_visual_mask(mask):
     return cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
 

@@ -1,0 +1,7674 @@
+{
+  "status": "complete",
+  "run_id": "20261120_144651_428730",
+  "created_at": "2026-11-20T14:47:29.504072+00:00",
+  "split": "test",
+  "sample_count": 231,
+  "available_test_count": 231,
+  "partial": false,
+  "prediction_count": 231,
+  "unexpected_error_count": 0,
+  "elapsed_seconds": 18.8185,
+  "scope": "Một mẫu chai Ron 88, camera và ánh sáng của bộ nguồn; không chứng minh mọi góc chụp.",
+  "note": "Đánh giá toàn ảnh qua định vị chai tự động và phân loại thực tế; không lưu lịch sử web. Accuracy tính đúng/tổng ảnh, uncertain và lỗi định vị không được tính đúng. Coverage là tỷ lệ nhận nhãn normal/defect. Recall lớp defect tính cả ảnh bị từ chối là bỏ sót. Test cùng nguồn đã dùng trong phát triển, chưa phải kiểm tra mù trên chai/phiên chụp độc lập.",
+  "models": {
+    "svm": {
+      "name": "HOG + SVM",
+      "total": 231,
+      "correct_count": 200,
+      "accuracy": 0.8658008658008658,
+      "precision": 0.9926470588235294,
+      "recall": 0.8282208588957055,
+      "f1": 0.903010033444816,
+      "coverage": 0.8917748917748918,
+      "uncertain_count": 25,
+      "localization_rejected_count": 0,
+      "confusion_matrix": [
+        [
+          65,
+          1,
+          2
+        ],
+        [
+          5,
+          135,
+          23
+        ]
+      ],
+      "row_labels": [
+        "normal",
+        "defect"
+      ],
+      "column_labels": [
+        "normal",
+        "defect",
+        "uncertain"
+      ]
+    }
+  },
+  "records": [
+    {
+      "id": "00ec796666dbb23ba1ab",
+      "path": "data/datasets/bottle_defects/images/train/good_0525_20260210_131643.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.11367947315354236,
+      "probabilities": {
+        "normal": 0.8863205268464576,
+        "defect": 0.11367947315354236
+      },
+      "latency_ms": 6542.47,
+      "localization": {
+        "bbox": [
+          281.6,
+          83.6,
+          487.2,
+          653.1
+        ],
+        "score": 0.66884845495224,
+        "crop_bbox": [
+          265,
+          38,
+          503,
+          698
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "02c45c9ba277f2268c33",
+      "path": "data/datasets/bottle_defects/images/train/good_0542_20260210_131716.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9894577475709222,
+      "probabilities": {
+        "normal": 0.9894577475709222,
+        "defect": 0.01054225242907755
+      },
+      "latency_ms": 46.65,
+      "localization": {
+        "bbox": [
+          650.3,
+          72.7,
+          865.8,
+          642.6
+        ],
+        "score": 0.8102692365646362,
+        "crop_bbox": [
+          633,
+          27,
+          883,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "05c4fbae2f5ffd006f3c",
+      "path": "data/datasets/bottle_defects/images/train/good_0523_20260210_131639.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9928450628577584,
+      "probabilities": {
+        "normal": 0.9928450628577584,
+        "defect": 0.007154937142241766
+      },
+      "latency_ms": 49.26,
+      "localization": {
+        "bbox": [
+          354.6,
+          70.1,
+          570.4,
+          639.5
+        ],
+        "score": 0.9860659241676331,
+        "crop_bbox": [
+          337,
+          24,
+          587,
+          685
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "067f494ab2386209e0a7",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0076_20260210_151655.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9786084297952751,
+      "probabilities": {
+        "normal": 0.021391570204725194,
+        "defect": 0.9786084297952751
+      },
+      "latency_ms": 48.96,
+      "localization": {
+        "bbox": [
+          581.5,
+          65.7,
+          807.8,
+          632.7
+        ],
+        "score": 0.980891764163971,
+        "crop_bbox": [
+          563,
+          20,
+          825,
+          678
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "068ba7a8162036f9ef3b",
+      "path": "data/datasets/bottle_defects/images/train/good_0503_20260210_131600.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9894889336282421,
+      "probabilities": {
+        "normal": 0.9894889336282421,
+        "defect": 0.010511066371757955
+      },
+      "latency_ms": 48.94,
+      "localization": {
+        "bbox": [
+          548.8,
+          59.3,
+          757.4,
+          624.0
+        ],
+        "score": 0.9554148316383362,
+        "crop_bbox": [
+          532,
+          14,
+          774,
+          669
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "06c93b0c1994429d5863",
+      "path": "data/datasets/bottle_defects/images/val/debris_0126_20260210_150600.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9979906058398254,
+      "probabilities": {
+        "normal": 0.002009394160174679,
+        "defect": 0.9979906058398254
+      },
+      "latency_ms": 47.67,
+      "localization": {
+        "bbox": [
+          573.8,
+          70.9,
+          780.6,
+          640.5
+        ],
+        "score": 0.8752299547195435,
+        "crop_bbox": [
+          557,
+          25,
+          797,
+          686
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "0b7130af83caf1c1ed33",
+      "path": "data/datasets/bottle_defects/images/val/damaged_label_0058_20260210_151601.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.1786524976718741,
+      "probabilities": {
+        "normal": 0.8213475023281263,
+        "defect": 0.1786524976718741
+      },
+      "latency_ms": 54.48,
+      "localization": {
+        "bbox": [
+          596.3,
+          65.2,
+          813.4,
+          637.6
+        ],
+        "score": 0.979905903339386,
+        "crop_bbox": [
+          578,
+          19,
+          830,
+          683
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "0bca6b781f3056f3ec5b",
+      "path": "data/datasets/bottle_defects/images/val/underfilled_0213_20260210_162556.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9546857546097474,
+      "probabilities": {
+        "normal": 0.04531424539025266,
+        "defect": 0.9546857546097474
+      },
+      "latency_ms": 53.67,
+      "localization": {
+        "bbox": [
+          531.2,
+          84.7,
+          749.8,
+          649.8
+        ],
+        "score": 0.7852984666824341,
+        "crop_bbox": [
+          513,
+          39,
+          767,
+          695
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "0d8d5a3f1aafbcb96531",
+      "path": "data/datasets/bottle_defects/images/val/debris_0134_20260210_150617.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9917595022782629,
+      "probabilities": {
+        "normal": 0.008240497721737652,
+        "defect": 0.9917595022782629
+      },
+      "latency_ms": 44.57,
+      "localization": {
+        "bbox": [
+          605.8,
+          73.9,
+          824.8,
+          638.1
+        ],
+        "score": 0.9458742737770081,
+        "crop_bbox": [
+          588,
+          28,
+          842,
+          683
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "11b739db36d63a2d63b8",
+      "path": "data/datasets/bottle_defects/images/val/damaged_label_0068_20260210_151634.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.36533747956144097,
+      "probabilities": {
+        "normal": 0.6346625204385586,
+        "defect": 0.36533747956144097
+      },
+      "latency_ms": 48.93,
+      "localization": {
+        "bbox": [
+          448.6,
+          66.2,
+          696.0,
+          634.6
+        ],
+        "score": 0.9821909666061401,
+        "crop_bbox": [
+          428,
+          20,
+          715,
+          680
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "13405884aa399df88f74",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0214_20260210_162558.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.987255900750157,
+      "probabilities": {
+        "normal": 0.012744099249842563,
+        "defect": 0.987255900750157
+      },
+      "latency_ms": 46.15,
+      "localization": {
+        "bbox": [
+          525.0,
+          70.0,
+          723.5,
+          646.4
+        ],
+        "score": 0.930540144443512,
+        "crop_bbox": [
+          509,
+          23,
+          739,
+          692
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "1401cf5fbd251cf67518",
+      "path": "data/datasets/bottle_defects/images/val/good_0528_20260210_131650.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9834050899548256,
+      "probabilities": {
+        "normal": 0.9834050899548256,
+        "defect": 0.016594910045174275
+      },
+      "latency_ms": 46.42,
+      "localization": {
+        "bbox": [
+          403.0,
+          64.2,
+          594.5,
+          627.9
+        ],
+        "score": 0.9554768204689026,
+        "crop_bbox": [
+          387,
+          19,
+          609,
+          673
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "14184e5fa79da6ab0b42",
+      "path": "data/datasets/bottle_defects/images/val/no_cap_0008_20260210_145105.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9578666541588136,
+      "probabilities": {
+        "normal": 0.042133345841186456,
+        "defect": 0.9578666541588136
+      },
+      "latency_ms": 44.28,
+      "localization": {
+        "bbox": [
+          569.7,
+          59.5,
+          778.1,
+          643.8
+        ],
+        "score": 0.9894401431083679,
+        "crop_bbox": [
+          553,
+          12,
+          794,
+          690
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "14b7733a6bcf8d170b6b",
+      "path": "data/datasets/bottle_defects/images/train/good_0530_20260210_131654.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.996273558975077,
+      "probabilities": {
+        "normal": 0.996273558975077,
+        "defect": 0.003726441024922811
+      },
+      "latency_ms": 49.52,
+      "localization": {
+        "bbox": [
+          459.5,
+          67.5,
+          662.9,
+          610.1
+        ],
+        "score": 0.9868324995040894,
+        "crop_bbox": [
+          443,
+          24,
+          679,
+          653
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "17f73e2d96f60b53b407",
+      "path": "data/datasets/bottle_defects/images/train/good_0509_20260210_131612.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9878818094156758,
+      "probabilities": {
+        "normal": 0.9878818094156758,
+        "defect": 0.012118190584324276
+      },
+      "latency_ms": 48.43,
+      "localization": {
+        "bbox": [
+          382.0,
+          62.0,
+          585.9,
+          643.3
+        ],
+        "score": 0.9648297429084778,
+        "crop_bbox": [
+          365,
+          15,
+          602,
+          689
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "19709c8586afe56d5d55",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0025_20260210_145148.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9866873902825363,
+      "probabilities": {
+        "normal": 0.013312609717463736,
+        "defect": 0.9866873902825363
+      },
+      "latency_ms": 41.53,
+      "localization": {
+        "bbox": [
+          592.5,
+          68.1,
+          788.8,
+          617.5
+        ],
+        "score": 0.9830324649810791,
+        "crop_bbox": [
+          576,
+          24,
+          804,
+          661
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "199af085a8025c5d2aea",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0012_20260210_152039.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.999623009413223,
+      "probabilities": {
+        "normal": 0.00037699058677694583,
+        "defect": 0.999623009413223
+      },
+      "latency_ms": 43.02,
+      "localization": {
+        "bbox": [
+          567.3,
+          46.2,
+          786.6,
+          647.7
+        ],
+        "score": 0.9774302840232849,
+        "crop_bbox": [
+          549,
+          0,
+          804,
+          695
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "1b0ef6ca9b3721f9cc38",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0008_20260210_152030.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.5355335697921316,
+      "probabilities": {
+        "normal": 0.4644664302078685,
+        "defect": 0.5355335697921316
+      },
+      "latency_ms": 49.59,
+      "localization": {
+        "bbox": [
+          568.8,
+          65.3,
+          751.2,
+          340.4
+        ],
+        "score": 0.8546252846717834,
+        "crop_bbox": [
+          554,
+          43,
+          765,
+          362
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "1b1f3442aee42bcccf68",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0215_20260210_162559.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9863376288830955,
+      "probabilities": {
+        "normal": 0.013662371116904238,
+        "defect": 0.9863376288830955
+      },
+      "latency_ms": 40.03,
+      "localization": {
+        "bbox": [
+          515.1,
+          70.6,
+          710.8,
+          646.3
+        ],
+        "score": 0.9738987684249878,
+        "crop_bbox": [
+          499,
+          24,
+          726,
+          692
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "1cdc2a472cc1d5b5946a",
+      "path": "data/datasets/bottle_defects/images/train/good_0506_20260210_131606.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9688903029428989,
+      "probabilities": {
+        "normal": 0.9688903029428989,
+        "defect": 0.031109697057100878
+      },
+      "latency_ms": 53.64,
+      "localization": {
+        "bbox": [
+          534.2,
+          69.4,
+          735.0,
+          641.5
+        ],
+        "score": 0.5903598666191101,
+        "crop_bbox": [
+          518,
+          23,
+          751,
+          687
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "1ceb1f97e2e0feb6830f",
+      "path": "data/datasets/bottle_defects/images/train/debris_0123_20260210_150556.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9995397133943684,
+      "probabilities": {
+        "normal": 0.0004602866056312935,
+        "defect": 0.9995397133943684
+      },
+      "latency_ms": 41.7,
+      "localization": {
+        "bbox": [
+          585.9,
+          72.2,
+          798.3,
+          636.6
+        ],
+        "score": 0.9376906752586365,
+        "crop_bbox": [
+          568,
+          27,
+          815,
+          681
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "1dc62bdfb14ab8c22d44",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0019_20260210_145131.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9985702017093379,
+      "probabilities": {
+        "normal": 0.0014297982906620486,
+        "defect": 0.9985702017093379
+      },
+      "latency_ms": 51.95,
+      "localization": {
+        "bbox": [
+          569.8,
+          59.5,
+          773.2,
+          626.4
+        ],
+        "score": 0.9851796627044678,
+        "crop_bbox": [
+          553,
+          14,
+          789,
+          671
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "1e1862b90336dd52e9e9",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0064_20260210_151620.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.568418576353215,
+      "probabilities": {
+        "normal": 0.43158142364678526,
+        "defect": 0.568418576353215
+      },
+      "latency_ms": 42.99,
+      "localization": {
+        "bbox": [
+          519.1,
+          81.8,
+          760.1,
+          644.0
+        ],
+        "score": 0.9488012194633484,
+        "crop_bbox": [
+          499,
+          36,
+          779,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "1e20bd27a6289c6b786d",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0014_20260210_152043.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9982535598939013,
+      "probabilities": {
+        "normal": 0.0017464401060987458,
+        "defect": 0.9982535598939013
+      },
+      "latency_ms": 54.89,
+      "localization": {
+        "bbox": [
+          549.5,
+          54.5,
+          763.8,
+          645.9
+        ],
+        "score": 0.9363049864768982,
+        "crop_bbox": [
+          532,
+          7,
+          780,
+          693
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "20ae817650fb28e0b4ac",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0055_20260210_151553.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.952016894221362,
+      "probabilities": {
+        "normal": 0.0479831057786376,
+        "defect": 0.952016894221362
+      },
+      "latency_ms": 51.05,
+      "localization": {
+        "bbox": [
+          577.5,
+          65.5,
+          805.6,
+          630.7
+        ],
+        "score": 0.9688891172409058,
+        "crop_bbox": [
+          559,
+          20,
+          823,
+          675
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "20e7c94dfd3393fb0e9b",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0072_20260210_151646.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.8381905695046594,
+      "probabilities": {
+        "normal": 0.16180943049534044,
+        "defect": 0.8381905695046594
+      },
+      "latency_ms": 49.35,
+      "localization": {
+        "bbox": [
+          493.4,
+          67.4,
+          720.0,
+          636.1
+        ],
+        "score": 0.9825731515884399,
+        "crop_bbox": [
+          475,
+          21,
+          738,
+          681
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "21839d8bae165bd2928c",
+      "path": "data/datasets/bottle_defects/images/train/good_0488_20260210_131532.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9939470112244282,
+      "probabilities": {
+        "normal": 0.9939470112244282,
+        "defect": 0.006052988775571899
+      },
+      "latency_ms": 42.32,
+      "localization": {
+        "bbox": [
+          541.9,
+          65.1,
+          755.5,
+          628.3
+        ],
+        "score": 0.8720566034317017,
+        "crop_bbox": [
+          524,
+          20,
+          772,
+          673
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "2312c698417b2c45c06c",
+      "path": "data/datasets/bottle_defects/images/train/good_0550_20260210_131732.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.986067731275937,
+      "probabilities": {
+        "normal": 0.986067731275937,
+        "defect": 0.013932268724063016
+      },
+      "latency_ms": 49.51,
+      "localization": {
+        "bbox": [
+          480.7,
+          61.3,
+          700.9,
+          639.4
+        ],
+        "score": 0.966194748878479,
+        "crop_bbox": [
+          463,
+          15,
+          718,
+          685
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "2452a266db208e026c81",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0018_20260210_145128.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9984394752129314,
+      "probabilities": {
+        "normal": 0.0015605247870682376,
+        "defect": 0.9984394752129314
+      },
+      "latency_ms": 53.97,
+      "localization": {
+        "bbox": [
+          573.6,
+          59.2,
+          776.6,
+          640.2
+        ],
+        "score": 0.9835257530212402,
+        "crop_bbox": [
+          557,
+          12,
+          792,
+          686
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "25dd169c6050b2a10bdd",
+      "path": "data/datasets/bottle_defects/images/train/good_0515_20260210_131624.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9786352842635001,
+      "probabilities": {
+        "normal": 0.9786352842635001,
+        "defect": 0.021364715736499687
+      },
+      "latency_ms": 52.11,
+      "localization": {
+        "bbox": [
+          436.7,
+          61.0,
+          634.5,
+          604.7
+        ],
+        "score": 0.9845753908157349,
+        "crop_bbox": [
+          420,
+          17,
+          650,
+          648
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "261260874089f5e90814",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0050_20260210_151542.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9410163395151232,
+      "probabilities": {
+        "normal": 0.05898366048487689,
+        "defect": 0.9410163395151232
+      },
+      "latency_ms": 43.57,
+      "localization": {
+        "bbox": [
+          540.3,
+          64.3,
+          779.3,
+          627.0
+        ],
+        "score": 0.948148250579834,
+        "crop_bbox": [
+          521,
+          19,
+          798,
+          672
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "2778c45425189706031e",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0226_20260210_162619.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.974903813582309,
+      "probabilities": {
+        "normal": 0.025096186417691405,
+        "defect": 0.974903813582309
+      },
+      "latency_ms": 45.54,
+      "localization": {
+        "bbox": [
+          486.1,
+          64.0,
+          691.6,
+          641.4
+        ],
+        "score": 0.9658008217811584,
+        "crop_bbox": [
+          469,
+          17,
+          708,
+          687
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "27826ecf3d74788bb9b6",
+      "path": "data/datasets/bottle_defects/images/train/good_0505_20260210_131604.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9708393325926061,
+      "probabilities": {
+        "normal": 0.9708393325926061,
+        "defect": 0.029160667407393707
+      },
+      "latency_ms": 43.41,
+      "localization": {
+        "bbox": [
+          573.2,
+          60.1,
+          784.0,
+          641.8
+        ],
+        "score": 0.9799361228942871,
+        "crop_bbox": [
+          556,
+          13,
+          800,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "284de93dcf18439902c3",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0034_20260210_145213.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.5573762288548624,
+      "probabilities": {
+        "normal": 0.44262377114513735,
+        "defect": 0.5573762288548624
+      },
+      "latency_ms": 51.73,
+      "localization": {
+        "bbox": [
+          476.1,
+          76.2,
+          698.5,
+          641.8
+        ],
+        "score": 0.9786719083786011,
+        "crop_bbox": [
+          458,
+          30,
+          716,
+          687
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "2e138997f32a9e246282",
+      "path": "data/datasets/bottle_defects/images/train/debris_0140_20260210_150627.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9979491342159099,
+      "probabilities": {
+        "normal": 0.0020508657840897903,
+        "defect": 0.9979491342159099
+      },
+      "latency_ms": 52.29,
+      "localization": {
+        "bbox": [
+          565.8,
+          64.0,
+          766.1,
+          648.2
+        ],
+        "score": 0.965531051158905,
+        "crop_bbox": [
+          549,
+          17,
+          782,
+          694
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "30863b74350378026772",
+      "path": "data/datasets/bottle_defects/images/train/good_0537_20260210_131707.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9891065897915429,
+      "probabilities": {
+        "normal": 0.9891065897915429,
+        "defect": 0.010893410208457119
+      },
+      "latency_ms": 46.08,
+      "localization": {
+        "bbox": [
+          701.4,
+          62.9,
+          904.3,
+          630.1
+        ],
+        "score": 0.9834775328636169,
+        "crop_bbox": [
+          685,
+          17,
+          920,
+          675
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "328d16fd0f5138798387",
+      "path": "data/datasets/bottle_defects/images/val/loose_cap_0027_20260210_152135.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.7337806943252603,
+      "probabilities": {
+        "normal": 0.26621930567474006,
+        "defect": 0.7337806943252603
+      },
+      "latency_ms": 46.72,
+      "localization": {
+        "bbox": [
+          554.2,
+          41.7,
+          764.7,
+          636.2
+        ],
+        "score": 0.9417442083358765,
+        "crop_bbox": [
+          537,
+          0,
+          781,
+          683
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "33a2a5a2d655dd8919dc",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0044_20260210_151512.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.935750929665567,
+      "probabilities": {
+        "normal": 0.935750929665567,
+        "defect": 0.06424907033443254
+      },
+      "latency_ms": 48.01,
+      "localization": {
+        "bbox": [
+          534.3,
+          77.4,
+          741.1,
+          632.3
+        ],
+        "score": 0.560774564743042,
+        "crop_bbox": [
+          517,
+          33,
+          757,
+          676
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "34fad339372f4dfc2764",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0229_20260210_162625.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9737961991910445,
+      "probabilities": {
+        "normal": 0.026203800808955534,
+        "defect": 0.9737961991910445
+      },
+      "latency_ms": 46.86,
+      "localization": {
+        "bbox": [
+          508.4,
+          63.3,
+          705.7,
+          643.0
+        ],
+        "score": 0.9646819233894348,
+        "crop_bbox": [
+          492,
+          16,
+          721,
+          689
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "379646c5d5d9115aa756",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0220_20260210_162608.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9931545936495291,
+      "probabilities": {
+        "normal": 0.006845406350470841,
+        "defect": 0.9931545936495291
+      },
+      "latency_ms": 48.57,
+      "localization": {
+        "bbox": [
+          532.6,
+          67.8,
+          746.1,
+          626.8
+        ],
+        "score": 0.7038866877555847,
+        "crop_bbox": [
+          515,
+          23,
+          763,
+          671
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "37ca4e2743fd2a35ffe4",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0061_20260210_151613.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.37825367111705965,
+      "probabilities": {
+        "normal": 0.6217463288829408,
+        "defect": 0.37825367111705965
+      },
+      "latency_ms": 46.99,
+      "localization": {
+        "bbox": [
+          537.4,
+          71.1,
+          776.2,
+          644.8
+        ],
+        "score": 0.9084727764129639,
+        "crop_bbox": [
+          518,
+          25,
+          795,
+          690
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "383ddc391fe6f9042903",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0065_20260210_151627.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.33147228025559966,
+      "probabilities": {
+        "normal": 0.6685277197444002,
+        "defect": 0.33147228025559966
+      },
+      "latency_ms": 44.74,
+      "localization": {
+        "bbox": [
+          486.3,
+          70.2,
+          722.5,
+          636.3
+        ],
+        "score": 0.9650315046310425,
+        "crop_bbox": [
+          467,
+          24,
+          741,
+          681
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "391a275660ae7c2fd39e",
+      "path": "data/datasets/bottle_defects/images/train/good_0552_20260210_131735.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9923501208376214,
+      "probabilities": {
+        "normal": 0.9923501208376214,
+        "defect": 0.007649879162378736
+      },
+      "latency_ms": 47.53,
+      "localization": {
+        "bbox": [
+          485.4,
+          65.9,
+          701.9,
+          642.1
+        ],
+        "score": 0.9706517457962036,
+        "crop_bbox": [
+          468,
+          19,
+          719,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "3a230a76d020f9cbdd18",
+      "path": "data/datasets/bottle_defects/images/train/good_0495_20260210_131545.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.994124016775431,
+      "probabilities": {
+        "normal": 0.994124016775431,
+        "defect": 0.005875983224569104
+      },
+      "latency_ms": 45.5,
+      "localization": {
+        "bbox": [
+          542.2,
+          69.5,
+          745.9,
+          621.8
+        ],
+        "score": 0.8412836790084839,
+        "crop_bbox": [
+          525,
+          25,
+          762,
+          665
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "3b0fb366a93885116423",
+      "path": "data/datasets/bottle_defects/images/train/debris_0129_20260210_150606.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.998019742864707,
+      "probabilities": {
+        "normal": 0.001980257135292991,
+        "defect": 0.998019742864707
+      },
+      "latency_ms": 46.29,
+      "localization": {
+        "bbox": [
+          561.5,
+          68.4,
+          766.5,
+          648.2
+        ],
+        "score": 0.9463352560997009,
+        "crop_bbox": [
+          545,
+          22,
+          782,
+          694
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "3b4248a1e6e54ddf9e41",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0029_20260210_145200.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.932645204027915,
+      "probabilities": {
+        "normal": 0.0673547959720848,
+        "defect": 0.932645204027915
+      },
+      "latency_ms": 60.8,
+      "localization": {
+        "bbox": [
+          521.1,
+          64.9,
+          709.2,
+          641.6
+        ],
+        "score": 0.9806903004646301,
+        "crop_bbox": [
+          506,
+          18,
+          724,
+          687
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "3b540a1b47ec38fddb4f",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0071_20260210_151644.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.6731382814655822,
+      "probabilities": {
+        "normal": 0.3268617185344178,
+        "defect": 0.6731382814655822
+      },
+      "latency_ms": 45.24,
+      "localization": {
+        "bbox": [
+          498.8,
+          68.8,
+          727.4,
+          635.8
+        ],
+        "score": 0.9830691814422607,
+        "crop_bbox": [
+          480,
+          23,
+          745,
+          681
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "40bb6bc3e457e9e971e5",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0206_20260210_162542.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9953244291138917,
+      "probabilities": {
+        "normal": 0.004675570886108274,
+        "defect": 0.9953244291138917
+      },
+      "latency_ms": 44.95,
+      "localization": {
+        "bbox": [
+          527.6,
+          62.7,
+          719.3,
+          641.5
+        ],
+        "score": 0.9414545893669128,
+        "crop_bbox": [
+          512,
+          16,
+          734,
+          687
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "42ba48412e9ef407e062",
+      "path": "data/datasets/bottle_defects/images/val/good_0526_20260210_131646.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.992102763764788,
+      "probabilities": {
+        "normal": 0.992102763764788,
+        "defect": 0.007897236235212136
+      },
+      "latency_ms": 46.66,
+      "localization": {
+        "bbox": [
+          314.0,
+          75.5,
+          526.0,
+          621.9
+        ],
+        "score": 0.9789820313453674,
+        "crop_bbox": [
+          297,
+          31,
+          543,
+          665
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "4498f95640b62b4fc6af",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0029_20260210_152141.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.8859792537704114,
+      "probabilities": {
+        "normal": 0.11402074622958852,
+        "defect": 0.8859792537704114
+      },
+      "latency_ms": 50.42,
+      "localization": {
+        "bbox": [
+          582.8,
+          42.8,
+          797.6,
+          641.5
+        ],
+        "score": 0.9785035252571106,
+        "crop_bbox": [
+          565,
+          0,
+          814,
+          689
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "44d85b2457a76a5e0dee",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0023_20260210_145143.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9904426311943312,
+      "probabilities": {
+        "normal": 0.009557368805668794,
+        "defect": 0.9904426311943312
+      },
+      "latency_ms": 49.35,
+      "localization": {
+        "bbox": [
+          591.8,
+          63.3,
+          783.0,
+          604.7
+        ],
+        "score": 0.9853058457374573,
+        "crop_bbox": [
+          576,
+          20,
+          798,
+          648
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "45bfe33c8942e5ab3bcf",
+      "path": "data/datasets/bottle_defects/images/train/good_0492_20260210_131540.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9970036523291131,
+      "probabilities": {
+        "normal": 0.9970036523291131,
+        "defect": 0.002996347670886799
+      },
+      "latency_ms": 45.49,
+      "localization": {
+        "bbox": [
+          438.1,
+          61.1,
+          643.8,
+          619.8
+        ],
+        "score": 0.9866427183151245,
+        "crop_bbox": [
+          421,
+          16,
+          660,
+          664
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "46c2295d40e07e07cd59",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0232_20260210_162632.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9505665195290068,
+      "probabilities": {
+        "normal": 0.049433480470993274,
+        "defect": 0.9505665195290068
+      },
+      "latency_ms": 41.99,
+      "localization": {
+        "bbox": [
+          544.7,
+          66.8,
+          743.6,
+          627.8
+        ],
+        "score": 0.7995837330818176,
+        "crop_bbox": [
+          528,
+          21,
+          759,
+          672
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "4704d36fa0b8165ca474",
+      "path": "data/datasets/bottle_defects/images/train/good_0499_20260210_131552.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.982124142291849,
+      "probabilities": {
+        "normal": 0.982124142291849,
+        "defect": 0.017875857708151303
+      },
+      "latency_ms": 46.86,
+      "localization": {
+        "bbox": [
+          440.7,
+          61.8,
+          656.1,
+          640.7
+        ],
+        "score": 0.9837266206741333,
+        "crop_bbox": [
+          423,
+          15,
+          673,
+          687
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "4951269bd2debbd4b4c3",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0208_20260210_162546.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9888238667628013,
+      "probabilities": {
+        "normal": 0.011176133237198453,
+        "defect": 0.9888238667628013
+      },
+      "latency_ms": 54.31,
+      "localization": {
+        "bbox": [
+          549.8,
+          67.3,
+          761.9,
+          636.9
+        ],
+        "score": 0.936286985874176,
+        "crop_bbox": [
+          532,
+          21,
+          778,
+          682
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "4991b07ea466cd9c911e",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0031_20260210_152147.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.6981986332615691,
+      "probabilities": {
+        "normal": 0.3018013667384311,
+        "defect": 0.6981986332615691
+      },
+      "latency_ms": 49.35,
+      "localization": {
+        "bbox": [
+          592.9,
+          48.0,
+          809.6,
+          639.7
+        ],
+        "score": 0.9827149510383606,
+        "crop_bbox": [
+          575,
+          0,
+          826,
+          687
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "49dff1914694814b21f0",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0009_20260210_145108.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9138835050964318,
+      "probabilities": {
+        "normal": 0.08611649490356803,
+        "defect": 0.9138835050964318
+      },
+      "latency_ms": 43.58,
+      "localization": {
+        "bbox": [
+          579.0,
+          62.4,
+          788.0,
+          639.7
+        ],
+        "score": 0.9871341586112976,
+        "crop_bbox": [
+          562,
+          16,
+          804,
+          685
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "49fb980a1eace96edcd0",
+      "path": "data/datasets/bottle_defects/images/val/damaged_label_0045_20260210_151514.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.10742522427103961,
+      "probabilities": {
+        "normal": 0.8925747757289599,
+        "defect": 0.10742522427103961
+      },
+      "latency_ms": 46.2,
+      "localization": {
+        "bbox": [
+          547.7,
+          66.4,
+          757.8,
+          632.6
+        ],
+        "score": 0.9442871809005737,
+        "crop_bbox": [
+          530,
+          21,
+          774,
+          677
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "4d70482b9d054aa87bbd",
+      "path": "data/datasets/bottle_defects/images/train/good_0544_20260210_131720.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9637948914833423,
+      "probabilities": {
+        "normal": 0.9637948914833423,
+        "defect": 0.036205108516657765
+      },
+      "latency_ms": 48.48,
+      "localization": {
+        "bbox": [
+          563.5,
+          62.7,
+          776.2,
+          638.4
+        ],
+        "score": 0.9779407978057861,
+        "crop_bbox": [
+          546,
+          16,
+          793,
+          684
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "501f39bd9c05e6404cb0",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0015_20260210_152045.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9973008951184271,
+      "probabilities": {
+        "normal": 0.0026991048815728645,
+        "defect": 0.9973008951184271
+      },
+      "latency_ms": 53.21,
+      "localization": {
+        "bbox": [
+          549.2,
+          59.3,
+          754.3,
+          636.9
+        ],
+        "score": 0.7969468235969543,
+        "crop_bbox": [
+          532,
+          13,
+          770,
+          683
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "52e3e519ccac6a7e73a9",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0035_20260210_145216.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.6372781445948349,
+      "probabilities": {
+        "normal": 0.3627218554051653,
+        "defect": 0.6372781445948349
+      },
+      "latency_ms": 52.75,
+      "localization": {
+        "bbox": [
+          459.1,
+          72.8,
+          685.7,
+          639.4
+        ],
+        "score": 0.9878517389297485,
+        "crop_bbox": [
+          440,
+          27,
+          703,
+          684
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "533b4c65d741e24e0aca",
+      "path": "data/datasets/bottle_defects/images/val/good_0554_20260210_131739.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9957612344610988,
+      "probabilities": {
+        "normal": 0.9957612344610988,
+        "defect": 0.0042387655389012
+      },
+      "latency_ms": 48.64,
+      "localization": {
+        "bbox": [
+          486.8,
+          72.3,
+          702.9,
+          651.7
+        ],
+        "score": 0.9816204309463501,
+        "crop_bbox": [
+          469,
+          25,
+          720,
+          698
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "56865debfd4a2f627e2f",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0203_20260210_162535.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9844333299204,
+      "probabilities": {
+        "normal": 0.01556667007960007,
+        "defect": 0.9844333299204
+      },
+      "latency_ms": 44.71,
+      "localization": {
+        "bbox": [
+          447.1,
+          60.5,
+          664.4,
+          636.9
+        ],
+        "score": 0.987902045249939,
+        "crop_bbox": [
+          429,
+          14,
+          681,
+          683
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "5723e91d34fc622d24ad",
+      "path": "data/datasets/bottle_defects/images/val/good_0532_20260210_131658.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9809316751628813,
+      "probabilities": {
+        "normal": 0.9809316751628813,
+        "defect": 0.019068324837118733
+      },
+      "latency_ms": 46.9,
+      "localization": {
+        "bbox": [
+          524.1,
+          59.6,
+          710.6,
+          643.6
+        ],
+        "score": 0.9705057144165039,
+        "crop_bbox": [
+          509,
+          12,
+          725,
+          690
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "580727433e3c32c2fe88",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0221_20260210_162610.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.964268132067867,
+      "probabilities": {
+        "normal": 0.035731867932133086,
+        "defect": 0.964268132067867
+      },
+      "latency_ms": 51.8,
+      "localization": {
+        "bbox": [
+          547.3,
+          68.0,
+          772.3,
+          643.2
+        ],
+        "score": 0.9595843553543091,
+        "crop_bbox": [
+          529,
+          22,
+          790,
+          689
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "5959c41cd34781ba1273",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0205_20260210_162540.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9746360188630062,
+      "probabilities": {
+        "normal": 0.025363981136993667,
+        "defect": 0.9746360188630062
+      },
+      "latency_ms": 45.79,
+      "localization": {
+        "bbox": [
+          491.3,
+          72.8,
+          704.9,
+          636.1
+        ],
+        "score": 0.9822085499763489,
+        "crop_bbox": [
+          474,
+          27,
+          721,
+          681
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "59c454b2189f0781d05c",
+      "path": "data/datasets/bottle_defects/images/val/debris_0131_20260210_150612.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9890416155467634,
+      "probabilities": {
+        "normal": 0.010958384453237071,
+        "defect": 0.9890416155467634
+      },
+      "latency_ms": 45.32,
+      "localization": {
+        "bbox": [
+          651.6,
+          66.7,
+          861.5,
+          642.2
+        ],
+        "score": 0.8144856095314026,
+        "crop_bbox": [
+          634,
+          20,
+          878,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "5a6a56d0df12dbfa2359",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0212_20260210_162554.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.991777921265736,
+      "probabilities": {
+        "normal": 0.00822207873426421,
+        "defect": 0.991777921265736
+      },
+      "latency_ms": 49.65,
+      "localization": {
+        "bbox": [
+          547.0,
+          66.4,
+          766.5,
+          643.4
+        ],
+        "score": 0.9722701907157898,
+        "crop_bbox": [
+          529,
+          20,
+          784,
+          689
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "5ab4e3a9c1dd3e900a1a",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0026_20260210_145152.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9189666118457251,
+      "probabilities": {
+        "normal": 0.08103338815427445,
+        "defect": 0.9189666118457251
+      },
+      "latency_ms": 42.68,
+      "localization": {
+        "bbox": [
+          536.7,
+          73.8,
+          738.6,
+          629.7
+        ],
+        "score": 0.7228608727455139,
+        "crop_bbox": [
+          520,
+          29,
+          754,
+          674
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "5b3a6364a95fee82aeb1",
+      "path": "data/datasets/bottle_defects/images/train/good_0513_20260210_131620.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9952140059844752,
+      "probabilities": {
+        "normal": 0.9952140059844752,
+        "defect": 0.00478599401552476
+      },
+      "latency_ms": 55.49,
+      "localization": {
+        "bbox": [
+          364.5,
+          69.8,
+          571.0,
+          613.9
+        ],
+        "score": 0.9831390976905823,
+        "crop_bbox": [
+          347,
+          26,
+          587,
+          657
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "5bf10d33a896f962c4f1",
+      "path": "data/datasets/bottle_defects/images/train/debris_0128_20260210_150604.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9963610643063222,
+      "probabilities": {
+        "normal": 0.0036389356936773498,
+        "defect": 0.9963610643063222
+      },
+      "latency_ms": 44.3,
+      "localization": {
+        "bbox": [
+          567.5,
+          73.3,
+          773.7,
+          640.8
+        ],
+        "score": 0.9389135837554932,
+        "crop_bbox": [
+          551,
+          27,
+          790,
+          686
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "5c7cc3ec6b0df392059b",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0032_20260210_145208.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.5723619813540588,
+      "probabilities": {
+        "normal": 0.42763801864594136,
+        "defect": 0.5723619813540588
+      },
+      "latency_ms": 54.55,
+      "localization": {
+        "bbox": [
+          526.9,
+          88.6,
+          748.5,
+          652.3
+        ],
+        "score": 0.7471837997436523,
+        "crop_bbox": [
+          509,
+          43,
+          766,
+          697
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "5d3be435ce4872396b82",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0228_20260210_162623.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9882241267332119,
+      "probabilities": {
+        "normal": 0.011775873266788497,
+        "defect": 0.9882241267332119
+      },
+      "latency_ms": 50.69,
+      "localization": {
+        "bbox": [
+          490.0,
+          66.0,
+          687.1,
+          642.1
+        ],
+        "score": 0.9624962210655212,
+        "crop_bbox": [
+          474,
+          19,
+          702,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "5de65d613921b6f3d060",
+      "path": "data/datasets/bottle_defects/images/val/no_cap_0011_20260210_145112.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9393495026895212,
+      "probabilities": {
+        "normal": 0.06065049731047905,
+        "defect": 0.9393495026895212
+      },
+      "latency_ms": 50.0,
+      "localization": {
+        "bbox": [
+          552.5,
+          57.9,
+          757.8,
+          641.5
+        ],
+        "score": 0.9727610945701599,
+        "crop_bbox": [
+          536,
+          11,
+          774,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "611de322070cc8e5662b",
+      "path": "data/datasets/bottle_defects/images/val/loose_cap_0034_20260210_152153.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9222472484155995,
+      "probabilities": {
+        "normal": 0.07775275158440023,
+        "defect": 0.9222472484155995
+      },
+      "latency_ms": 49.02,
+      "localization": {
+        "bbox": [
+          574.1,
+          39.5,
+          782.7,
+          646.3
+        ],
+        "score": 0.9811626672744751,
+        "crop_bbox": [
+          557,
+          0,
+          799,
+          694
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "626006ccc6dc418cd1e7",
+      "path": "data/datasets/bottle_defects/images/val/good_0486_20260210_131528.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9938036436222379,
+      "probabilities": {
+        "normal": 0.9938036436222379,
+        "defect": 0.006196356377762303
+      },
+      "latency_ms": 48.58,
+      "localization": {
+        "bbox": [
+          591.2,
+          60.7,
+          786.5,
+          623.8
+        ],
+        "score": 0.9789566397666931,
+        "crop_bbox": [
+          575,
+          15,
+          802,
+          668
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "62e01f8fe33d7319e3e7",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0234_20260210_162636.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9842420775800871,
+      "probabilities": {
+        "normal": 0.015757922419913004,
+        "defect": 0.9842420775800871
+      },
+      "latency_ms": 45.6,
+      "localization": {
+        "bbox": [
+          528.7,
+          76.4,
+          723.3,
+          634.0
+        ],
+        "score": 0.6823402643203735,
+        "crop_bbox": [
+          513,
+          31,
+          738,
+          678
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "6338c13f12401d73dded",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0030_20260210_145203.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.5531540839637787,
+      "probabilities": {
+        "normal": 0.4468459160362213,
+        "defect": 0.5531540839637787
+      },
+      "latency_ms": 47.98,
+      "localization": {
+        "bbox": [
+          526.6,
+          89.2,
+          755.2,
+          637.6
+        ],
+        "score": 0.7075815200805664,
+        "crop_bbox": [
+          508,
+          45,
+          773,
+          681
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "649091e4f563d5d79d55",
+      "path": "data/datasets/bottle_defects/images/val/good_0494_20260210_131544.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9753537110139968,
+      "probabilities": {
+        "normal": 0.9753537110139968,
+        "defect": 0.02464628898600313
+      },
+      "latency_ms": 55.64,
+      "localization": {
+        "bbox": [
+          535.7,
+          72.1,
+          739.5,
+          635.3
+        ],
+        "score": 0.7968790531158447,
+        "crop_bbox": [
+          519,
+          27,
+          755,
+          680
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "66d8bb235ee214326dbc",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0031_20260210_145206.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.8704203485574749,
+      "probabilities": {
+        "normal": 0.12957965144252556,
+        "defect": 0.8704203485574749
+      },
+      "latency_ms": 49.8,
+      "localization": {
+        "bbox": [
+          552.6,
+          70.9,
+          769.2,
+          634.0
+        ],
+        "score": 0.9519919157028198,
+        "crop_bbox": [
+          535,
+          25,
+          786,
+          679
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "678e65e64aa376f128ad",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0021_20260210_152059.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9090491147522806,
+      "probabilities": {
+        "normal": 0.09095088524771958,
+        "defect": 0.9090491147522806
+      },
+      "latency_ms": 49.66,
+      "localization": {
+        "bbox": [
+          573.7,
+          55.8,
+          779.5,
+          632.1
+        ],
+        "score": 0.9747246503829956,
+        "crop_bbox": [
+          557,
+          9,
+          795,
+          678
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "67f4baa86eb0fb893c31",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0006_20260210_145100.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.6078270179963485,
+      "probabilities": {
+        "normal": 0.3921729820036516,
+        "defect": 0.6078270179963485
+      },
+      "latency_ms": 49.73,
+      "localization": {
+        "bbox": [
+          530.0,
+          87.5,
+          761.0,
+          643.3
+        ],
+        "score": 0.5668936967849731,
+        "crop_bbox": [
+          511,
+          43,
+          779,
+          687
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "68b45479d781b728771c",
+      "path": "data/datasets/bottle_defects/images/train/good_0547_20260210_131726.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9772374404008103,
+      "probabilities": {
+        "normal": 0.9772374404008103,
+        "defect": 0.022762559599189696
+      },
+      "latency_ms": 50.04,
+      "localization": {
+        "bbox": [
+          477.3,
+          78.4,
+          705.1,
+          649.8
+        ],
+        "score": 0.949701726436615,
+        "crop_bbox": [
+          459,
+          32,
+          723,
+          695
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "68f1ad7a62f795b726ef",
+      "path": "data/datasets/bottle_defects/images/val/loose_cap_0005_20260210_152024.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9968801027008451,
+      "probabilities": {
+        "normal": 0.0031198972991546576,
+        "defect": 0.9968801027008451
+      },
+      "latency_ms": 52.33,
+      "localization": {
+        "bbox": [
+          566.4,
+          50.6,
+          783.5,
+          637.6
+        ],
+        "score": 0.9583544731140137,
+        "crop_bbox": [
+          549,
+          3,
+          800,
+          684
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "6a51474098d6a3f0bf91",
+      "path": "data/datasets/bottle_defects/images/train/good_0496_20260210_131547.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9894804311277974,
+      "probabilities": {
+        "normal": 0.9894804311277974,
+        "defect": 0.010519568872202588
+      },
+      "latency_ms": 52.53,
+      "localization": {
+        "bbox": [
+          556.4,
+          59.8,
+          772.3,
+          629.1
+        ],
+        "score": 0.9805380702018738,
+        "crop_bbox": [
+          539,
+          14,
+          789,
+          674
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "6b367606c8fa33e3c1dc",
+      "path": "data/datasets/bottle_defects/images/train/debris_0141_20260210_150629.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9986597126993917,
+      "probabilities": {
+        "normal": 0.001340287300608315,
+        "defect": 0.9986597126993917
+      },
+      "latency_ms": 43.58,
+      "localization": {
+        "bbox": [
+          569.7,
+          68.8,
+          775.7,
+          643.1
+        ],
+        "score": 0.9564886093139648,
+        "crop_bbox": [
+          553,
+          22,
+          792,
+          689
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "6b3b7764614409b68a11",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0210_20260210_162550.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9885566903330024,
+      "probabilities": {
+        "normal": 0.011443309666997458,
+        "defect": 0.9885566903330024
+      },
+      "latency_ms": 54.26,
+      "localization": {
+        "bbox": [
+          562.6,
+          63.6,
+          774.4,
+          636.1
+        ],
+        "score": 0.9786810278892517,
+        "crop_bbox": [
+          545,
+          17,
+          791,
+          681
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "6c3b445b1b1422c7cf20",
+      "path": "data/datasets/bottle_defects/images/train/good_0551_20260210_131734.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9947538922862844,
+      "probabilities": {
+        "normal": 0.9947538922862844,
+        "defect": 0.005246107713715527
+      },
+      "latency_ms": 45.92,
+      "localization": {
+        "bbox": [
+          482.8,
+          68.4,
+          700.5,
+          641.3
+        ],
+        "score": 0.9766098856925964,
+        "crop_bbox": [
+          465,
+          22,
+          717,
+          687
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "6c59f665cf0e119204b8",
+      "path": "data/datasets/bottle_defects/images/train/debris_0125_20260210_150559.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.998141545624925,
+      "probabilities": {
+        "normal": 0.0018584543750754625,
+        "defect": 0.998141545624925
+      },
+      "latency_ms": 46.32,
+      "localization": {
+        "bbox": [
+          576.0,
+          65.5,
+          782.7,
+          642.0
+        ],
+        "score": 0.9455920457839966,
+        "crop_bbox": [
+          559,
+          19,
+          799,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "6c93be75daac53cccece",
+      "path": "data/datasets/bottle_defects/images/train/good_0546_20260210_131724.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9898494433292233,
+      "probabilities": {
+        "normal": 0.9898494433292233,
+        "defect": 0.010150556670776748
+      },
+      "latency_ms": 51.16,
+      "localization": {
+        "bbox": [
+          486.5,
+          73.5,
+          703.4,
+          644.1
+        ],
+        "score": 0.9792492985725403,
+        "crop_bbox": [
+          469,
+          27,
+          720,
+          689
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "6eda6d0b913e2ecc4a97",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0236_20260210_162640.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9983163554475971,
+      "probabilities": {
+        "normal": 0.0016836445524026143,
+        "defect": 0.9983163554475971
+      },
+      "latency_ms": 48.07,
+      "localization": {
+        "bbox": [
+          487.0,
+          63.3,
+          685.8,
+          639.5
+        ],
+        "score": 0.9492732286453247,
+        "crop_bbox": [
+          471,
+          17,
+          701,
+          685
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "701a74fe6fca945402f2",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0054_20260210_151551.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9402118980363209,
+      "probabilities": {
+        "normal": 0.05978810196367884,
+        "defect": 0.9402118980363209
+      },
+      "latency_ms": 63.11,
+      "localization": {
+        "bbox": [
+          575.9,
+          70.8,
+          802.6,
+          634.4
+        ],
+        "score": 0.9752064347267151,
+        "crop_bbox": [
+          557,
+          25,
+          820,
+          679
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "70c3cf81f711233ba334",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0067_20260210_151632.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.3508473501555366,
+      "probabilities": {
+        "normal": 0.6491526498444627,
+        "defect": 0.3508473501555366
+      },
+      "latency_ms": 52.8,
+      "localization": {
+        "bbox": [
+          455.1,
+          71.7,
+          703.6,
+          629.4
+        ],
+        "score": 0.9837206602096558,
+        "crop_bbox": [
+          435,
+          27,
+          723,
+          673
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "7117bb3051ef53a05f30",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0069_20260210_151636.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.2558100327656886,
+      "probabilities": {
+        "normal": 0.7441899672343117,
+        "defect": 0.2558100327656886
+      },
+      "latency_ms": 48.66,
+      "localization": {
+        "bbox": [
+          457.4,
+          69.5,
+          691.7,
+          634.8
+        ],
+        "score": 0.9815939664840698,
+        "crop_bbox": [
+          438,
+          24,
+          710,
+          680
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "71c7e737ae8688fbbf9a",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0020_20260210_145135.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.8350684241017259,
+      "probabilities": {
+        "normal": 0.16493157589827356,
+        "defect": 0.8350684241017259
+      },
+      "latency_ms": 51.03,
+      "localization": {
+        "bbox": [
+          541.5,
+          89.9,
+          730.7,
+          350.4
+        ],
+        "score": 0.6393939852714539,
+        "crop_bbox": [
+          526,
+          69,
+          745,
+          371
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "7344f510b62341742553",
+      "path": "data/datasets/bottle_defects/images/train/debris_0133_20260210_150616.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9911171940666453,
+      "probabilities": {
+        "normal": 0.008882805933354795,
+        "defect": 0.9911171940666453
+      },
+      "latency_ms": 44.91,
+      "localization": {
+        "bbox": [
+          609.6,
+          75.6,
+          823.2,
+          641.0
+        ],
+        "score": 0.9590585827827454,
+        "crop_bbox": [
+          592,
+          30,
+          840,
+          686
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "734ba5b4a6cacafc58a7",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0022_20260210_152101.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.8940666042074201,
+      "probabilities": {
+        "normal": 0.10593339579258024,
+        "defect": 0.8940666042074201
+      },
+      "latency_ms": 49.86,
+      "localization": {
+        "bbox": [
+          575.4,
+          49.7,
+          787.2,
+          640.5
+        ],
+        "score": 0.9794663190841675,
+        "crop_bbox": [
+          558,
+          2,
+          804,
+          687
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "73e494e9cbe672c033af",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0051_20260210_151544.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.7713802734105139,
+      "probabilities": {
+        "normal": 0.22861972658948596,
+        "defect": 0.7713802734105139
+      },
+      "latency_ms": 50.42,
+      "localization": {
+        "bbox": [
+          535.7,
+          73.0,
+          776.4,
+          608.9
+        ],
+        "score": 0.9295282959938049,
+        "crop_bbox": [
+          516,
+          30,
+          795,
+          651
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "74324715be81bad3302a",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0020_20260210_152057.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9695999059799286,
+      "probabilities": {
+        "normal": 0.030400094020071676,
+        "defect": 0.9695999059799286
+      },
+      "latency_ms": 50.29,
+      "localization": {
+        "bbox": [
+          570.8,
+          54.6,
+          770.1,
+          639.6
+        ],
+        "score": 0.957161545753479,
+        "crop_bbox": [
+          554,
+          7,
+          785,
+          686
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "7460e8d919d242c43e93",
+      "path": "data/datasets/bottle_defects/images/train/debris_0135_20260210_150619.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9961423032390073,
+      "probabilities": {
+        "normal": 0.0038576967609925588,
+        "defect": 0.9961423032390073
+      },
+      "latency_ms": 49.35,
+      "localization": {
+        "bbox": [
+          593.3,
+          65.1,
+          806.8,
+          642.0
+        ],
+        "score": 0.9446008205413818,
+        "crop_bbox": [
+          576,
+          18,
+          823,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "74c09b4a0f2b8c6d48c8",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0063_20260210_151618.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.588458838358375,
+      "probabilities": {
+        "normal": 0.4115411616416253,
+        "defect": 0.588458838358375
+      },
+      "latency_ms": 60.49,
+      "localization": {
+        "bbox": [
+          525.3,
+          61.2,
+          771.8,
+          643.9
+        ],
+        "score": 0.9225122928619385,
+        "crop_bbox": [
+          505,
+          14,
+          791,
+          690
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "756b280d77bf51538c29",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0223_20260210_162614.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.8703110008592184,
+      "probabilities": {
+        "normal": 0.12968899914078155,
+        "defect": 0.8703110008592184
+      },
+      "latency_ms": 62.31,
+      "localization": {
+        "bbox": [
+          544.8,
+          65.0,
+          742.7,
+          636.1
+        ],
+        "score": 0.5848522782325745,
+        "crop_bbox": [
+          528,
+          19,
+          758,
+          681
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "7676ead397333a687fdd",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0007_20260210_152028.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9993236078664155,
+      "probabilities": {
+        "normal": 0.0006763921335846985,
+        "defect": 0.9993236078664155
+      },
+      "latency_ms": 45.36,
+      "localization": {
+        "bbox": [
+          548.5,
+          52.9,
+          773.6,
+          643.9
+        ],
+        "score": 0.9531282186508179,
+        "crop_bbox": [
+          530,
+          5,
+          791,
+          691
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "76898ef0b3d95709d7c0",
+      "path": "data/datasets/bottle_defects/images/val/loose_cap_0004_20260210_152021.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9996069209683454,
+      "probabilities": {
+        "normal": 0.00039307903165443803,
+        "defect": 0.9996069209683454
+      },
+      "latency_ms": 50.6,
+      "localization": {
+        "bbox": [
+          579.5,
+          54.6,
+          796.0,
+          638.3
+        ],
+        "score": 0.9696481823921204,
+        "crop_bbox": [
+          562,
+          7,
+          813,
+          684
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "768d47f46a9d1a5c9fe9",
+      "path": "data/datasets/bottle_defects/images/train/good_0538_20260210_131709.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.991636518952961,
+      "probabilities": {
+        "normal": 0.991636518952961,
+        "defect": 0.008363481047038953
+      },
+      "latency_ms": 46.6,
+      "localization": {
+        "bbox": [
+          715.8,
+          67.6,
+          924.2,
+          606.0
+        ],
+        "score": 0.9877320528030396,
+        "crop_bbox": [
+          699,
+          24,
+          940,
+          649
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "76c27e02cf3e4090d887",
+      "path": "data/datasets/bottle_defects/images/train/good_0529_20260210_131652.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9908223336950376,
+      "probabilities": {
+        "normal": 0.9908223336950376,
+        "defect": 0.009177666304962619
+      },
+      "latency_ms": 48.57,
+      "localization": {
+        "bbox": [
+          418.6,
+          72.7,
+          631.5,
+          611.1
+        ],
+        "score": 0.9152230024337769,
+        "crop_bbox": [
+          401,
+          29,
+          648,
+          654
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "7823c629b4c91d1f8286",
+      "path": "data/datasets/bottle_defects/images/val/underfilled_0211_20260210_162552.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9746546853206357,
+      "probabilities": {
+        "normal": 0.02534531467936481,
+        "defect": 0.9746546853206357
+      },
+      "latency_ms": 51.14,
+      "localization": {
+        "bbox": [
+          549.7,
+          65.2,
+          771.1,
+          631.0
+        ],
+        "score": 0.9744899272918701,
+        "crop_bbox": [
+          532,
+          19,
+          788,
+          676
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "7831bfa33148ba3268fc",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0032_20260210_152149.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.8816941958745055,
+      "probabilities": {
+        "normal": 0.11830580412549478,
+        "defect": 0.8816941958745055
+      },
+      "latency_ms": 50.07,
+      "localization": {
+        "bbox": [
+          578.7,
+          39.3,
+          798.4,
+          637.9
+        ],
+        "score": 0.9824817776679993,
+        "crop_bbox": [
+          561,
+          0,
+          815,
+          685
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "7acac612718909958a0b",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0043_20260210_151509.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9197374196578912,
+      "probabilities": {
+        "normal": 0.9197374196578912,
+        "defect": 0.08026258034210873
+      },
+      "latency_ms": 46.21,
+      "localization": {
+        "bbox": [
+          540.1,
+          70.6,
+          756.6,
+          631.4
+        ],
+        "score": 0.86180180311203,
+        "crop_bbox": [
+          522,
+          25,
+          773,
+          676
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "7bcb6e62a12ec9f99cfb",
+      "path": "data/datasets/bottle_defects/images/train/good_0534_20260210_131701.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9663771670899863,
+      "probabilities": {
+        "normal": 0.9663771670899863,
+        "defect": 0.03362283291001343
+      },
+      "latency_ms": 46.43,
+      "localization": {
+        "bbox": [
+          571.6,
+          56.8,
+          770.6,
+          645.0
+        ],
+        "score": 0.9704868793487549,
+        "crop_bbox": [
+          555,
+          9,
+          786,
+          692
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "7cff233c271ee7ffb668",
+      "path": "data/datasets/bottle_defects/images/train/good_0556_20260210_131742.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9935133027992608,
+      "probabilities": {
+        "normal": 0.9935133027992608,
+        "defect": 0.0064866972007390855
+      },
+      "latency_ms": 47.03,
+      "localization": {
+        "bbox": [
+          503.7,
+          68.9,
+          706.1,
+          656.9
+        ],
+        "score": 0.9839681386947632,
+        "crop_bbox": [
+          487,
+          21,
+          722,
+          703
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "7d1be01ced701e371b49",
+      "path": "data/datasets/bottle_defects/images/val/damaged_label_0057_20260210_151559.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.6244993808951431,
+      "probabilities": {
+        "normal": 0.37550061910485666,
+        "defect": 0.6244993808951431
+      },
+      "latency_ms": 54.19,
+      "localization": {
+        "bbox": [
+          587.7,
+          57.3,
+          810.8,
+          636.7
+        ],
+        "score": 0.9819633960723877,
+        "crop_bbox": [
+          569,
+          10,
+          828,
+          683
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "7d21b909148a4825ae2e",
+      "path": "data/datasets/bottle_defects/images/val/good_0543_20260210_131718.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9811047400881507,
+      "probabilities": {
+        "normal": 0.9811047400881507,
+        "defect": 0.018895259911849222
+      },
+      "latency_ms": 55.1,
+      "localization": {
+        "bbox": [
+          616.6,
+          73.9,
+          834.1,
+          646.3
+        ],
+        "score": 0.9812398552894592,
+        "crop_bbox": [
+          599,
+          28,
+          851,
+          692
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "7d3bc980c6b395a02bcf",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0230_20260210_162628.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9734601737653417,
+      "probabilities": {
+        "normal": 0.026539826234657997,
+        "defect": 0.9734601737653417
+      },
+      "latency_ms": 45.08,
+      "localization": {
+        "bbox": [
+          526.9,
+          69.7,
+          719.5,
+          639.5
+        ],
+        "score": 0.8359206914901733,
+        "crop_bbox": [
+          511,
+          24,
+          734,
+          685
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "7e3dd89a82fc191235ab",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0017_20260210_152050.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9803181539981518,
+      "probabilities": {
+        "normal": 0.01968184600184792,
+        "defect": 0.9803181539981518
+      },
+      "latency_ms": 41.49,
+      "localization": {
+        "bbox": [
+          544.4,
+          58.6,
+          744.7,
+          631.8
+        ],
+        "score": 0.5423589944839478,
+        "crop_bbox": [
+          528,
+          12,
+          760,
+          677
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "7f62702eb783274f483d",
+      "path": "data/datasets/bottle_defects/images/train/debris_0142_20260210_150631.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9984673655355908,
+      "probabilities": {
+        "normal": 0.0015326344644091732,
+        "defect": 0.9984673655355908
+      },
+      "latency_ms": 47.13,
+      "localization": {
+        "bbox": [
+          568.5,
+          68.0,
+          770.2,
+          642.8
+        ],
+        "score": 0.951224148273468,
+        "crop_bbox": [
+          552,
+          22,
+          786,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "8035fc065ec9cbc7e02b",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0010_20260210_145110.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.8808023681803089,
+      "probabilities": {
+        "normal": 0.1191976318196908,
+        "defect": 0.8808023681803089
+      },
+      "latency_ms": 48.89,
+      "localization": {
+        "bbox": [
+          571.1,
+          57.4,
+          779.5,
+          642.5
+        ],
+        "score": 0.9874568581581116,
+        "crop_bbox": [
+          554,
+          10,
+          796,
+          689
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "803c3a4caa1147a35a40",
+      "path": "data/datasets/bottle_defects/images/val/no_cap_0024_20260210_145146.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9887774953949936,
+      "probabilities": {
+        "normal": 0.011222504605006595,
+        "defect": 0.9887774953949936
+      },
+      "latency_ms": 49.34,
+      "localization": {
+        "bbox": [
+          600.3,
+          65.5,
+          794.2,
+          611.8
+        ],
+        "score": 0.9857109189033508,
+        "crop_bbox": [
+          584,
+          21,
+          809,
+          655
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "8100c33aa0d912cabd91",
+      "path": "data/datasets/bottle_defects/images/val/damaged_label_0048_20260210_151520.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9007117615272011,
+      "probabilities": {
+        "normal": 0.9007117615272011,
+        "defect": 0.09928823847279876
+      },
+      "latency_ms": 46.04,
+      "localization": {
+        "bbox": [
+          530.2,
+          76.6,
+          749.0,
+          644.0
+        ],
+        "score": 0.526080846786499,
+        "crop_bbox": [
+          512,
+          31,
+          766,
+          689
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "855bf55f5cfd64b2349b",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0021_20260210_145137.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9976492345056847,
+      "probabilities": {
+        "normal": 0.0023507654943153208,
+        "defect": 0.9976492345056847
+      },
+      "latency_ms": 48.19,
+      "localization": {
+        "bbox": [
+          545.8,
+          66.0,
+          749.1,
+          617.3
+        ],
+        "score": 0.8974441885948181,
+        "crop_bbox": [
+          529,
+          21,
+          765,
+          661
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "866b8579e50f343d0aff",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0225_20260210_162617.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9792794743015001,
+      "probabilities": {
+        "normal": 0.02072052569850004,
+        "defect": 0.9792794743015001
+      },
+      "latency_ms": 45.93,
+      "localization": {
+        "bbox": [
+          524.3,
+          64.4,
+          711.6,
+          645.8
+        ],
+        "score": 0.9318022131919861,
+        "crop_bbox": [
+          509,
+          17,
+          726,
+          692
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "866cd703c8db1e55dff8",
+      "path": "data/datasets/bottle_defects/images/train/good_0489_20260210_131534.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9920680052367173,
+      "probabilities": {
+        "normal": 0.9920680052367173,
+        "defect": 0.007931994763282555
+      },
+      "latency_ms": 45.29,
+      "localization": {
+        "bbox": [
+          518.6,
+          66.3,
+          717.1,
+          643.8
+        ],
+        "score": 0.9284403324127197,
+        "crop_bbox": [
+          502,
+          20,
+          732,
+          689
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "8730452eb53ee36a4fa7",
+      "path": "data/datasets/bottle_defects/images/train/debris_0130_20260210_150607.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9984412494693927,
+      "probabilities": {
+        "normal": 0.0015587505306070288,
+        "defect": 0.9984412494693927
+      },
+      "latency_ms": 44.74,
+      "localization": {
+        "bbox": [
+          560.1,
+          70.8,
+          762.6,
+          645.0
+        ],
+        "score": 0.919959545135498,
+        "crop_bbox": [
+          543,
+          24,
+          778,
+          690
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "87e0e752422ba535adbc",
+      "path": "data/datasets/bottle_defects/images/train/good_0536_20260210_131705.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9909667871050614,
+      "probabilities": {
+        "normal": 0.9909667871050614,
+        "defect": 0.009033212894938903
+      },
+      "latency_ms": 49.11,
+      "localization": {
+        "bbox": [
+          660.6,
+          66.9,
+          877.7,
+          632.8
+        ],
+        "score": 0.42406007647514343,
+        "crop_bbox": [
+          643,
+          21,
+          895,
+          678
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "8866091a43850ec9203a",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0053_20260210_151549.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9536894825030369,
+      "probabilities": {
+        "normal": 0.046310517496963625,
+        "defect": 0.9536894825030369
+      },
+      "latency_ms": 45.88,
+      "localization": {
+        "bbox": [
+          570.8,
+          73.1,
+          797.6,
+          631.5
+        ],
+        "score": 0.9647579789161682,
+        "crop_bbox": [
+          552,
+          28,
+          815,
+          676
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "89ebac268e155bf15976",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0070_20260210_151642.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.6575670571868375,
+      "probabilities": {
+        "normal": 0.3424329428131632,
+        "defect": 0.6575670571868375
+      },
+      "latency_ms": 44.32,
+      "localization": {
+        "bbox": [
+          497.3,
+          68.6,
+          714.8,
+          635.2
+        ],
+        "score": 0.986323356628418,
+        "crop_bbox": [
+          479,
+          23,
+          732,
+          680
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "8a236b2eda08258b45e0",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0033_20260210_152151.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.8683846604951603,
+      "probabilities": {
+        "normal": 0.1316153395048401,
+        "defect": 0.8683846604951603
+      },
+      "latency_ms": 45.74,
+      "localization": {
+        "bbox": [
+          573.5,
+          41.8,
+          790.5,
+          644.4
+        ],
+        "score": 0.9843375086784363,
+        "crop_bbox": [
+          556,
+          0,
+          807,
+          692
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "8be8bbad36adc3c570b4",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0207_20260210_162545.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9905107835193101,
+      "probabilities": {
+        "normal": 0.009489216480689658,
+        "defect": 0.9905107835193101
+      },
+      "latency_ms": 41.06,
+      "localization": {
+        "bbox": [
+          535.6,
+          67.9,
+          737.5,
+          636.3
+        ],
+        "score": 0.7272164821624756,
+        "crop_bbox": [
+          519,
+          22,
+          753,
+          681
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "8c3292c12de7bc1b261b",
+      "path": "data/datasets/bottle_defects/images/val/underfilled_0217_20260210_162603.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9934384552526497,
+      "probabilities": {
+        "normal": 0.006561544747350395,
+        "defect": 0.9934384552526497
+      },
+      "latency_ms": 45.31,
+      "localization": {
+        "bbox": [
+          495.7,
+          71.1,
+          705.3,
+          644.5
+        ],
+        "score": 0.9818674325942993,
+        "crop_bbox": [
+          478,
+          25,
+          722,
+          690
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "9031751dae8d88958628",
+      "path": "data/datasets/bottle_defects/images/val/good_0493_20260210_131542.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9954497443106771,
+      "probabilities": {
+        "normal": 0.9954497443106771,
+        "defect": 0.004550255689322845
+      },
+      "latency_ms": 48.67,
+      "localization": {
+        "bbox": [
+          481.5,
+          67.7,
+          689.8,
+          620.9
+        ],
+        "score": 0.984180212020874,
+        "crop_bbox": [
+          464,
+          23,
+          706,
+          665
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "907289088d05bb89825d",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0028_20260210_152138.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.7468271858085727,
+      "probabilities": {
+        "normal": 0.2531728141914273,
+        "defect": 0.7468271858085727
+      },
+      "latency_ms": 49.8,
+      "localization": {
+        "bbox": [
+          598.5,
+          42.6,
+          808.3,
+          640.4
+        ],
+        "score": 0.9188612699508667,
+        "crop_bbox": [
+          581,
+          0,
+          825,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "92661e3f464a9fc9f5b8",
+      "path": "data/datasets/bottle_defects/images/train/good_0502_20260210_131558.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9945644916489297,
+      "probabilities": {
+        "normal": 0.9945644916489297,
+        "defect": 0.005435508351070158
+      },
+      "latency_ms": 54.27,
+      "localization": {
+        "bbox": [
+          476.4,
+          67.1,
+          692.4,
+          637.1
+        ],
+        "score": 0.9833758473396301,
+        "crop_bbox": [
+          459,
+          21,
+          709,
+          682
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "9348600535906059ee75",
+      "path": "data/datasets/bottle_defects/images/train/debris_0127_20260210_150602.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9977324528181456,
+      "probabilities": {
+        "normal": 0.0022675471818542,
+        "defect": 0.9977324528181456
+      },
+      "latency_ms": 46.39,
+      "localization": {
+        "bbox": [
+          572.4,
+          70.0,
+          781.3,
+          642.1
+        ],
+        "score": 0.939551055431366,
+        "crop_bbox": [
+          555,
+          24,
+          798,
+          687
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "93d7da23bc73a0b7858f",
+      "path": "data/datasets/bottle_defects/images/train/debris_0148_20260210_150641.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.999349930912472,
+      "probabilities": {
+        "normal": 0.0006500690875280672,
+        "defect": 0.999349930912472
+      },
+      "latency_ms": 44.85,
+      "localization": {
+        "bbox": [
+          549.7,
+          72.9,
+          760.5,
+          641.0
+        ],
+        "score": 0.9029221534729004,
+        "crop_bbox": [
+          532,
+          27,
+          777,
+          686
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "95b2bccca64d0e7cfe77",
+      "path": "data/datasets/bottle_defects/images/val/damaged_label_0046_20260210_151516.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.11865431177366176,
+      "probabilities": {
+        "normal": 0.8813456882263379,
+        "defect": 0.11865431177366176
+      },
+      "latency_ms": 49.83,
+      "localization": {
+        "bbox": [
+          547.1,
+          67.6,
+          755.4,
+          637.5
+        ],
+        "score": 0.919068455696106,
+        "crop_bbox": [
+          530,
+          21,
+          772,
+          683
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "975bfeb1abde49aed81a",
+      "path": "data/datasets/bottle_defects/images/train/good_0533_20260210_131659.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9779469275410543,
+      "probabilities": {
+        "normal": 0.9779469275410543,
+        "defect": 0.022053072458945465
+      },
+      "latency_ms": 45.92,
+      "localization": {
+        "bbox": [
+          544.1,
+          61.4,
+          736.7,
+          631.9
+        ],
+        "score": 0.6379507184028625,
+        "crop_bbox": [
+          528,
+          15,
+          752,
+          677
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "99cd24245852d2c8c623",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0216_20260210_162601.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9726464341835753,
+      "probabilities": {
+        "normal": 0.02735356581642533,
+        "defect": 0.9726464341835753
+      },
+      "latency_ms": 53.95,
+      "localization": {
+        "bbox": [
+          501.8,
+          66.1,
+          704.3,
+          647.3
+        ],
+        "score": 0.9803593158721924,
+        "crop_bbox": [
+          485,
+          19,
+          720,
+          693
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "9a08f5cce6f044d7eb16",
+      "path": "data/datasets/bottle_defects/images/val/underfilled_0218_20260210_162605.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.972315235964377,
+      "probabilities": {
+        "normal": 0.027684764035622467,
+        "defect": 0.972315235964377
+      },
+      "latency_ms": 43.33,
+      "localization": {
+        "bbox": [
+          525.4,
+          66.9,
+          712.0,
+          646.3
+        ],
+        "score": 0.9750298857688904,
+        "crop_bbox": [
+          510,
+          20,
+          726,
+          692
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "9a09edd87ab881d367e6",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0009_20260210_152032.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9991722771865789,
+      "probabilities": {
+        "normal": 0.0008277228134210417,
+        "defect": 0.9991722771865789
+      },
+      "latency_ms": 48.1,
+      "localization": {
+        "bbox": [
+          557.2,
+          47.0,
+          776.9,
+          645.3
+        ],
+        "score": 0.9813187718391418,
+        "crop_bbox": [
+          539,
+          0,
+          794,
+          693
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "9b01b9bcc78b5a2454ba",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0219_20260210_162607.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9739638810044636,
+      "probabilities": {
+        "normal": 0.02603611899553637,
+        "defect": 0.9739638810044636
+      },
+      "latency_ms": 53.27,
+      "localization": {
+        "bbox": [
+          533.0,
+          76.2,
+          732.6,
+          633.5
+        ],
+        "score": 0.8400706052780151,
+        "crop_bbox": [
+          517,
+          31,
+          748,
+          678
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "9b48019c015f4c00a5e6",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0007_20260210_145102.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9746146878668893,
+      "probabilities": {
+        "normal": 0.02538531213311084,
+        "defect": 0.9746146878668893
+      },
+      "latency_ms": 51.08,
+      "localization": {
+        "bbox": [
+          550.4,
+          58.2,
+          761.9,
+          644.2
+        ],
+        "score": 0.9707069993019104,
+        "crop_bbox": [
+          533,
+          11,
+          778,
+          691
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "9c90df96a12179a9d1bf",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0003_20260210_152019.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9984303978826004,
+      "probabilities": {
+        "normal": 0.001569602117399867,
+        "defect": 0.9984303978826004
+      },
+      "latency_ms": 48.99,
+      "localization": {
+        "bbox": [
+          592.6,
+          57.1,
+          808.2,
+          636.9
+        ],
+        "score": 0.9709784388542175,
+        "crop_bbox": [
+          575,
+          10,
+          825,
+          683
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "9ee3243e71929625230d",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0036_20260210_152158.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.8319113753872052,
+      "probabilities": {
+        "normal": 0.1680886246127947,
+        "defect": 0.8319113753872052
+      },
+      "latency_ms": 49.07,
+      "localization": {
+        "bbox": [
+          568.7,
+          42.7,
+          764.6,
+          645.2
+        ],
+        "score": 0.930479109287262,
+        "crop_bbox": [
+          553,
+          0,
+          780,
+          693
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "9feac1ce522d75bd4c59",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0062_20260210_151615.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.6497142391305706,
+      "probabilities": {
+        "normal": 0.3502857608694289,
+        "defect": 0.6497142391305706
+      },
+      "latency_ms": 53.06,
+      "localization": {
+        "bbox": [
+          527.8,
+          71.5,
+          781.8,
+          641.7
+        ],
+        "score": 0.9252942800521851,
+        "crop_bbox": [
+          507,
+          25,
+          802,
+          687
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "a003b82c0cc9119b6321",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0227_20260210_162621.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9652466554439064,
+      "probabilities": {
+        "normal": 0.03475334455609348,
+        "defect": 0.9652466554439064
+      },
+      "latency_ms": 45.38,
+      "localization": {
+        "bbox": [
+          477.2,
+          62.9,
+          681.1,
+          641.4
+        ],
+        "score": 0.9665167927742004,
+        "crop_bbox": [
+          460,
+          16,
+          697,
+          687
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "a15a552b611aa0c7cbd7",
+      "path": "data/datasets/bottle_defects/images/train/debris_0132_20260210_150614.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9971460367136671,
+      "probabilities": {
+        "normal": 0.0028539632863327715,
+        "defect": 0.9971460367136671
+      },
+      "latency_ms": 45.21,
+      "localization": {
+        "bbox": [
+          634.5,
+          78.0,
+          846.3,
+          639.7
+        ],
+        "score": 0.9387481212615967,
+        "crop_bbox": [
+          617,
+          33,
+          863,
+          684
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "a18072f17086c1484b77",
+      "path": "data/datasets/bottle_defects/images/val/debris_0146_20260210_150637.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9995498727776946,
+      "probabilities": {
+        "normal": 0.0004501272223055398,
+        "defect": 0.9995498727776946
+      },
+      "latency_ms": 41.53,
+      "localization": {
+        "bbox": [
+          565.8,
+          73.5,
+          775.5,
+          637.0
+        ],
+        "score": 0.9228445291519165,
+        "crop_bbox": [
+          548,
+          28,
+          792,
+          682
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "a1dd748099923992a5f7",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0030_20260210_152144.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.5717511310970822,
+      "probabilities": {
+        "normal": 0.42824886890291775,
+        "defect": 0.5717511310970822
+      },
+      "latency_ms": 47.9,
+      "localization": {
+        "bbox": [
+          604.7,
+          52.6,
+          819.6,
+          637.3
+        ],
+        "score": 0.9688807129859924,
+        "crop_bbox": [
+          587,
+          5,
+          836,
+          684
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "a31249614a9edac7bc47",
+      "path": "data/datasets/bottle_defects/images/train/good_0507_20260210_131608.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9932740081859518,
+      "probabilities": {
+        "normal": 0.9932740081859518,
+        "defect": 0.0067259918140479885
+      },
+      "latency_ms": 42.83,
+      "localization": {
+        "bbox": [
+          460.4,
+          66.0,
+          669.8,
+          642.1
+        ],
+        "score": 0.9736548662185669,
+        "crop_bbox": [
+          443,
+          19,
+          686,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "a51c2326cdd8f79e5e68",
+      "path": "data/datasets/bottle_defects/images/train/good_0512_20260210_131618.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9935322644603555,
+      "probabilities": {
+        "normal": 0.9935322644603555,
+        "defect": 0.006467735539644243
+      },
+      "latency_ms": 44.81,
+      "localization": {
+        "bbox": [
+          362.7,
+          67.4,
+          570.6,
+          623.9
+        ],
+        "score": 0.9812644720077515,
+        "crop_bbox": [
+          346,
+          22,
+          587,
+          668
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "a51e2e66765acf5c68cf",
+      "path": "data/datasets/bottle_defects/images/val/no_cap_0014_20260210_145119.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9386515239995772,
+      "probabilities": {
+        "normal": 0.06134847600042281,
+        "defect": 0.9386515239995772
+      },
+      "latency_ms": 54.75,
+      "localization": {
+        "bbox": [
+          538.7,
+          63.9,
+          743.6,
+          619.3
+        ],
+        "score": 0.7194638252258301,
+        "crop_bbox": [
+          522,
+          19,
+          759,
+          663
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "a540206e8f28f27dd246",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0059_20260210_151608.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.10307875262730587,
+      "probabilities": {
+        "normal": 0.8969212473726943,
+        "defect": 0.10307875262730587
+      },
+      "latency_ms": 44.98,
+      "localization": {
+        "bbox": [
+          566.5,
+          72.2,
+          798.4,
+          628.9
+        ],
+        "score": 0.990053653717041,
+        "crop_bbox": [
+          547,
+          27,
+          816,
+          673
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "a56fe8805c26437b9fc6",
+      "path": "data/datasets/bottle_defects/images/train/debris_0124_20260210_150557.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9988243886272398,
+      "probabilities": {
+        "normal": 0.0011756113727603103,
+        "defect": 0.9988243886272398
+      },
+      "latency_ms": 44.48,
+      "localization": {
+        "bbox": [
+          581.0,
+          71.5,
+          788.5,
+          640.3
+        ],
+        "score": 0.9023710489273071,
+        "crop_bbox": [
+          564,
+          25,
+          805,
+          685
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "a7a87e739ead35d218e8",
+      "path": "data/datasets/bottle_defects/images/train/good_0545_20260210_131722.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9858845867817264,
+      "probabilities": {
+        "normal": 0.9858845867817264,
+        "defect": 0.01411541321827342
+      },
+      "latency_ms": 52.14,
+      "localization": {
+        "bbox": [
+          534.2,
+          85.8,
+          758.8,
+          660.4
+        ],
+        "score": 0.6703123450279236,
+        "crop_bbox": [
+          516,
+          39,
+          776,
+          706
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "ac242ec23b513020377d",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0025_20260210_152129.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.947113054323304,
+      "probabilities": {
+        "normal": 0.052886945676696204,
+        "defect": 0.947113054323304
+      },
+      "latency_ms": 52.15,
+      "localization": {
+        "bbox": [
+          570.5,
+          51.5,
+          787.5,
+          654.3
+        ],
+        "score": 0.9692085981369019,
+        "crop_bbox": [
+          553,
+          3,
+          804,
+          702
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "ad67168dacfbed624b66",
+      "path": "data/datasets/bottle_defects/images/val/good_0497_20260210_131549.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9690878439754346,
+      "probabilities": {
+        "normal": 0.9690878439754346,
+        "defect": 0.03091215602456517
+      },
+      "latency_ms": 50.19,
+      "localization": {
+        "bbox": [
+          570.6,
+          67.0,
+          796.0,
+          635.3
+        ],
+        "score": 0.9698517918586731,
+        "crop_bbox": [
+          552,
+          21,
+          814,
+          680
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "ae3ebe60cb3a2ca1ec32",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0018_20260210_152052.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9040520052305155,
+      "probabilities": {
+        "normal": 0.09594799476948444,
+        "defect": 0.9040520052305155
+      },
+      "latency_ms": 45.71,
+      "localization": {
+        "bbox": [
+          546.5,
+          65.1,
+          752.9,
+          636.8
+        ],
+        "score": 0.6688048243522644,
+        "crop_bbox": [
+          530,
+          19,
+          769,
+          682
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "ae54a7438c508c27f26d",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0023_20260210_152104.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.8689282349701113,
+      "probabilities": {
+        "normal": 0.13107176502988854,
+        "defect": 0.8689282349701113
+      },
+      "latency_ms": 45.9,
+      "localization": {
+        "bbox": [
+          571.6,
+          53.8,
+          770.3,
+          639.1
+        ],
+        "score": 0.977745532989502,
+        "crop_bbox": [
+          555,
+          6,
+          786,
+          685
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "ae56c161eaef6cff2476",
+      "path": "data/datasets/bottle_defects/images/train/good_0514_20260210_131622.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9905323740476649,
+      "probabilities": {
+        "normal": 0.9905323740476649,
+        "defect": 0.009467625952334895
+      },
+      "latency_ms": 51.89,
+      "localization": {
+        "bbox": [
+          405.3,
+          69.4,
+          615.9,
+          600.1
+        ],
+        "score": 0.5319425463676453,
+        "crop_bbox": [
+          388,
+          26,
+          632,
+          642
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "aed7e38b1d78d1bc22be",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0012_20260210_145114.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.8455683056925466,
+      "probabilities": {
+        "normal": 0.15443169430745374,
+        "defect": 0.8455683056925466
+      },
+      "latency_ms": 46.43,
+      "localization": {
+        "bbox": [
+          542.6,
+          68.3,
+          744.9,
+          619.7
+        ],
+        "score": 0.8163352608680725,
+        "crop_bbox": [
+          526,
+          24,
+          761,
+          663
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "af1b5a838dfb55dd959f",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0233_20260210_162634.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9664766056714448,
+      "probabilities": {
+        "normal": 0.03352339432855488,
+        "defect": 0.9664766056714448
+      },
+      "latency_ms": 46.91,
+      "localization": {
+        "bbox": [
+          538.9,
+          67.8,
+          737.2,
+          623.0
+        ],
+        "score": 0.46454450488090515,
+        "crop_bbox": [
+          522,
+          23,
+          753,
+          667
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "af6b16e0dbe8f6f98232",
+      "path": "data/datasets/bottle_defects/images/train/good_0484_20260210_131524.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9908635691363892,
+      "probabilities": {
+        "normal": 0.9908635691363892,
+        "defect": 0.009136430863610588
+      },
+      "latency_ms": 48.49,
+      "localization": {
+        "bbox": [
+          655.3,
+          64.4,
+          849.0,
+          642.2
+        ],
+        "score": 0.9160100817680359,
+        "crop_bbox": [
+          639,
+          18,
+          864,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "b0a2978638b4d91bdff6",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0005_20260210_145058.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9525828088549685,
+      "probabilities": {
+        "normal": 0.04741719114503192,
+        "defect": 0.9525828088549685
+      },
+      "latency_ms": 42.87,
+      "localization": {
+        "bbox": [
+          543.6,
+          65.5,
+          739.7,
+          621.8
+        ],
+        "score": 0.6906501054763794,
+        "crop_bbox": [
+          527,
+          20,
+          755,
+          666
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "b1254c8b40c303a4b794",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0033_20260210_145211.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.6490758490846414,
+      "probabilities": {
+        "normal": 0.3509241509153582,
+        "defect": 0.6490758490846414
+      },
+      "latency_ms": 47.49,
+      "localization": {
+        "bbox": [
+          496.8,
+          72.5,
+          707.8,
+          652.8
+        ],
+        "score": 0.9811654090881348,
+        "crop_bbox": [
+          479,
+          26,
+          724,
+          699
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "b48dac144a0e44fcfcb8",
+      "path": "data/datasets/bottle_defects/images/train/good_0485_20260210_131526.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9942640680376573,
+      "probabilities": {
+        "normal": 0.9942640680376573,
+        "defect": 0.005735931962342566
+      },
+      "latency_ms": 56.14,
+      "localization": {
+        "bbox": [
+          626.4,
+          66.6,
+          833.1,
+          630.5
+        ],
+        "score": 0.9795612692832947,
+        "crop_bbox": [
+          609,
+          21,
+          849,
+          675
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "b4ac4e8e5e342e80045f",
+      "path": "data/datasets/bottle_defects/images/train/good_0501_20260210_131556.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9723836420921034,
+      "probabilities": {
+        "normal": 0.9723836420921034,
+        "defect": 0.02761635790789649
+      },
+      "latency_ms": 51.61,
+      "localization": {
+        "bbox": [
+          438.0,
+          57.8,
+          644.1,
+          639.5
+        ],
+        "score": 0.9871661067008972,
+        "crop_bbox": [
+          421,
+          11,
+          660,
+          686
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "b74f2ecb853fbf8cf26e",
+      "path": "data/datasets/bottle_defects/images/train/debris_0147_20260210_150639.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9990630994453984,
+      "probabilities": {
+        "normal": 0.0009369005546017459,
+        "defect": 0.9990630994453984
+      },
+      "latency_ms": 45.84,
+      "localization": {
+        "bbox": [
+          553.5,
+          64.5,
+          770.5,
+          651.0
+        ],
+        "score": 0.9391027688980103,
+        "crop_bbox": [
+          536,
+          17,
+          787,
+          697
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "b77df5cb4e6e2807e60e",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0066_20260210_151629.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.3329705899018024,
+      "probabilities": {
+        "normal": 0.6670294100981976,
+        "defect": 0.3329705899018024
+      },
+      "latency_ms": 43.01,
+      "localization": {
+        "bbox": [
+          456.7,
+          73.8,
+          710.7,
+          629.4
+        ],
+        "score": 0.9855126738548279,
+        "crop_bbox": [
+          436,
+          29,
+          731,
+          673
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "bd73ad0aa311f18556ad",
+      "path": "data/datasets/bottle_defects/images/val/good_0500_20260210_131554.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9972748406827943,
+      "probabilities": {
+        "normal": 0.9972748406827943,
+        "defect": 0.0027251593172055917
+      },
+      "latency_ms": 60.03,
+      "localization": {
+        "bbox": [
+          408.6,
+          68.5,
+          625.0,
+          631.6
+        ],
+        "score": 0.8942538499832153,
+        "crop_bbox": [
+          391,
+          23,
+          642,
+          676
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "bf4f90c920c2cd96638d",
+      "path": "data/datasets/bottle_defects/images/train/good_0491_20260210_131538.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.991982877866227,
+      "probabilities": {
+        "normal": 0.991982877866227,
+        "defect": 0.008017122133773076
+      },
+      "latency_ms": 61.29,
+      "localization": {
+        "bbox": [
+          448.0,
+          60.8,
+          655.5,
+          639.3
+        ],
+        "score": 0.9873381853103638,
+        "crop_bbox": [
+          431,
+          14,
+          672,
+          685
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "bf7a120ef671eee6df5e",
+      "path": "data/datasets/bottle_defects/images/train/good_0524_20260210_131641.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.991340673194205,
+      "probabilities": {
+        "normal": 0.991340673194205,
+        "defect": 0.008659326805794634
+      },
+      "latency_ms": 57.55,
+      "localization": {
+        "bbox": [
+          314.5,
+          69.0,
+          539.8,
+          651.0
+        ],
+        "score": 0.98804771900177,
+        "crop_bbox": [
+          296,
+          22,
+          557,
+          697
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "c0dc22a3926578b5a5ab",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0052_20260210_151546.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9272261991197323,
+      "probabilities": {
+        "normal": 0.0727738008802678,
+        "defect": 0.9272261991197323
+      },
+      "latency_ms": 63.9,
+      "localization": {
+        "bbox": [
+          542.8,
+          67.1,
+          782.7,
+          626.7
+        ],
+        "score": 0.9775674343109131,
+        "crop_bbox": [
+          523,
+          22,
+          801,
+          671
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "c2112e7e2915594699c2",
+      "path": "data/datasets/bottle_defects/images/train/good_0510_20260210_131614.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9874400683978051,
+      "probabilities": {
+        "normal": 0.9874400683978051,
+        "defect": 0.01255993160219484
+      },
+      "latency_ms": 48.65,
+      "localization": {
+        "bbox": [
+          366.4,
+          64.6,
+          576.9,
+          639.0
+        ],
+        "score": 0.9764447808265686,
+        "crop_bbox": [
+          349,
+          18,
+          593,
+          684
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "c3367705a2c2fc56d76b",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0024_20260210_152106.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.7896072832898783,
+      "probabilities": {
+        "normal": 0.2103927167101218,
+        "defect": 0.7896072832898783
+      },
+      "latency_ms": 50.74,
+      "localization": {
+        "bbox": [
+          561.0,
+          55.8,
+          770.1,
+          643.3
+        ],
+        "score": 0.9686882495880127,
+        "crop_bbox": [
+          544,
+          8,
+          786,
+          690
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "c44860304902fca4b451",
+      "path": "data/datasets/bottle_defects/images/train/debris_0144_20260210_150634.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9993174490769514,
+      "probabilities": {
+        "normal": 0.0006825509230484242,
+        "defect": 0.9993174490769514
+      },
+      "latency_ms": 49.91,
+      "localization": {
+        "bbox": [
+          564.0,
+          68.2,
+          770.9,
+          638.7
+        ],
+        "score": 0.9513369798660278,
+        "crop_bbox": [
+          547,
+          22,
+          787,
+          684
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "c481b2c6ce0a0b7d6fe1",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0060_20260210_151610.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.21670097885446188,
+      "probabilities": {
+        "normal": 0.783299021145538,
+        "defect": 0.21670097885446188
+      },
+      "latency_ms": 57.34,
+      "localization": {
+        "bbox": [
+          565.0,
+          73.1,
+          808.4,
+          625.0
+        ],
+        "score": 0.9886671900749207,
+        "crop_bbox": [
+          545,
+          28,
+          827,
+          669
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "c713641a7c14f2f9d8c9",
+      "path": "data/datasets/bottle_defects/images/train/debris_0138_20260210_150624.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9904843354791073,
+      "probabilities": {
+        "normal": 0.009515664520892302,
+        "defect": 0.9904843354791073
+      },
+      "latency_ms": 53.48,
+      "localization": {
+        "bbox": [
+          574.8,
+          67.5,
+          776.5,
+          642.8
+        ],
+        "score": 0.9565585255622864,
+        "crop_bbox": [
+          558,
+          21,
+          792,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "c8ad66b3b4c4cf69b62b",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0016_20260210_152047.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9820619580792653,
+      "probabilities": {
+        "normal": 0.017938041920734876,
+        "defect": 0.9820619580792653
+      },
+      "latency_ms": 47.92,
+      "localization": {
+        "bbox": [
+          548.0,
+          62.1,
+          749.9,
+          636.1
+        ],
+        "score": 0.6873331665992737,
+        "crop_bbox": [
+          531,
+          16,
+          766,
+          682
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "ca7c84710ad46530ce1b",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0022_20260210_145140.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9191373841262315,
+      "probabilities": {
+        "normal": 0.08086261587376883,
+        "defect": 0.9191373841262315
+      },
+      "latency_ms": 44.65,
+      "localization": {
+        "bbox": [
+          543.4,
+          87.7,
+          727.9,
+          336.6
+        ],
+        "score": 0.7036874890327454,
+        "crop_bbox": [
+          528,
+          67,
+          742,
+          356
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "cb1b00dc1aba14d9c1ab",
+      "path": "data/datasets/bottle_defects/images/val/loose_cap_0026_20260210_152132.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9182867153953843,
+      "probabilities": {
+        "normal": 0.08171328460461587,
+        "defect": 0.9182867153953843
+      },
+      "latency_ms": 48.03,
+      "localization": {
+        "bbox": [
+          561.2,
+          44.6,
+          777.9,
+          652.2
+        ],
+        "score": 0.9694560170173645,
+        "crop_bbox": [
+          543,
+          0,
+          795,
+          700
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "cb467ba86a64ab69c113",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0075_20260210_151653.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9463968419738349,
+      "probabilities": {
+        "normal": 0.05360315802616503,
+        "defect": 0.9463968419738349
+      },
+      "latency_ms": 44.62,
+      "localization": {
+        "bbox": [
+          588.5,
+          70.0,
+          818.0,
+          629.3
+        ],
+        "score": 0.9690679907798767,
+        "crop_bbox": [
+          570,
+          25,
+          836,
+          674
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "ccce76090a186d98ae59",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0017_20260210_145125.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.990338902181417,
+      "probabilities": {
+        "normal": 0.009661097818582876,
+        "defect": 0.990338902181417
+      },
+      "latency_ms": 44.34,
+      "localization": {
+        "bbox": [
+          558.2,
+          61.2,
+          772.7,
+          650.3
+        ],
+        "score": 0.9677979946136475,
+        "crop_bbox": [
+          541,
+          14,
+          789,
+          697
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "ccd741676eca7ce35c7b",
+      "path": "data/datasets/bottle_defects/images/train/good_0549_20260210_131730.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9638421781521285,
+      "probabilities": {
+        "normal": 0.9638421781521285,
+        "defect": 0.03615782184787138
+      },
+      "latency_ms": 49.04,
+      "localization": {
+        "bbox": [
+          478.8,
+          70.8,
+          702.4,
+          646.0
+        ],
+        "score": 0.9809432625770569,
+        "crop_bbox": [
+          460,
+          24,
+          720,
+          691
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "ce305e970920c9260cc8",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0073_20260210_151649.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9602616015018953,
+      "probabilities": {
+        "normal": 0.03973839849810492,
+        "defect": 0.9602616015018953
+      },
+      "latency_ms": 46.49,
+      "localization": {
+        "bbox": [
+          596.5,
+          68.8,
+          818.4,
+          617.8
+        ],
+        "score": 0.9824128150939941,
+        "crop_bbox": [
+          578,
+          24,
+          836,
+          661
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "d291bec9ba272f423a12",
+      "path": "data/datasets/bottle_defects/images/train/good_0516_20260210_131626.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9960397569882896,
+      "probabilities": {
+        "normal": 0.9960397569882896,
+        "defect": 0.003960243011710243
+      },
+      "latency_ms": 51.26,
+      "localization": {
+        "bbox": [
+          476.9,
+          66.3,
+          679.3,
+          609.1
+        ],
+        "score": 0.9827014803886414,
+        "crop_bbox": [
+          460,
+          22,
+          695,
+          652
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "d2f0e5f6b7a66cadb7ea",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0049_20260210_151523.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.903978201479381,
+      "probabilities": {
+        "normal": 0.903978201479381,
+        "defect": 0.09602179852061878
+      },
+      "latency_ms": 43.98,
+      "localization": {
+        "bbox": [
+          559.9,
+          69.5,
+          763.2,
+          641.2
+        ],
+        "score": 0.8785716891288757,
+        "crop_bbox": [
+          543,
+          23,
+          779,
+          686
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "d3c4109c29201dff2468",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0003_20260210_145052.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.7863449118334709,
+      "probabilities": {
+        "normal": 0.21365508816652917,
+        "defect": 0.7863449118334709
+      },
+      "latency_ms": 47.49,
+      "localization": {
+        "bbox": [
+          558.7,
+          59.8,
+          759.2,
+          614.3
+        ],
+        "score": 0.9796965718269348,
+        "crop_bbox": [
+          542,
+          15,
+          775,
+          658
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "d4372f76c1929839b507",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0013_20260210_152041.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9993667961869505,
+      "probabilities": {
+        "normal": 0.0006332038130497016,
+        "defect": 0.9993667961869505
+      },
+      "latency_ms": 45.58,
+      "localization": {
+        "bbox": [
+          559.7,
+          56.2,
+          775.5,
+          643.8
+        ],
+        "score": 0.9729230999946594,
+        "crop_bbox": [
+          542,
+          9,
+          792,
+          690
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "d46c24573b4ca9ba989c",
+      "path": "data/datasets/bottle_defects/images/train/good_0539_20260210_131711.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9837994966825832,
+      "probabilities": {
+        "normal": 0.9837994966825832,
+        "defect": 0.016200503317416997
+      },
+      "latency_ms": 53.53,
+      "localization": {
+        "bbox": [
+          701.1,
+          65.1,
+          902.1,
+          595.5
+        ],
+        "score": 0.985245406627655,
+        "crop_bbox": [
+          685,
+          22,
+          918,
+          637
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "d7a3d992a29744f4b4ba",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0013_20260210_145117.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9303746028131257,
+      "probabilities": {
+        "normal": 0.06962539718687458,
+        "defect": 0.9303746028131257
+      },
+      "latency_ms": 42.88,
+      "localization": {
+        "bbox": [
+          536.0,
+          68.5,
+          742.7,
+          623.7
+        ],
+        "score": 0.6276866793632507,
+        "crop_bbox": [
+          519,
+          24,
+          759,
+          668
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "d964297b4d0025ff428c",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0035_20260210_152156.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.8978936267446522,
+      "probabilities": {
+        "normal": 0.1021063732553478,
+        "defect": 0.8978936267446522
+      },
+      "latency_ms": 45.66,
+      "localization": {
+        "bbox": [
+          572.6,
+          41.2,
+          776.1,
+          648.6
+        ],
+        "score": 0.9752468466758728,
+        "crop_bbox": [
+          556,
+          0,
+          792,
+          697
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "d9c3097d60ded282a32f",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0231_20260210_162630.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9140175588305055,
+      "probabilities": {
+        "normal": 0.0859824411694943,
+        "defect": 0.9140175588305055
+      },
+      "latency_ms": 43.93,
+      "localization": {
+        "bbox": [
+          533.9,
+          69.3,
+          734.2,
+          618.3
+        ],
+        "score": 0.32468539476394653,
+        "crop_bbox": [
+          517,
+          25,
+          750,
+          662
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "db35ff4e403be8a0235c",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0004_20260210_145055.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9065292388125274,
+      "probabilities": {
+        "normal": 0.09347076118747234,
+        "defect": 0.9065292388125274
+      },
+      "latency_ms": 46.15,
+      "localization": {
+        "bbox": [
+          553.8,
+          58.5,
+          752.2,
+          621.3
+        ],
+        "score": 0.9589197635650635,
+        "crop_bbox": [
+          537,
+          13,
+          768,
+          666
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "dc633134c316e2cfc824",
+      "path": "data/datasets/bottle_defects/images/train/good_0498_20260210_131550.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.6763010660709174,
+      "probabilities": {
+        "normal": 0.32369893392908294,
+        "defect": 0.6763010660709174
+      },
+      "latency_ms": 46.32,
+      "localization": {
+        "bbox": [
+          538.3,
+          83.1,
+          729.3,
+          336.5
+        ],
+        "score": 0.739129900932312,
+        "crop_bbox": [
+          523,
+          62,
+          744,
+          356
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "dd78dd05835c9b2105e6",
+      "path": "data/datasets/bottle_defects/images/train/good_0527_20260210_131648.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9932825504102216,
+      "probabilities": {
+        "normal": 0.9932825504102216,
+        "defect": 0.006717449589778445
+      },
+      "latency_ms": 47.37,
+      "localization": {
+        "bbox": [
+          353.9,
+          67.4,
+          571.5,
+          635.9
+        ],
+        "score": 0.9835917949676514,
+        "crop_bbox": [
+          336,
+          21,
+          588,
+          681
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "de76bfe6c28859b2aa74",
+      "path": "data/datasets/bottle_defects/images/train/good_0531_20260210_131656.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.994380316320627,
+      "probabilities": {
+        "normal": 0.994380316320627,
+        "defect": 0.005619683679372825
+      },
+      "latency_ms": 56.22,
+      "localization": {
+        "bbox": [
+          494.3,
+          64.2,
+          688.6,
+          624.1
+        ],
+        "score": 0.9783586859703064,
+        "crop_bbox": [
+          478,
+          19,
+          704,
+          668
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "e017fa88410132fb4f9b",
+      "path": "data/datasets/bottle_defects/images/train/good_0553_20260210_131737.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9877564520668978,
+      "probabilities": {
+        "normal": 0.9877564520668978,
+        "defect": 0.012243547933102275
+      },
+      "latency_ms": 54.13,
+      "localization": {
+        "bbox": [
+          480.5,
+          65.9,
+          701.0,
+          645.7
+        ],
+        "score": 0.9803070425987244,
+        "crop_bbox": [
+          462,
+          19,
+          718,
+          692
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "e20a7c955d7cc1a996e2",
+      "path": "data/datasets/bottle_defects/images/val/underfilled_0224_20260210_162616.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9715475024596333,
+      "probabilities": {
+        "normal": 0.028452497540366724,
+        "defect": 0.9715475024596333
+      },
+      "latency_ms": 67.84,
+      "localization": {
+        "bbox": [
+          531.1,
+          65.8,
+          728.5,
+          642.6
+        ],
+        "score": 0.5803142786026001,
+        "crop_bbox": [
+          515,
+          19,
+          744,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "e27a9bdb50eefcfe7e67",
+      "path": "data/datasets/bottle_defects/images/train/good_0511_20260210_131616.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9931008321307683,
+      "probabilities": {
+        "normal": 0.9931008321307683,
+        "defect": 0.0068991678692317355
+      },
+      "latency_ms": 55.13,
+      "localization": {
+        "bbox": [
+          352.7,
+          65.2,
+          560.2,
+          638.0
+        ],
+        "score": 0.9721635580062866,
+        "crop_bbox": [
+          336,
+          19,
+          576,
+          683
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "e2db3cc2184022f1214d",
+      "path": "data/datasets/bottle_defects/images/train/debris_0136_20260210_150621.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9955051023081876,
+      "probabilities": {
+        "normal": 0.004494897691812591,
+        "defect": 0.9955051023081876
+      },
+      "latency_ms": 46.59,
+      "localization": {
+        "bbox": [
+          581.6,
+          66.3,
+          794.9,
+          640.4
+        ],
+        "score": 0.9569631814956665,
+        "crop_bbox": [
+          564,
+          20,
+          811,
+          686
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "e44040c0f4efe6bb5c88",
+      "path": "data/datasets/bottle_defects/images/val/good_0490_20260210_131535.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9971192049686555,
+      "probabilities": {
+        "normal": 0.9971192049686555,
+        "defect": 0.002880795031344656
+      },
+      "latency_ms": 48.48,
+      "localization": {
+        "bbox": [
+          467.2,
+          66.1,
+          675.9,
+          638.2
+        ],
+        "score": 0.9806534647941589,
+        "crop_bbox": [
+          450,
+          20,
+          692,
+          683
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "e4f045697c8d2b33873f",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0016_20260210_145123.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.977010829266518,
+      "probabilities": {
+        "normal": 0.0229891707334823,
+        "defect": 0.977010829266518
+      },
+      "latency_ms": 46.59,
+      "localization": {
+        "bbox": [
+          564.5,
+          63.0,
+          763.2,
+          647.8
+        ],
+        "score": 0.9727333188056946,
+        "crop_bbox": [
+          548,
+          16,
+          779,
+          694
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "e56c5dfd911081f0651a",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0209_20260210_162548.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9941683880479155,
+      "probabilities": {
+        "normal": 0.0058316119520844525,
+        "defect": 0.9941683880479155
+      },
+      "latency_ms": 44.65,
+      "localization": {
+        "bbox": [
+          562.1,
+          65.7,
+          774.6,
+          631.3
+        ],
+        "score": 0.9827061891555786,
+        "crop_bbox": [
+          545,
+          20,
+          791,
+          676
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "e7844a32daaea483c89c",
+      "path": "data/datasets/bottle_defects/images/train/good_0504_20260210_131602.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9888075032379031,
+      "probabilities": {
+        "normal": 0.9888075032379031,
+        "defect": 0.011192496762097465
+      },
+      "latency_ms": 50.19,
+      "localization": {
+        "bbox": [
+          580.7,
+          66.4,
+          785.8,
+          628.5
+        ],
+        "score": 0.9733548760414124,
+        "crop_bbox": [
+          564,
+          21,
+          802,
+          673
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "e7d0eac69a643abcecef",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0010_20260210_152035.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.999559606774205,
+      "probabilities": {
+        "normal": 0.00044039322579504295,
+        "defect": 0.999559606774205
+      },
+      "latency_ms": 44.33,
+      "localization": {
+        "bbox": [
+          567.4,
+          53.1,
+          780.2,
+          642.7
+        ],
+        "score": 0.9811675548553467,
+        "crop_bbox": [
+          550,
+          5,
+          797,
+          689
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "e80aef9bd72b77022f88",
+      "path": "data/datasets/bottle_defects/images/train/debris_0149_20260210_150643.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9990766410093749,
+      "probabilities": {
+        "normal": 0.0009233589906252735,
+        "defect": 0.9990766410093749
+      },
+      "latency_ms": 45.48,
+      "localization": {
+        "bbox": [
+          546.0,
+          71.3,
+          755.5,
+          638.6
+        ],
+        "score": 0.7756975889205933,
+        "crop_bbox": [
+          529,
+          25,
+          772,
+          683
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "e830c76498421d4606f2",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0222_20260210_162612.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9691304052517177,
+      "probabilities": {
+        "normal": 0.030869594748282252,
+        "defect": 0.9691304052517177
+      },
+      "latency_ms": 45.23,
+      "localization": {
+        "bbox": [
+          553.8,
+          58.7,
+          760.7,
+          647.6
+        ],
+        "score": 0.9710062146186829,
+        "crop_bbox": [
+          537,
+          11,
+          777,
+          694
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "e90cf7ad4c6d129d7176",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0047_20260210_151518.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9462317798662228,
+      "probabilities": {
+        "normal": 0.9462317798662228,
+        "defect": 0.0537682201337773
+      },
+      "latency_ms": 49.26,
+      "localization": {
+        "bbox": [
+          544.0,
+          66.1,
+          747.0,
+          629.6
+        ],
+        "score": 0.7263867855072021,
+        "crop_bbox": [
+          527,
+          21,
+          763,
+          674
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "e984d7dc719e58f1a3c3",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0056_20260210_151556.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.7614577525132251,
+      "probabilities": {
+        "normal": 0.23854224748677472,
+        "defect": 0.7614577525132251
+      },
+      "latency_ms": 48.28,
+      "localization": {
+        "bbox": [
+          586.1,
+          57.9,
+          809.9,
+          635.8
+        ],
+        "score": 0.977990984916687,
+        "crop_bbox": [
+          568,
+          11,
+          827,
+          682
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "e9ac489f3bc449067850",
+      "path": "data/datasets/bottle_defects/images/train/good_0548_20260210_131728.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9803197295309588,
+      "probabilities": {
+        "normal": 0.9803197295309588,
+        "defect": 0.019680270469041094
+      },
+      "latency_ms": 58.87,
+      "localization": {
+        "bbox": [
+          480.2,
+          72.4,
+          701.4,
+          648.8
+        ],
+        "score": 0.9765324592590332,
+        "crop_bbox": [
+          462,
+          26,
+          719,
+          694
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "eb9472af15ae43bba222",
+      "path": "data/datasets/bottle_defects/images/train/good_0483_20260210_131522.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "uncertain",
+      "raw_label": "defect",
+      "confidence": 0.29420311671411525,
+      "probabilities": {
+        "normal": 0.7057968832858846,
+        "defect": 0.29420311671411525
+      },
+      "latency_ms": 43.49,
+      "localization": {
+        "bbox": [
+          679.3,
+          79.4,
+          858.4,
+          337.6
+        ],
+        "score": 0.5411205887794495,
+        "crop_bbox": [
+          664,
+          58,
+          872,
+          358
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": false
+    },
+    {
+      "id": "ec128fcaab1e72c2301c",
+      "path": "data/datasets/bottle_defects/images/val/debris_0143_20260210_150632.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9991318256108818,
+      "probabilities": {
+        "normal": 0.0008681743891180566,
+        "defect": 0.9991318256108818
+      },
+      "latency_ms": 43.79,
+      "localization": {
+        "bbox": [
+          562.0,
+          70.5,
+          767.0,
+          640.6
+        ],
+        "score": 0.9016492366790771,
+        "crop_bbox": [
+          545,
+          24,
+          783,
+          686
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "ec8d73cc09dc0cf96c23",
+      "path": "data/datasets/bottle_defects/images/train/good_0555_20260210_131740.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9964660924844286,
+      "probabilities": {
+        "normal": 0.9964660924844286,
+        "defect": 0.0035339075155711806
+      },
+      "latency_ms": 48.31,
+      "localization": {
+        "bbox": [
+          490.9,
+          73.6,
+          707.1,
+          651.0
+        ],
+        "score": 0.9839704632759094,
+        "crop_bbox": [
+          473,
+          27,
+          724,
+          697
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "ed59e0c4eafe6af7e360",
+      "path": "data/datasets/bottle_defects/images/train/debris_0145_20260210_150635.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9993463190779579,
+      "probabilities": {
+        "normal": 0.0006536809220420851,
+        "defect": 0.9993463190779579
+      },
+      "latency_ms": 50.56,
+      "localization": {
+        "bbox": [
+          559.6,
+          72.4,
+          768.2,
+          638.1
+        ],
+        "score": 0.955266535282135,
+        "crop_bbox": [
+          542,
+          27,
+          784,
+          683
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "edc888569de4d083af30",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0019_20260210_152055.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9517859619102403,
+      "probabilities": {
+        "normal": 0.04821403808975992,
+        "defect": 0.9517859619102403
+      },
+      "latency_ms": 50.47,
+      "localization": {
+        "bbox": [
+          549.9,
+          63.5,
+          758.6,
+          634.3
+        ],
+        "score": 0.8708089590072632,
+        "crop_bbox": [
+          533,
+          17,
+          775,
+          679
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "ede4a1d9248b9ac979f2",
+      "path": "data/datasets/bottle_defects/images/train/good_0508_20260210_131610.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9921301773425013,
+      "probabilities": {
+        "normal": 0.9921301773425013,
+        "defect": 0.007869822657498846
+      },
+      "latency_ms": 55.81,
+      "localization": {
+        "bbox": [
+          396.9,
+          63.0,
+          627.8,
+          633.8
+        ],
+        "score": 0.40708163380622864,
+        "crop_bbox": [
+          378,
+          17,
+          646,
+          679
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "eebe45e7415d664e98b1",
+      "path": "data/datasets/bottle_defects/images/train/good_0535_20260210_131703.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9961216635535269,
+      "probabilities": {
+        "normal": 0.9961216635535269,
+        "defect": 0.0038783364464730335
+      },
+      "latency_ms": 53.65,
+      "localization": {
+        "bbox": [
+          646.9,
+          66.1,
+          848.3,
+          639.9
+        ],
+        "score": 0.87903892993927,
+        "crop_bbox": [
+          630,
+          20,
+          864,
+          685
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "ef0d758d575fb47bf242",
+      "path": "data/datasets/bottle_defects/images/train/good_0487_20260210_131530.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9950593422571807,
+      "probabilities": {
+        "normal": 0.9950593422571807,
+        "defect": 0.004940657742819354
+      },
+      "latency_ms": 55.28,
+      "localization": {
+        "bbox": [
+          547.0,
+          63.3,
+          751.2,
+          621.3
+        ],
+        "score": 0.9382185339927673,
+        "crop_bbox": [
+          530,
+          18,
+          767,
+          665
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "f0a260cafadb8b89549f",
+      "path": "data/datasets/bottle_defects/images/train/damaged_label_0074_20260210_151651.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9319912213584695,
+      "probabilities": {
+        "normal": 0.06800877864153064,
+        "defect": 0.9319912213584695
+      },
+      "latency_ms": 49.75,
+      "localization": {
+        "bbox": [
+          595.3,
+          67.1,
+          819.5,
+          626.8
+        ],
+        "score": 0.9833778142929077,
+        "crop_bbox": [
+          577,
+          22,
+          837,
+          671
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "f0d52726072090d10885",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0028_20260210_145158.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9656942283802687,
+      "probabilities": {
+        "normal": 0.03430577161973071,
+        "defect": 0.9656942283802687
+      },
+      "latency_ms": 46.88,
+      "localization": {
+        "bbox": [
+          526.9,
+          62.6,
+          714.6,
+          641.0
+        ],
+        "score": 0.9607243537902832,
+        "crop_bbox": [
+          511,
+          16,
+          729,
+          687
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "f2064bc088c932c939ab",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0027_20260210_145155.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9877356756852822,
+      "probabilities": {
+        "normal": 0.012264324314717807,
+        "defect": 0.9877356756852822
+      },
+      "latency_ms": 50.37,
+      "localization": {
+        "bbox": [
+          511.5,
+          65.0,
+          706.2,
+          629.3
+        ],
+        "score": 0.9843267798423767,
+        "crop_bbox": [
+          495,
+          19,
+          721,
+          674
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "f225f1cbfba6e0a886c8",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0015_20260210_145121.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9894100532708686,
+      "probabilities": {
+        "normal": 0.010589946729130816,
+        "defect": 0.9894100532708686
+      },
+      "latency_ms": 46.14,
+      "localization": {
+        "bbox": [
+          545.0,
+          61.5,
+          749.0,
+          617.1
+        ],
+        "score": 0.8878982663154602,
+        "crop_bbox": [
+          528,
+          17,
+          765,
+          661
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "f2812d332b52ab1ac5a1",
+      "path": "data/datasets/bottle_defects/images/train/debris_0139_20260210_150625.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9960466168936505,
+      "probabilities": {
+        "normal": 0.003953383106349808,
+        "defect": 0.9960466168936505
+      },
+      "latency_ms": 46.9,
+      "localization": {
+        "bbox": [
+          568.2,
+          63.9,
+          769.4,
+          644.2
+        ],
+        "score": 0.9669052362442017,
+        "crop_bbox": [
+          552,
+          17,
+          785,
+          690
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "f6605693a2ee79588422",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0235_20260210_162638.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9934503835767186,
+      "probabilities": {
+        "normal": 0.0065496164232811925,
+        "defect": 0.9934503835767186
+      },
+      "latency_ms": 45.99,
+      "localization": {
+        "bbox": [
+          496.1,
+          62.9,
+          704.3,
+          640.0
+        ],
+        "score": 0.9286389946937561,
+        "crop_bbox": [
+          479,
+          16,
+          720,
+          686
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "f7956213f9c8c9c9b185",
+      "path": "data/datasets/bottle_defects/images/train/underfilled_0204_20260210_162538.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9942240694761505,
+      "probabilities": {
+        "normal": 0.005775930523849593,
+        "defect": 0.9942240694761505
+      },
+      "latency_ms": 45.54,
+      "localization": {
+        "bbox": [
+          478.1,
+          64.5,
+          687.3,
+          638.6
+        ],
+        "score": 0.9797531366348267,
+        "crop_bbox": [
+          461,
+          18,
+          703,
+          684
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "f913c9590bf997f72763",
+      "path": "data/datasets/bottle_defects/images/train/no_cap_0036_20260210_145220.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.6803644837466349,
+      "probabilities": {
+        "normal": 0.319635516253365,
+        "defect": 0.6803644837466349
+      },
+      "latency_ms": 54.07,
+      "localization": {
+        "bbox": [
+          483.6,
+          72.9,
+          703.8,
+          643.3
+        ],
+        "score": 0.9855532050132751,
+        "crop_bbox": [
+          466,
+          27,
+          721,
+          688
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "f93998c047716caf348f",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0006_20260210_152026.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9989488371230403,
+      "probabilities": {
+        "normal": 0.0010511628769598038,
+        "defect": 0.9989488371230403
+      },
+      "latency_ms": 46.67,
+      "localization": {
+        "bbox": [
+          561.4,
+          48.4,
+          781.6,
+          644.9
+        ],
+        "score": 0.9687435626983643,
+        "crop_bbox": [
+          543,
+          0,
+          799,
+          692
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "f99615e2d1447f4f9013",
+      "path": "data/datasets/bottle_defects/images/train/debris_0137_20260210_150622.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9978798070108899,
+      "probabilities": {
+        "normal": 0.0021201929891100763,
+        "defect": 0.9978798070108899
+      },
+      "latency_ms": 43.28,
+      "localization": {
+        "bbox": [
+          577.5,
+          64.7,
+          784.2,
+          642.9
+        ],
+        "score": 0.957654595375061,
+        "crop_bbox": [
+          560,
+          18,
+          800,
+          689
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "fa91347e796208b4d2bb",
+      "path": "data/datasets/bottle_defects/images/train/good_0541_20260210_131715.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.98790374292409,
+      "probabilities": {
+        "normal": 0.98790374292409,
+        "defect": 0.012096257075909972
+      },
+      "latency_ms": 45.33,
+      "localization": {
+        "bbox": [
+          659.1,
+          79.3,
+          868.3,
+          633.2
+        ],
+        "score": 0.5715044140815735,
+        "crop_bbox": [
+          642,
+          35,
+          885,
+          677
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "faa9691134952e2aa825",
+      "path": "data/datasets/bottle_defects/images/train/loose_cap_0011_20260210_152037.jpg",
+      "truth": "defect",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "defect",
+      "raw_label": "defect",
+      "confidence": 0.9991662709682336,
+      "probabilities": {
+        "normal": 0.0008337290317661317,
+        "defect": 0.9991662709682336
+      },
+      "latency_ms": 49.83,
+      "localization": {
+        "bbox": [
+          570.5,
+          41.8,
+          788.2,
+          645.5
+        ],
+        "score": 0.9842357635498047,
+        "crop_bbox": [
+          553,
+          0,
+          805,
+          693
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    },
+    {
+      "id": "fb7bdc0ea3d991ca5eac",
+      "path": "data/datasets/bottle_defects/images/train/good_0540_20260210_131713.jpg",
+      "truth": "normal",
+      "model": "svm",
+      "localization_rejected": false,
+      "label": "normal",
+      "raw_label": "normal",
+      "confidence": 0.9923335596910834,
+      "probabilities": {
+        "normal": 0.9923335596910834,
+        "defect": 0.007666440308916528
+      },
+      "latency_ms": 47.86,
+      "localization": {
+        "bbox": [
+          674.5,
+          72.6,
+          876.3,
+          601.1
+        ],
+        "score": 0.8513078689575195,
+        "crop_bbox": [
+          658,
+          30,
+          892,
+          643
+        ]
+      },
+      "threshold": 0.1,
+      "uncertainty_threshold": 0.65,
+      "correct": true
+    }
+  ]
+}

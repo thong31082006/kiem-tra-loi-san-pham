@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from ml.train import main
+from scripts.train_hog_svm import main
 
 
 if __name__ == "__main__":

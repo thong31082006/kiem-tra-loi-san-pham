@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kiểm tra lỗi chai · HOG + SVM</title>
+  <link rel="stylesheet" href="/static/svm.css?v=groups1">
+  <script src="/static/svm.js?v=groups1" defer></script>
+</head>
+<body>
+  <main>
+    <header><p class="eyebrow">NHÓM 8 · HOG + SVM</p><h1>Kiểm tra chai nhựa</h1><p>Chọn ảnh một chai đứng, thấy rõ nắp và đáy.</p></header>
+    <section class="workspace" aria-label="Kiểm tra ảnh">
+      <div class="input-panel">
+        <label class="upload" for="image-file"><span id="placeholder">Bấm để chọn ảnh chai<br><small>JPG, PNG, WebP hoặc BMP · tối đa 15 MB</small></span><img id="preview" alt="Ảnh chai được chọn" hidden></label>
+        <input type="file" id="image-file" accept="image/jpeg,image/png,image/webp,image/bmp">
+        <button type="button" id="open-library" class="secondary library-button">Chọn từ thư viện ảnh</button>
+        <p id="filename">Chưa chọn ảnh.</p>
+        <p id="sample-reference" class="muted" hidden></p>
+        <button id="inspect" disabled>Kiểm tra ảnh</button>
+      </div>
+      <section class="result" aria-labelledby="result-heading" aria-live="polite">
+        <p class="eyebrow" id="result-heading">KẾT QUẢ KIỂM TRA</p>
+        <h2 id="verdict">Chờ kiểm tra</h2>
+        <p id="defect">Chọn ảnh rồi bấm Kiểm tra ảnh để xem kết quả.</p>
+        <p id="result-note" class="muted"></p>
+      </section>
+    </section>
+    <p id="feedback" role="status"></p>
+    <p class="scope">Phạm vi thử nghiệm: chai Ron 88 và các lỗi đã học. Chưa hỗ trợ móp chai, nước đục hoặc lỗi bị che khuất. “Đạt” chỉ phản ánh các nhóm lỗi trong phạm vi này.</p>
+    <details id="model-details">
+      <summary>Huấn luyện và kết quả Test · HOG + SVM</summary>
+      <div class="details-content">
+        <p id="model-state" role="status">Đang đọc trạng thái mô hình…</p>
+        <p>Một SVM phân loại 6 nhóm từ 3.780 đặc trưng HOG. Chỉ fit Train, chọn tham số và ngưỡng bằng Validation, sau đó đánh giá Test. Bộ định vị có sẵn chỉ dùng để tìm và cắt chai.</p>
+        <p id="split-counts"></p>
+        <div class="table-scroll"><table><caption>Chất lượng trên tập Test</caption><thead><tr><th>Đánh giá</th><th>Accuracy</th><th>Precision lỗi</th><th>Recall lỗi</th><th>F1 lỗi</th></tr></thead><tbody id="metrics"></tbody></table></div>
+        <p id="coverage"></p>
+        <div class="table-scroll"><table><caption>Khả năng gọi tên từng lỗi</caption><thead><tr><th>Loại lỗi</th><th>Trạng thái</th><th>Precision Test</th><th>Recall Test</th></tr></thead><tbody id="type-metrics"></tbody></table></div>
+        <p class="muted">Ảnh không đủ tin cậy được báo Chưa kết luận. Test hiện tại cùng nguồn và đã được tham khảo trong phát triển, chưa phải kiểm chứng mù trên chai hoặc phiên chụp mới.</p>
+        <div class="actions"><button id="train" class="secondary" disabled>Huấn luyện và test lại SVM</button><a href="/api/report.json" download>Tải báo cáo JSON</a></div>
+      </div>
+    </details>
+  </main>
+  <dialog id="library-dialog" aria-labelledby="library-heading" aria-describedby="library-description">
+    <div class="library-header"><h2 id="library-heading">Thư viện ảnh</h2><button type="button" id="close-library" class="secondary">Đóng</button></div>
+    <p id="library-description" class="muted">Bấm vào ảnh để đưa vào vùng kiểm tra. Nhãn dữ liệu dùng để đối chiếu với kết quả SVM.</p>
+    <div class="library-filters">
+      <label for="library-split">Tập ảnh<select id="library-split"><option value="test" selected>Test</option><option value="val">Validation</option><option value="train">Train</option></select></label>
+      <label for="library-label">Nhóm ảnh<select id="library-label"><option value="all">Tất cả</option><option value="normal">Bình thường</option><option value="defect">Tất cả ảnh lỗi</option><option value="defect_low_fill">Thiếu mức nước</option><option value="defect_no_cap">Thiếu nắp</option><option value="defect_loose_cap">Nắp lỏng / hỏng</option><option value="defect_debris">Dị vật nhìn thấy</option><option value="defect_label_damage">Nhãn hỏng / lệch / thiếu</option></select></label>
+      <button type="button" id="reload-library" class="secondary">Tải lại</button>
+    </div>
+    <h3 class="library-section-heading">Xem theo nhóm</h3>
+    <p class="muted">Mỗi nhóm có ảnh minh họa và số ảnh trong tập đang chọn. Bấm vào nhóm để xem các ảnh cùng loại.</p>
+    <div id="library-groups" class="library-groups" aria-label="Ảnh bình thường và năm nhóm lỗi"></div>
+    <h3 id="library-results-heading" class="library-section-heading">Danh sách ảnh · Tất cả</h3>
+    <p id="library-feedback" role="status" aria-live="polite"></p>
+    <div id="library-grid" class="library-grid" aria-label="Ảnh trong bộ dữ liệu"></div>
+    <div class="library-pagination"><button type="button" id="library-prev" class="secondary" disabled>Trang trước</button><span id="library-page" aria-live="polite"></span><button type="button" id="library-next" class="secondary" disabled>Trang sau</button></div>
+  </dialog>
+</body>
+</html>

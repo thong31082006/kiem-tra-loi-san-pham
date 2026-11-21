@@ -7,6 +7,10 @@ import cv2
 from .features import APP_DIR, as_rgb_pil, bottle_crop_bounds, crop_bottle_bbox
 
 
+class NoBottleError(ValueError):
+    """No detectable bottle in this view; quarter-turn retries are appropriate."""
+
+
 class BottleLocator:
     def __init__(self):
         self.network = None
@@ -42,7 +46,7 @@ class BottleLocator:
                 if label == self.bottle_class and score >= 0.30 and (x2 - x1) * (y2 - y1) >= h * w * 0.015:
                     candidates.append((score, [x1, y1, x2, y2]))
             if not candidates:
-                raise ValueError("Không tìm thấy chai đủ rõ trong ảnh. Hãy chụp trọn một chai, gồm nắp và đáy.")
+                raise NoBottleError("Không tìm thấy chai đủ rõ trong ảnh. Hãy chụp trọn một chai, gồm nắp và đáy.")
             candidates = self.suppress_nested(candidates)
             if len(candidates) > 1:
                 raise ValueError("Ảnh có nhiều chai. Hãy chọn hoặc chụp riêng một chai để kiểm tra.")

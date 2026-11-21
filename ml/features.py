@@ -6,10 +6,6 @@ import numpy as np
 
 APP_DIR = Path(__file__).resolve().parents[1]
 CLASS_NAMES = ("normal", "defect")
-FEATURE_VERSION = "auto-bottle-roi-hog64x128-hsv48-v3"
-IMAGE_SIZE = 224
-IMAGE_MEAN = (0.485, 0.456, 0.406)
-IMAGE_STD = (0.229, 0.224, 0.225)
 
 
 def image_path(value):
@@ -43,22 +39,6 @@ def read_model_image(record):
     return crop_bottle_bbox(image, record["bbox"]) if record.get("bbox") else image
 
 
-def extract_features(image):
-    """HOG describes shape/edges; HSV histograms add overall color information."""
-    validate_image(image)
-    resized = cv2.resize(image, (64, 128), interpolation=cv2.INTER_AREA)
-    gray = cv2.cvtColor(resized, cv2.COLOR_BGR2GRAY)
-    hog = cv2.HOGDescriptor((64, 128), (16, 16), (8, 8), (8, 8), 9)
-    edges = hog.compute(gray).reshape(-1)
-    hsv = cv2.cvtColor(resized, cv2.COLOR_BGR2HSV)
-    histograms = []
-    for channel, limit in ((0, 180), (1, 256), (2, 256)):
-        histogram = cv2.calcHist([hsv], [channel], None, [16], [0, limit]).reshape(-1)
-        histogram /= max(float(histogram.sum()), 1.0)
-        histograms.append(histogram)
-    return np.concatenate([edges, *histograms]).astype(np.float32)
-
-
 def bottle_crop_bounds(image, bbox, padding=0.08):
     """Pixel bounds shared by inference and its visual explanation."""
     validate_image(image)
@@ -82,21 +62,6 @@ def crop_bottle_bbox(image, bbox, padding=0.08):
     x1, y1, x2, y2 = bottle_crop_bounds(image, bbox, padding)
     crop = image[y1:y2, x1:x2]
     return crop.copy()
-
-
-def cnn_transform(augment=False):
-    # Torchvision stays lazy so classical models can run without loading PyTorch.
-    from torchvision import transforms
-
-    steps = [transforms.Resize((IMAGE_SIZE, IMAGE_SIZE))]
-    if augment:
-        steps.extend([
-            transforms.RandomHorizontalFlip(),
-            transforms.RandomRotation(12, fill=(127, 127, 127)),
-            transforms.ColorJitter(brightness=0.15, contrast=0.15, saturation=0.10),
-        ])
-    steps.extend([transforms.ToTensor(), transforms.Normalize(IMAGE_MEAN, IMAGE_STD)])
-    return transforms.Compose(steps)
 
 
 def as_rgb_pil(image):

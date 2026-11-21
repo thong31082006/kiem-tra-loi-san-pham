@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from models import InspectionResult
-from image_processing import segment_product, mask_iou, normalized_mask, normalized_crop, canny_edges, make_visual_mask
+from image_processing import segment_product, mask_iou, normalized_crop, canny_edges, make_visual_mask
 
 PRODUCT_CODE = "BOTTLE"
 PRODUCT_NAME = "Chai nhựa"
